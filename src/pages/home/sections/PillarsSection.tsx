@@ -31,7 +31,7 @@ export function PillarsSection() {
   return (
     <Section tone="navy" width="wide" className="py-20 md:py-24">
       <div className="max-w-2xl">
-        <Eyebrow align="start">Four pillars, one system&hellip;</Eyebrow>
+        <Eyebrow align="start">Four pillars, one system</Eyebrow>
         <h2 className="text-h1 mt-6 font-serif">Advisory that holds together</h2>
         <p className="text-body text-ink-muted mt-5">
           Strategy that ignores operations does not survive contact with the business.

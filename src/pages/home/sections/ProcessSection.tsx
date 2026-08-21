@@ -27,7 +27,7 @@ export function ProcessSection() {
   return (
     <Section tone="white" width="wide" className="py-20 md:py-24">
       <div className="max-w-2xl">
-        <Eyebrow align="start">How an engagement runs&hellip;</Eyebrow>
+        <Eyebrow align="start">Seven stages, in order</Eyebrow>
         <h2 className="text-h1 mt-6 font-serif">
           A report is not the finish line. Transformation is.
         </h2>

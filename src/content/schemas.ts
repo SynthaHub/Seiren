@@ -22,17 +22,44 @@ export const faqSchema = z.object({
   answer: z.string().min(1),
 });
 
-/** Fixed by the brief: every case study follows this spine, or it is not published. */
-export const caseStudySchema = z.object({
+/**
+ * The six-part spine fixed by the brief. Shared by both kinds of case study.
+ */
+const caseStudyBody = {
   slug: z.string().min(1),
   title: z.string().min(1),
+  sector: z.string().min(1),
   context: z.string().min(1),
   challenge: z.string().min(1),
   diagnosis: z.string().min(1),
   intervention: z.string().min(1),
   outcome: z.string().min(1),
   learning: z.string().min(1),
+};
+
+/**
+ * A real engagement. Cannot be constructed without `publishedWithPermission`,
+ * which the brief requires (§7) — the type is the enforcement.
+ */
+export const caseStudySchema = z.object({
+  ...caseStudyBody,
+  illustrative: z.literal(false),
   publishedWithPermission: z.literal(true),
+});
+
+/**
+ * An illustrative scenario — a worked example of method, not a client.
+ *
+ * Kept as a separate type on purpose. The two can never be rendered by the same
+ * code path by accident, and nothing typed as illustrative can be presented as
+ * a real engagement without a compile error.
+ *
+ * Outcomes here are deliberately structural rather than numeric. Even labelled,
+ * an invented "revenue up 40%" is the part a reader remembers as a claim.
+ */
+export const illustrativeCaseStudySchema = z.object({
+  ...caseStudyBody,
+  illustrative: z.literal(true),
 });
 
 export const insightSchema = z.object({
@@ -50,4 +77,5 @@ export type ServicePillar = z.infer<typeof servicePillarSchema>;
 export type JourneyStage = z.infer<typeof journeyStageSchema>;
 export type Faq = z.infer<typeof faqSchema>;
 export type CaseStudy = z.infer<typeof caseStudySchema>;
+export type IllustrativeCaseStudy = z.infer<typeof illustrativeCaseStudySchema>;
 export type Insight = z.infer<typeof insightSchema>;

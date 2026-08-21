@@ -34,7 +34,7 @@ export function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="The name, and what it means&hellip;"
+        eyebrow="A clear sky after a storm"
         title="Seiran means a clear sky after a storm"
         lede="The storm is the uncertainty, disorder and pressure organisations face as they grow. The clear sky is the clarity, stronger leadership and sustainable growth on the other side of it."
       />
@@ -42,7 +42,7 @@ export function AboutPage() {
       <Section tone="white" width="wide" className="py-20 md:py-28">
         <div className="max-w-3xl">
           <div>
-            <Eyebrow align="start">The story</Eyebrow>
+            <Eyebrow align="start">Where the name comes from</Eyebrow>
             <h2 className="text-h1 mt-6 font-serif">
               What worked when an organisation was small stops working as it scales.
             </h2>
@@ -66,7 +66,7 @@ export function AboutPage() {
       </Section>
 
       <Section tone="parchment" width="wide" className="py-20 md:py-28">
-        <Eyebrow>What we are for</Eyebrow>
+        <Eyebrow>What we are building toward</Eyebrow>
         <h2 className="text-h1 mt-6 text-center font-serif">
           Purpose, vision and mission
         </h2>
@@ -91,7 +91,7 @@ export function AboutPage() {
       <Section tone="white" width="wide" className="py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-16">
           <div>
-            <Eyebrow align="start">Who we serve</Eyebrow>
+            <Eyebrow align="start">Defined by situation</Eyebrow>
             <h2 className="text-h1 mt-6 font-serif">
               Defined by situation, not by size or sector.
             </h2>

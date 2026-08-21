@@ -17,7 +17,7 @@ export function GetInTouchSection() {
     <Section tone="white" width="wide" className="py-20 md:py-24">
       <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <Eyebrow align="start">Start a conversation&hellip;</Eyebrow>
+          <Eyebrow align="start">The first conversation</Eyebrow>
 
           <h2 className="text-h1 mt-6 font-serif">
             Talk to an adviser who has run the problem before

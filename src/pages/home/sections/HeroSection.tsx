@@ -57,7 +57,7 @@ export function HeroSection() {
 
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24 lg:py-28">
         <div className="lg:max-w-[54%]">
-          <Eyebrow align="start">Turning complexity into clarity&hellip;</Eyebrow>
+          <Eyebrow align="start">From complexity to clarity&hellip;</Eyebrow>
 
           <h1 className="text-hero mt-7">
             <span className="text-accent">Clear</span> Thinking,

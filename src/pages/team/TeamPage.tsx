@@ -42,7 +42,7 @@ export function TeamPage() {
   return (
     <>
       <PageHero
-        eyebrow="Who you will work with&hellip;"
+        eyebrow="Who does the work"
         title="A specialist practice, not a pyramid"
         lede="One named consultant leads the work, with a network of associates brought in where a specific engagement needs them."
       />
@@ -59,7 +59,7 @@ export function TeamPage() {
           </div>
 
           <div>
-            <Eyebrow align="start">Who you will be working with&hellip;</Eyebrow>
+            <Eyebrow align="start">The person leading it</Eyebrow>
             <h2 className="text-h1 text-ink-strong mt-6 font-serif">Eldaah Toi, PMP</h2>
             <p className="text-label text-accent mt-3 font-semibold tracking-[0.1em] uppercase">
               Founder &amp; Managing Consultant
@@ -105,7 +105,7 @@ export function TeamPage() {
       </Section>
 
       <Section tone="parchment" width="wide" className="py-20 md:py-24">
-        <Eyebrow>Capability where it is needed&hellip;</Eyebrow>
+        <Eyebrow>Specialists, when needed</Eyebrow>
         <h2 className="text-h1 mt-6 text-center font-serif">Strategic associates</h2>
         <p className="text-body text-ink-muted mx-auto mt-5 max-w-xl text-center">
           Seiran works with a network of associates across the disciplines below,

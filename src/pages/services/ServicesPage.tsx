@@ -20,7 +20,7 @@ export function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="What we actually do&hellip;"
+        eyebrow="What the work covers"
         title="Four pillars, worked as one system"
         lede="Strategy that ignores operations does not survive contact with the business. These are separated for navigation, not because they are addressed separately."
       />
@@ -86,7 +86,7 @@ export function ServicesPage() {
 
       <Section tone="navy" width="default" className="py-20 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>How they fit together</Eyebrow>
+          <Eyebrow>Rarely one pillar alone</Eyebrow>
           <p className="text-quote mt-8 font-serif italic">
             The presenting problem is rarely the constraint.
           </p>

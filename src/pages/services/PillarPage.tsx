@@ -12,10 +12,14 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
 
   return (
     <>
-      <PageHero eyebrow="Advisory services" title={pillar.title} lede={pillar.summary} />
+      <PageHero
+        eyebrow="Within the four pillars"
+        title={pillar.title}
+        lede={pillar.summary}
+      />
 
       <Section tone="white" width="wide" className="py-20 md:py-28">
-        <Eyebrow>What this covers</Eyebrow>
+        <Eyebrow>The full list</Eyebrow>
         <h2 className="text-h1 mt-6 text-center font-serif">
           {pillar.services.length} services within {pillar.title}
         </h2>
@@ -41,7 +45,7 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
       </Section>
 
       <Section tone="parchment" width="wide" className="py-20 md:py-28">
-        <Eyebrow>The other pillars</Eyebrow>
+        <Eyebrow>The other three</Eyebrow>
         <h2 className="text-h1 mt-6 text-center font-serif">
           Rarely addressed in isolation
         </h2>

@@ -49,7 +49,7 @@ export function AboutSection() {
     <Section tone="parchment" width="wide" className="py-20 md:py-24">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
         <div>
-          <Eyebrow align="start">About the firm&hellip;</Eyebrow>
+          <Eyebrow align="start">Why growth gets harder</Eyebrow>
           <h2 className="text-h1 mt-6 font-serif">
             Businesses grow. Complexity grows with them.
           </h2>

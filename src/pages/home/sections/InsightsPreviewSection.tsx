@@ -65,7 +65,7 @@ export function InsightsPreviewSection() {
     <Section tone="parchment" width="wide" className="py-20 md:py-24">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
-          <Eyebrow align="start">Thinking worth reading&hellip;</Eyebrow>
+          <Eyebrow align="start">Questions owners actually ask</Eyebrow>
           <h2 className="text-h1 mt-6 font-serif">
             Insights for owner-managed businesses
           </h2>

@@ -53,13 +53,13 @@ export function InsightsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Thinking worth reading&hellip;"
+        eyebrow="Writing for owner-managers"
         title="Thinking on growth, systems and founder transition"
         lede="Articles, research, guides and founder perspectives on the problems owner-managed businesses hit as they scale."
       />
 
       <Section tone="white" width="wide" className="py-20 md:py-28">
-        <Eyebrow>Coming first</Eyebrow>
+        <Eyebrow>First to be published</Eyebrow>
         <h2 className="text-h1 mt-6 text-center font-serif">
           The questions owners ask most often
         </h2>
@@ -95,7 +95,7 @@ export function InsightsPage() {
 
       <Section tone="parchment" width="default" className="py-20 md:py-24">
         <div className="mx-auto max-w-xl text-center">
-          <Eyebrow>Stay in touch</Eyebrow>
+          <Eyebrow>When they land</Eyebrow>
           <h2 className="text-h1 mt-6 font-serif">Get these when they land.</h2>
           <p className="text-body text-ink-muted mt-5">
             No more than once a month, and nothing you did not ask for.

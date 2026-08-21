@@ -23,13 +23,13 @@ export function ApproachPage() {
   return (
     <>
       <PageHero
-        eyebrow="How an engagement runs&hellip;"
+        eyebrow="The transformation journey"
         title="A report is not the finish line. Transformation is."
         lede="The Seiran Transformation Journey runs in seven stages. They are sequential because each depends on the last — you cannot design an operating model for a direction that has not been agreed."
       />
 
       <Section tone="white" width="default" className="py-20 md:py-24">
-        <Eyebrow align="start">Seven stages, in order&hellip;</Eyebrow>
+        <Eyebrow align="start">Stage by stage</Eyebrow>
         <h2 className="text-h1 mt-6 font-serif">
           From understanding a business to changing it
         </h2>
@@ -73,7 +73,7 @@ export function ApproachPage() {
 
       <Section tone="navy" width="default" className="py-20 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Where most consulting stops&hellip;</Eyebrow>
+          <Eyebrow>Where most consulting stops</Eyebrow>
           <p className="text-quote mt-8 font-serif italic">
             The later stages are where most consulting stops and most change fails.
           </p>
