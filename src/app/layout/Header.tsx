@@ -93,6 +93,16 @@ export function Header() {
                     className="relative"
                     onMouseEnter={() => setServicesOpen(true)}
                     onMouseLeave={() => setServicesOpen(false)}
+                    // onFocus opens the panel for keyboard users; without a
+                    // matching blur it stayed open after focus had moved on.
+                    // React's onBlur has focusout semantics and bubbles, so
+                    // checking relatedTarget closes it only when focus has
+                    // genuinely left the whole item.
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                        setServicesOpen(false);
+                      }
+                    }}
                   >
                     <Link
                       to={item.to}

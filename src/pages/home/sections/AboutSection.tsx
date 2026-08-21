@@ -74,7 +74,7 @@ export function AboutSection() {
         </div>
 
         <div>
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-7">
+          <dl className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
             {figures.map((f) => (
               <div key={f.label} className="flex items-start gap-4">
                 <f.icon className="text-accent mt-1 size-6 shrink-0" aria-hidden="true" />

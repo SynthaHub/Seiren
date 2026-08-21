@@ -19,36 +19,30 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
       />
 
       <Section tone="white" width="wide" className="py-20 md:py-28">
-        <Eyebrow>The full list</Eyebrow>
-        <h2 className="text-h1 mt-6 text-center font-serif">
+        <Eyebrow align="start">The full list</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">
           {pillar.services.length} services within {pillar.title}
         </h2>
 
-        <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {pillar.services.map((service, index) => (
+        <ul className="border-border mt-12 grid border-t sm:grid-cols-2 sm:gap-x-12">
+          {pillar.services.map((service) => (
             <li
               key={service}
-              className="bg-surface border-border rounded-card border p-6"
+              className="border-border text-body text-ink flex items-start gap-3 border-b py-4"
             >
               <span
-                className="text-accent text-label font-semibold tracking-[0.1em] tabular-nums"
+                className="bg-accent rounded-pill mt-2.5 size-1.5 shrink-0"
                 aria-hidden="true"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <p className="text-body text-ink-strong border-border mt-4 border-t pt-4 font-semibold">
-                {service}
-              </p>
+              />
+              {service}
             </li>
           ))}
         </ul>
       </Section>
 
       <Section tone="parchment" width="wide" className="py-20 md:py-28">
-        <Eyebrow>The other three</Eyebrow>
-        <h2 className="text-h1 mt-6 text-center font-serif">
-          Rarely addressed in isolation
-        </h2>
+        <Eyebrow align="start">The other three</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">Rarely addressed in isolation</h2>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {others.map((other) => (

@@ -59,11 +59,9 @@ export function InsightsPage() {
       />
 
       <Section tone="white" width="wide" className="py-20 md:py-28">
-        <Eyebrow>First to be published</Eyebrow>
-        <h2 className="text-h1 mt-6 text-center font-serif">
-          The questions owners ask most often
-        </h2>
-        <p className="text-body text-ink-muted mx-auto mt-5 max-w-xl text-center">
+        <Eyebrow align="start">First to be published</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">The questions owners ask most often</h2>
+        <p className="text-body text-ink-muted mt-5 max-w-xl">
           Nothing is published here yet. These are the pieces being written first.
         </p>
 
@@ -94,8 +92,8 @@ export function InsightsPage() {
       </Section>
 
       <Section tone="parchment" width="default" className="py-20 md:py-24">
-        <div className="mx-auto max-w-xl text-center">
-          <Eyebrow>When they land</Eyebrow>
+        <div className="max-w-xl">
+          <Eyebrow align="start">When they land</Eyebrow>
           <h2 className="text-h1 mt-6 font-serif">Get these when they land.</h2>
           <p className="text-body text-ink-muted mt-5">
             No more than once a month, and nothing you did not ask for.
