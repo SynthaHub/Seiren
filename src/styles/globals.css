@@ -1,0 +1,136 @@
+@import "tailwindcss" source("../");
+
+/* Brand faces, self-hosted. Both are SIL Open Font Licence, so shipping them
+   from our own origin is permitted — and it keeps a third-party connection off
+   the critical path, which matters on the 4G connections this site is read on.
+   Fontsource already sets font-display: swap on every face.
+   The italic cut is a separate import and is required: SPES-001 · 04 sets the
+   Quote style in Source Serif 4 italic. */
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/source-serif-4/index.css";
+@import "@fontsource-variable/source-serif-4/standard-italic.css";
+
+@import "./theme.css";
+
+@layer base {
+  html {
+    /* clip, never hidden — `hidden` silently breaks position: sticky on the header */
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: clip;
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* SPES-001 · 04: headings at 1.2, body at 1.5. Set here so no component has
+     to remember it, and so a heading that forgets its size still gets the
+     right leading. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.2;
+    text-wrap: balance;
+    color: var(--color-ink-strong);
+  }
+
+  /* Display and H1 are the serif; H2 and H3 are the sans. */
+  h1 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+  }
+
+  h2 {
+    font-weight: 600;
+  }
+
+  /* Medium 500 is licensed for Heading 3 only. */
+  h3 {
+    font-weight: 500;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus is never removed, only restyled. Uses the accent, which resolves to
+     Gold Deep on light grounds and Gold Leaf inside .on-navy — so the ring is
+     always the legal gold for the surface it lands on. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  /* SPES-001 · 04: tabular figures in tables, proportional in running text. */
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Media never outgrows its container. */
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer base {
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* The measure rule from SPES-001 · 04 — 60 to 75 characters, never wider. */
+  .measure {
+    max-width: var(--container-measure);
+  }
+}
+
+@layer utilities {
+  /* Continuous credibility strip. The track holds two identical runs and
+     translates by exactly half its width, so the loop is seamless.
+     Paused entirely under prefers-reduced-motion — a permanently moving band
+     is a genuine accessibility problem, not a nicety. */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 42s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+      transform: none;
+    }
+  }
+}

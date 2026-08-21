@@ -1,0 +1,175 @@
+/* ---------------------------------------------------------------------------
+   Seiran Partners — design tokens
+   Derived from identity spec SPES-001, sheets 01–04.
+
+   SPES-001 is the authority. Rationale, contrast measurements, and the rules
+   that are not expressible in CSS live in
+   .claude/skills/hawi-design/references/tokens.md — keep the two in sync.
+
+   Two hard rules that CSS cannot enforce, so they live in review:
+     1. Gold Leaf sits on Seiran Navy ONLY. On white or parchment use Gold Deep.
+     2. Navy 60 is never body text (4.02:1 on white, fails AA). Use Navy 80.
+   --------------------------------------------------------------------------- */
+
+/* --- Brand values (SPES-001 · 01). Hex is authoritative; it is what print matches. --- */
+
+:root {
+  --seiran-navy: #1b2a4a;
+  --seiran-navy-80: #48556e;
+  --seiran-navy-60: #767f92;
+  --seiran-navy-20: #d1d5db;
+  --seiran-charcoal: #3a3a3a;
+  --seiran-gold-leaf: #b8965a;
+  --seiran-gold-deep: #7d6230;
+  --seiran-parchment: #edebe5;
+  --seiran-rule: #d8d5cc;
+  --seiran-white: #ffffff;
+}
+
+/* --- Semantic roles, light ground (White 25% of the palette proportion) --- */
+
+:root {
+  --surface: var(--seiran-white);
+  --surface-sunken: var(--seiran-parchment);
+  --ink: var(--seiran-charcoal);
+  --ink-strong: var(--seiran-navy);
+  --ink-muted: var(--seiran-navy-80);
+  --border: var(--seiran-rule);
+  --border-strong: var(--seiran-navy-60);
+  --accent: var(--seiran-gold-deep);
+  --accent-ink: var(--seiran-white);
+
+  /* Semantic states. SPES-001 defines no error or success colour, so these are
+     derived: a brick red and a deep green chosen to sit with navy and gold
+     rather than the default web red/green, and checked against both light
+     grounds. Measured — danger 7.34:1 on white, 6.16:1 on parchment;
+     success 6.29:1 on white, 5.28:1 on parchment. */
+  --danger: #a32718;
+  --success: #2f6b4f;
+}
+
+/* --- Semantic roles, navy ground (Navy 60% — the dominant region of the site).
+       Applied with class="on-navy" to any full-bleed navy section.
+       Gold Leaf is permitted here and ONLY here.
+
+       There is deliberately no dark mode. The identity fixes a proportion —
+       Navy 60% / White 25% — so the design IS the alternation between navy and
+       white regions. A dark theme would flatten every white region to navy and
+       destroy the one structural thing the brand specifies. Navy sections are
+       the dark ground; the site does not need a second one. --- */
+
+.on-navy {
+  --surface: var(--seiran-navy);
+  --surface-sunken: var(--seiran-navy-80);
+  --ink: var(--seiran-white);
+  --ink-strong: var(--seiran-white);
+  --ink-muted: var(--seiran-navy-20);
+  --border: var(--seiran-navy-80);
+  --border-strong: var(--seiran-navy-60);
+  --accent: var(--seiran-gold-leaf);
+  --accent-ink: var(--seiran-navy);
+
+  /* Lightened so they still read on navy — measured 5.35:1 and 7.23:1. */
+  --danger: #e8836f;
+  --success: #7fc8a0;
+}
+
+/* --- Tailwind v4 token bindings.
+       `inline` makes the generated utilities reference the custom properties
+       rather than baking in a computed value, so .on-navy re-resolves every
+       utility at runtime. --- */
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-ink-strong: var(--ink-strong);
+  --color-ink-muted: var(--ink-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  /* Brand values addressable directly where a role name would obscure intent —
+     the wordmark, print-matched collateral, diagrams. Prefer the roles above. */
+  --color-navy: var(--seiran-navy);
+  --color-navy-80: var(--seiran-navy-80);
+  --color-navy-60: var(--seiran-navy-60);
+  --color-navy-20: var(--seiran-navy-20);
+  --color-charcoal: var(--seiran-charcoal);
+  --color-gold-leaf: var(--seiran-gold-leaf);
+  --color-gold-deep: var(--seiran-gold-deep);
+  --color-parchment: var(--seiran-parchment);
+  --color-rule: var(--seiran-rule);
+}
+
+/* --- Type (SPES-001 · 03, 04).
+       Both faces are SIL OFL — self-hosted in globals.css, never a font CDN. --- */
+
+@theme {
+  /* Fontsource publishes the variable cuts under a "… Variable" family name, so
+     that has to come first or the page silently falls through to the print
+     fallbacks below. The plain names are kept for anyone who has the retail
+     fonts installed locally. Tail of each stack is the SPES-001 · 03 fallback. */
+  --font-serif:
+    "Source Serif 4 Variable", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans:
+    "Inter Variable", "Inter", Calibri, "Helvetica Neue", system-ui, sans-serif;
+
+  /* Print pt converted at 17px body, preserving the spec's ratios.
+     Label is floored at 14px per the spec's own screen minimum, which
+     overrides its 13px strict conversion. */
+  /* PROPOSED EXTENSION to SPES-001 · 04 — needs Seiran's sign-off.
+     The spec's Display step (32pt ≈ 52px) is a document size. In a full-width
+     web hero it reads quiet, which is what made the first Home hero feel weak.
+     This adds one screen-only step above Display, fluid from the spec's own H1
+     (36px) on a 320px phone up to 68px on desktop, with leading tightened to
+     1.1 as display sizes require.
+     Used by page heroes ONLY. To revert: delete this token and put page h1s
+     back to `text-h1 md:text-display`. */
+  --text-hero: clamp(2.25rem, 1.15rem + 4.7vw, 4.25rem);
+  --text-hero--line-height: 1.1;
+  --text-hero--letter-spacing: -0.02em;
+
+  --text-display: 52px;
+  --text-display--line-height: 1.2;
+  --text-h1: 36px;
+  --text-h1--line-height: 1.2;
+  --text-h2: 23px;
+  --text-h2--line-height: 1.2;
+  --text-h3: 19px;
+  --text-h3--line-height: 1.2;
+  --text-body: 17px;
+  --text-body--line-height: 1.5;
+  --text-small: 15px;
+  --text-small--line-height: 1.5;
+  --text-label: 14px;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.1em;
+  --text-quote: 24px;
+  --text-quote--line-height: 1.4;
+
+  /* Heading spacing. The spec requires space above a heading to exceed space
+     below it, so the pairs are tokens rather than a judgement call. */
+  --spacing-h1-above: 64px;
+  --spacing-h1-below: 24px;
+  --spacing-h2-above: 48px;
+  --spacing-h2-below: 16px;
+  --spacing-h3-above: 32px;
+  --spacing-h3-below: 12px;
+
+  /* Radius was 2px on the institutional reading of the brand. Raised on an
+     explicit art-direction call to match the approved reference layout, which
+     is built on generously rounded cards, images and pill controls. SPES-001
+     does not specify radius, so this is a direction choice rather than a
+     deviation from the spec. */
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --radius-media: 18px;
+  --radius-pill: 999px;
+
+  /* Measure — SPES-001 · 04 requires 60–75 characters. */
+  --container-measure: 68ch;
+}
