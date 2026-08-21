@@ -1,18 +1,22 @@
+import { Asterisk } from "lucide-react";
+
 /**
- * The credibility strip, in the reference's position and rhythm.
+ * The ticker strip, on BizFusionX's construction: a navy band with the accent
+ * mark between items, running continuously.
  *
- * The reference runs "Trusted By 14K Companies Worldwide" over a marquee of
- * client logos. Seiran has neither a client count nor a logo to show, and
- * inventing either would be the most damaging thing this site could ship — a
- * firm selling honest diagnosis cannot open with fabricated proof.
+ * The reference lists its services here. Seiran's services already have a whole
+ * section, and the more useful thing for this reader is scope — the sectors the
+ * brief names — which also keeps the band honest: the equivalent "Trusted By
+ * 14K Companies" strip would need a client count Seiran does not have.
  *
- * So the strip keeps its job and its motion, carrying the sectors the brief
- * actually names. When real client logos exist they drop straight into this
- * track in place of the text runs, and the heading above can change with them.
+ * Navy rather than the parchment it was on before, because BizFusionX uses this
+ * strip to break between the hero and About, and a light strip between two
+ * light sections breaks nothing.
  *
- * The track is duplicated and translated by exactly 50%, which is what makes
- * the loop seamless. The copy is aria-hidden so a screen reader hears the list
- * once, not twice.
+ * The track is duplicated and translated exactly 50%, which is what makes the
+ * loop seamless. The copy is aria-hidden so the list is announced once, and the
+ * whole thing stops under prefers-reduced-motion — a permanently moving band is
+ * a real accessibility problem, not a nicety.
  */
 
 const sectors = [
@@ -28,14 +32,11 @@ const sectors = [
 
 function Run({ hidden = false }: { hidden?: boolean }) {
   return (
-    <ul
-      className="flex shrink-0 items-center gap-x-14 px-7"
-      aria-hidden={hidden || undefined}
-    >
+    <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
       {sectors.map((sector) => (
-        <li key={sector} className="flex items-center gap-14 whitespace-nowrap">
-          <span className="text-body text-ink-muted">{sector}</span>
-          <span className="bg-border rounded-pill size-1.5" aria-hidden="true" />
+        <li key={sector} className="flex items-center gap-8 pr-8 whitespace-nowrap">
+          <span className="text-body text-ink font-medium">{sector}</span>
+          <Asterisk className="text-accent size-4 shrink-0" aria-hidden="true" />
         </li>
       ))}
     </ul>
@@ -44,26 +45,11 @@ function Run({ hidden = false }: { hidden?: boolean }) {
 
 export function SectorsSection() {
   return (
-    <section className="bg-surface border-border border-y py-10 md:py-12">
-      <p className="text-ink-strong px-5 text-center text-[0.95rem] font-semibold md:px-8">
-        Advising owner-managed businesses across Kenya
-      </p>
-
-      {/* The mask fades both ends so items enter and leave rather than
-          appearing and vanishing at a hard edge. */}
-      <div
-        className="mt-7 overflow-hidden"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-        }}
-      >
-        <div className="animate-marquee flex w-max">
-          <Run />
-          <Run hidden />
-        </div>
+    <section className="on-navy bg-surface text-ink overflow-hidden py-5">
+      <h2 className="sr-only">Sectors Seiran advises</h2>
+      <div className="animate-marquee flex w-max">
+        <Run />
+        <Run hidden />
       </div>
     </section>
   );

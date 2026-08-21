@@ -34,7 +34,7 @@ export function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="Who we are"
+        eyebrow="The name, and what it means&hellip;"
         title="Seiran means a clear sky after a storm"
         lede="The storm is the uncertainty, disorder and pressure organisations face as they grow. The clear sky is the clarity, stronger leadership and sustainable growth on the other side of it."
       />

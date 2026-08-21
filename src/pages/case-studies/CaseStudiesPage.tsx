@@ -28,7 +28,7 @@ export function CaseStudiesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Case studies"
+        eyebrow="Published only with permission&hellip;"
         title="Nothing published yet"
         lede="Seiran publishes a case study only where there has been a genuine engagement and the client has given permission. Until then this page stays empty rather than filled with illustrative examples."
       />

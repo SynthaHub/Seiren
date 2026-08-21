@@ -44,7 +44,7 @@ export function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Start a conversation"
+        eyebrow="Start a conversation&hellip;"
         title="Tell us what you are dealing with"
         lede="The first conversation is a discussion of your situation, not a pitch. If Seiran is not the right fit for what you are facing, we will say so."
       />

@@ -23,7 +23,7 @@ export function ApproachPage() {
   return (
     <>
       <PageHero
-        eyebrow="Our approach"
+        eyebrow="How an engagement runs&hellip;"
         title="A report is not the finish line. Transformation is."
         lede="The Seiran Transformation Journey runs in seven stages. They are sequential because each depends on the last — you cannot design an operating model for a direction that has not been agreed."
       />

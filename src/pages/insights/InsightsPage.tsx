@@ -53,7 +53,7 @@ export function InsightsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Insights"
+        eyebrow="Thinking worth reading&hellip;"
         title="Thinking on growth, systems and founder transition"
         lede="Articles, research, guides and founder perspectives on the problems owner-managed businesses hit as they scale."
       />

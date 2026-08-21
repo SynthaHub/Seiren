@@ -1,46 +1,52 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Mail, Phone } from "lucide-react";
-import { LinkedInIcon } from "@/components/ui/icons";
 import { footerNav, contactDetails, officeAddress } from "@/content/navigation";
+import { LinkedInIcon } from "@/components/ui/icons";
+import { NewsletterForm } from "@/pages/home/sections/NewsletterForm";
 import { Wordmark } from "./Wordmark";
 
 /**
- * Four columns over a rule, following the approved reference.
+ * Navy footer on BizFusionX's construction: brand and newsletter across the
+ * top, link columns beneath, a rule, then copyright and socials.
  *
- * Navy rather than the reference's light grey: with a light-led page above it,
- * a navy footer is what keeps the identity's navy-dominant proportion
- * (SPES-001 · 01) within reach.
+ * The newsletter moved here from its own section on Home. It is a footer
+ * concern — a standing offer, not a call to action — and giving it a full band
+ * above the real CTA was asking twice, which devalues the first ask.
+ *
+ * Navy rather than the reference's light ground: with a light-led page above
+ * it, this is what keeps SPES-001's navy-dominant proportion within reach.
  *
  * The reference's fourth column is an Instagram grid. Seiran has no confirmed
  * social channels beyond the founder's LinkedIn (brief §9), and a grid of
- * placeholder tiles would be worse than none, so that column carries contact
- * details instead.
+ * placeholder tiles would be worse than none.
  */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="on-navy bg-surface text-ink">
-      <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
+        <div className="border-border grid gap-10 border-b pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           <div>
             <Wordmark />
-            <p className="text-small text-ink-muted mt-5 max-w-xs">
+            <p className="text-small text-ink-muted mt-5 max-w-sm">
               Strategy and business advisory for owner-managed businesses in Kenya.
               Turning complexity into clarity, stronger execution and sustainable growth.
             </p>
-
-            <a
-              href={contactDetails.linkedInFounder}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Eldaah Toi on LinkedIn"
-              className="bg-accent text-accent-ink rounded-pill mt-7 grid size-10 place-items-center transition-opacity hover:opacity-90"
-            >
-              <LinkedInIcon className="size-4" />
-            </a>
           </div>
 
+          <div>
+            <h2 className="text-h3 font-serif font-semibold">
+              Occasional writing, worth reading
+            </h2>
+            <p className="text-small text-ink-muted mt-2">
+              No more than once a month, and nothing you did not ask for.
+            </p>
+            <NewsletterForm />
+          </div>
+        </div>
+
+        <div className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-4">
           {footerNav.map((group) => (
             <nav key={group.heading} aria-label={group.heading}>
               <h2 className="text-label text-ink font-semibold tracking-[0.1em] uppercase">
@@ -113,14 +119,23 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-border mt-14 flex flex-col gap-3 border-t pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border flex flex-col gap-4 border-t pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-small text-ink-muted">
             &copy; {year} Seiran Partners. All rights reserved.
           </p>
+
           {/* Privacy Policy, Terms and Cookie notice are outstanding (brief §9).
-              They belong here, and the enquiry form should not go live without
-              the privacy policy. */}
-          <p className="text-small text-ink-muted">A clear sky after a storm.</p>
+              They belong on this line, and the enquiry form should not go live
+              without the privacy policy. */}
+          <a
+            href={contactDetails.linkedInFounder}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Eldaah Toi on LinkedIn"
+            className="bg-accent text-accent-ink rounded-pill grid size-9 place-items-center transition-opacity hover:opacity-90"
+          >
+            <LinkedInIcon className="size-4" />
+          </a>
         </div>
       </div>
     </footer>

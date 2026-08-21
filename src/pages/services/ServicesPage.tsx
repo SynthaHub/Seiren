@@ -20,7 +20,7 @@ export function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Advisory services"
+        eyebrow="What we actually do&hellip;"
         title="Four pillars, worked as one system"
         lede="Strategy that ignores operations does not survive contact with the business. These are separated for navigation, not because they are addressed separately."
       />

@@ -42,7 +42,7 @@ export function TeamPage() {
   return (
     <>
       <PageHero
-        eyebrow="Team"
+        eyebrow="Who you will work with&hellip;"
         title="A specialist practice, not a pyramid"
         lede="One named consultant leads the work, with a network of associates brought in where a specific engagement needs them."
       />
