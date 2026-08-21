@@ -41,7 +41,7 @@ const forthcoming = [
 export function InsightsPreviewSection() {
   return (
     <Section tone="parchment" width="wide" className="py-20 md:py-24">
-      <Eyebrow>Our thinking</Eyebrow>
+      <Eyebrow>Thinking worth reading&hellip;</Eyebrow>
       <h2 className="text-h1 mt-6 text-center font-serif">
         Insights for owner-managed businesses
       </h2>

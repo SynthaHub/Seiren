@@ -18,7 +18,7 @@ import { ArrowLink } from "@/components/ui/ArrowButton";
 export function AboutSection() {
   return (
     <Section tone="white" width="default" className="py-20 md:py-24">
-      <Eyebrow>About the firm</Eyebrow>
+      <Eyebrow>Complexity is what growth feels like&hellip;</Eyebrow>
 
       <div className="mx-auto mt-10 max-w-3xl text-center">
         <h2 className="text-h2 md:text-h1 font-serif">

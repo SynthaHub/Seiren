@@ -15,7 +15,7 @@ import { servicePillars } from "@/content/services";
 export function PillarsSection() {
   return (
     <Section tone="parchment" width="wide" className="py-20 md:py-24">
-      <Eyebrow>Advisory services</Eyebrow>
+      <Eyebrow>Four pillars, one system&hellip;</Eyebrow>
       <h2 className="text-h1 mt-6 text-center font-serif">
         Four pillars, worked as one system
       </h2>

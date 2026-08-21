@@ -1,36 +1,67 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Compass } from "lucide-react";
-import { Section, SectionLabel } from "@/components/common/Section";
-import { Photo } from "@/components/common/Photo";
+import { Eyebrow } from "@/components/common/Eyebrow";
 import { HeroPattern } from "@/components/common/HeroPattern";
 import { buttonVariants } from "@/components/ui/Button";
 import { ArrowLink } from "@/components/ui/ArrowButton";
+import { placeholders, usingPlaceholderImagery } from "@/content/placeholders";
 
 /**
- * Split hero: content left, a single portrait right.
+ * Full-bleed hero, built to the reference's construction rather than a card
+ * layout.
  *
- * One image, not three. An earlier pass followed the reference's inset-photo
- * detail as well, which meant the hero opened on a stack of empty placeholder
- * boxes — the layout became about the missing photography rather than the
- * proposition.
+ * Three things make it read the way the reference does:
  *
- * The card beneath the CTA carries the seven-stage journey. The reference puts
- * a discount there; Seiran has nothing to discount, and the journey is what a
- * hesitant reader most wants to understand before enquiring.
+ * 1. **The image bleeds off the right edge.** It is positioned against the
+ *    section, not inside the max-width container, so it runs to the viewport
+ *    edge and the full height of the band. No rounded frame — a boxed photo is
+ *    what made the earlier version look like a component dropped onto a page.
+ *
+ * 2. **The pattern spans the whole band**, behind both the copy and the image,
+ *    rather than sitting in the empty half. That is what makes it read as a
+ *    ground rather than as decoration parked in the gap.
+ *
+ * 3. **The image dissolves into the ground on its left edge.** The reference
+ *    uses a cut-out subject with no background; without cut-out photography the
+ *    honest equivalent is a gradient wash from the parchment ground across the
+ *    image's inner edge, so there is no hard vertical seam down the middle of
+ *    the hero.
+ *
+ * This section deliberately does not use `Section` — it needs to break out of
+ * the shared container to bleed, and forcing that through a `bare` prop would
+ * make the shared component worse for every other caller.
  */
 export function HeroSection() {
-  return (
-    <Section tone="parchment" width="wide" className="relative isolate py-0 md:py-0">
-      {/* Decorative only. Sits behind everything, clipped to the band, and
-          weighted to the right so it never runs under the headline. */}
-      <HeroPattern className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden h-full w-[62%] opacity-[0.16] lg:block" />
+  const hero = placeholders.heroAdvisory;
 
-      <div className="grid items-center gap-x-14 gap-y-12 py-16 md:py-24 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <SectionLabel className="flex items-center gap-3">
-            <span className="bg-accent/50 h-px w-8" aria-hidden="true" />
-            From complexity to clarity
-          </SectionLabel>
+  return (
+    <section className="bg-surface-sunken relative isolate overflow-hidden">
+      <HeroPattern className="pointer-events-none absolute inset-0 -z-20 h-full w-full opacity-[0.13]" />
+
+      {/* Right half-bleed. Hidden below lg, where it becomes a normal block
+          under the copy — a half-bleed on a phone is just a cropped sliver. */}
+      <div className="absolute inset-y-0 right-0 -z-10 hidden w-[47%] lg:block">
+        <img
+          src={hero.src}
+          alt={usingPlaceholderImagery ? `Placeholder image — ${hero.note}` : hero.note}
+          className="h-full w-full object-cover object-center"
+          loading="eager"
+          decoding="sync"
+        />
+        {/* Dissolves the inner edge into the ground so there is no seam. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, var(--color-surface-sunken) 0%, color-mix(in oklch, var(--color-surface-sunken) 55%, transparent) 28%, transparent 62%)",
+          }}
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24 lg:py-28">
+        <div className="lg:max-w-[54%]">
+          <Eyebrow align="start">Turning complexity into clarity&hellip;</Eyebrow>
 
           <h1 className="text-hero mt-7">
             Clear Thinking,
@@ -71,14 +102,16 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="lg:col-span-6">
-          <Photo
-            slot="workspacePortrait"
-            aspect="aspect-[4/5] lg:aspect-[4/4.5]"
-            priority
-          />
-        </div>
+        {/* Below lg the image sits in the flow, full width of the container. */}
+        <img
+          src={hero.src}
+          alt=""
+          aria-hidden="true"
+          className="rounded-media mt-12 aspect-[4/3] w-full object-cover lg:hidden"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
-    </Section>
+    </section>
   );
 }

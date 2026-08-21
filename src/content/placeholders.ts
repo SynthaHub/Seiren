@@ -18,6 +18,7 @@
  */
 
 export type PlaceholderKey =
+  | "heroAdvisory"
   | "workspacePortrait"
   | "advisorySession"
   | "teamWorkshop"
@@ -26,6 +27,10 @@ export type PlaceholderKey =
   | "nairobiExterior";
 
 export const placeholders: Record<PlaceholderKey, { src: string; note: string }> = {
+  heroAdvisory: {
+    src: "/placeholders/hero-advisory.jpg",
+    note: "Advisory conversation — the hero image, bleeding off the right edge",
+  },
   workspacePortrait: {
     src: "/placeholders/workspace-portrait.jpg",
     note: "Founder portrait — Eldaah Toi, to be photographed",
