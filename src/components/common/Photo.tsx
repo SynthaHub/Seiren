@@ -1,21 +1,30 @@
 import { ImageIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
+import {
+  placeholders,
+  usingPlaceholderImagery,
+  type PlaceholderKey,
+} from "@/content/placeholders";
 
 /**
- * An image, or an empty placeholder when there is no image yet.
+ * An image slot.
  *
- * The layout is photography-led and Seiran has supplied none (brief §9). The
- * placeholder is deliberately plain — a neutral block, an icon, and the art
- * direction for that slot. An earlier version drew decorative artwork inside
- * it, which filled the space but read as real content and made the page harder
- * to judge, not easier.
+ * Pass `slot` for a stand-in from the placeholder set, or `src` for a real
+ * photograph. With neither it renders an empty frame carrying the art direction
+ * for that slot, so the layout can still be judged.
  *
- * Dropping in a real photo is one prop: `src`.
+ * Alt text is the point of care here. While `usingPlaceholderImagery` is true,
+ * every stand-in announces itself as a placeholder — so a screen-reader user is
+ * never told that a stock workspace photo is a portrait of Eldaah Toi. See
+ * src/content/placeholders.ts.
  */
 
 export type PhotoProps = {
-  /** Art direction for this slot. Shown on the placeholder, used as alt text. */
-  note: string;
+  /** Art direction for this slot. Used as alt text once real imagery lands. */
+  note?: string;
+  /** Draws from the placeholder set. */
+  slot?: PlaceholderKey;
+  /** A real photograph. Wins over `slot`. */
   src?: string;
   alt?: string;
   className?: string;
@@ -26,17 +35,23 @@ export type PhotoProps = {
 
 export function Photo({
   note,
+  slot,
   src,
   alt,
   className,
   aspect = "aspect-[4/3]",
   priority,
 }: PhotoProps) {
-  if (src) {
+  const entry = slot ? placeholders[slot] : undefined;
+  const resolvedSrc = src ?? entry?.src;
+  const description = note ?? entry?.note ?? "";
+
+  if (resolvedSrc) {
+    const isStandIn = !src && usingPlaceholderImagery;
     return (
       <img
-        src={src}
-        alt={alt ?? note}
+        src={resolvedSrc}
+        alt={alt ?? (isStandIn ? `Placeholder image — ${description}` : description)}
         loading={priority ? "eager" : "lazy"}
         decoding={priority ? "sync" : "async"}
         className={cn("rounded-media h-full w-full object-cover", aspect, className)}
@@ -47,7 +62,7 @@ export function Photo({
   return (
     <div
       role="img"
-      aria-label={`Image placeholder — ${note}`}
+      aria-label={`Image placeholder — ${description}`}
       className={cn(
         "rounded-media border-border bg-surface-sunken",
         "flex flex-col items-center justify-center gap-3 border p-4 text-center",
@@ -57,7 +72,7 @@ export function Photo({
     >
       <ImageIcon className="text-ink-muted size-6 opacity-40" aria-hidden="true" />
       <span className="text-ink-muted max-w-[22ch] text-[0.72rem] leading-snug">
-        {note}
+        {description}
       </span>
     </div>
   );

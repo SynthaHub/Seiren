@@ -73,7 +73,7 @@ export function HeroSection() {
 
         <div className="lg:col-span-6">
           <Photo
-            note="Eldaah Toi — founder portrait, in the workspace or with a client"
+            slot="workspacePortrait"
             aspect="aspect-[4/5] lg:aspect-[4/4.5]"
             priority
           />

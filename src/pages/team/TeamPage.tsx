@@ -27,7 +27,7 @@ export function TeamPage() {
       <Section tone="white" width="wide" className="py-20 md:py-28">
         <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] md:gap-14">
           <Photo
-            note="Eldaah Toi — founder portrait"
+            slot="workspacePortrait"
             aspect="aspect-[4/5]"
             className="rounded-card"
           />
