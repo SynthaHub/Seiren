@@ -1,75 +1,104 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Compass, Settings2, Users, LineChart } from "lucide-react";
 import { Section } from "@/components/common/Section";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { servicePillars } from "@/content/services";
 
 /**
- * The services row. Restyled to the reference's card language — white cards on
- * a parchment ground, generous radius, a rule between the summary and the list.
+ * The services block, rebuilt on BizFusionX's dark-services pattern: a navy
+ * band carrying four cards, with **one card filled in the accent**.
  *
- * The sub-services stay listed in full rather than teased. Twenty-eight named
- * services is the most persuasive thing on the page for a reader who has been
- * sold vague capability before, and it costs nothing but height.
+ * Two problems this solves at once.
+ *
+ * The section was four identical bordered rectangles on parchment — the most
+ * generic thing a services block can be, and it left the page with no navy
+ * between the hero and the figures band. SPES-001 · 01 puts navy at 60% of the
+ * palette, and a light-dominant page inverts the identity while technically
+ * using its colours.
+ *
+ * It also gives Gold Leaf somewhere real to work. Gold is 12% of the palette,
+ * which is generous for an accent, and it is only legal on navy — so a filled
+ * gold card inside a navy band is exactly where that allocation was meant to
+ * go. One card, not two: the point of a highlight is that it is singular.
+ *
+ * Strategy & Growth is the highlighted one because it is where most owners
+ * think they are starting.
  */
+
+const icons = [Compass, Settings2, Users, LineChart];
+
 export function PillarsSection() {
   return (
-    <Section tone="parchment" width="wide" className="py-20 md:py-24">
-      <Eyebrow>Four pillars, one system&hellip;</Eyebrow>
-      <h2 className="text-h1 mt-6 text-center font-serif">
-        Four pillars, worked as one system
-      </h2>
-      <p className="text-body text-ink-muted mx-auto mt-5 max-w-xl text-center">
-        Strategy that ignores operations does not survive contact with the business. These
-        are separated for navigation, not because they are addressed separately.
-      </p>
+    <Section tone="navy" width="wide" className="py-20 md:py-24">
+      <div className="max-w-2xl">
+        <Eyebrow align="start">Four pillars, one system&hellip;</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">Advisory that holds together</h2>
+        <p className="text-body text-ink-muted mt-5">
+          Strategy that ignores operations does not survive contact with the business.
+          These are separated for navigation, not because they are addressed separately.
+        </p>
+      </div>
 
-      <div className="mt-14 grid gap-6 md:grid-cols-2">
-        {servicePillars.map((pillar) => (
-          <article
-            key={pillar.slug}
-            className="bg-surface border-border rounded-card flex flex-col border p-6 md:p-8"
-          >
-            <h3 className="text-h3 text-ink-strong font-serif font-semibold">
+      <div className="mt-14 grid gap-5 sm:grid-cols-2">
+        {servicePillars.map((pillar, index) => {
+          const Icon = icons[index] ?? Compass;
+          const featured = index === 0;
+
+          return (
+            <article
+              key={pillar.slug}
+              className={
+                featured
+                  ? "bg-accent text-accent-ink rounded-card p-7 md:p-8"
+                  : "bg-surface-sunken border-border rounded-card border p-7 md:p-8"
+              }
+            >
+              <Icon
+                className={featured ? "text-accent-ink size-7" : "text-accent size-7"}
+                aria-hidden="true"
+              />
+
+              <h3
+                className={`text-h3 mt-5 font-serif font-semibold ${
+                  featured ? "text-accent-ink" : "text-ink"
+                }`}
+              >
+                {pillar.title}
+              </h3>
+
+              <p
+                className={`text-small mt-3 ${
+                  featured ? "text-accent-ink" : "text-ink-muted"
+                }`}
+              >
+                {pillar.summary}
+              </p>
+
+              <p
+                className={`text-small mt-5 ${
+                  featured ? "text-accent-ink" : "text-ink-muted"
+                }`}
+              >
+                {pillar.services.slice(0, 4).join(" · ")}
+                {pillar.services.length > 4 && ` · +${pillar.services.length - 4} more`}
+              </p>
+
               <Link
                 to="/services/$pillar"
                 params={{ pillar: pillar.slug }}
-                className="hover:text-accent transition-colors"
+                className={`group text-small mt-7 inline-flex items-center gap-2 font-medium transition-opacity hover:opacity-80 ${
+                  featured ? "text-accent-ink" : "text-accent"
+                }`}
               >
-                {pillar.title}
+                Discover more
+                <ArrowRight
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
               </Link>
-            </h3>
-
-            <p className="text-small text-ink-muted mt-3">{pillar.summary}</p>
-
-            <ul className="border-border mt-6 flex flex-1 flex-col gap-2.5 border-t pt-6">
-              {pillar.services.map((service) => (
-                <li
-                  key={service}
-                  className="text-small text-ink flex items-start gap-2.5"
-                >
-                  <span
-                    className="bg-accent rounded-pill mt-2 size-1.5 shrink-0"
-                    aria-hidden="true"
-                  />
-                  {service}
-                </li>
-              ))}
-            </ul>
-
-            <Link
-              to="/services/$pillar"
-              params={{ pillar: pillar.slug }}
-              className="text-small text-accent group mt-7 inline-flex items-center gap-1.5 hover:underline"
-            >
-              Explore {pillar.title}
-              <ArrowRight
-                className="size-3.5 transition-transform group-hover:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </Link>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </Section>
   );

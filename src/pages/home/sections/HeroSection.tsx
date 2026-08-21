@@ -1,35 +1,32 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Compass } from "lucide-react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { HeroPattern } from "@/components/common/HeroPattern";
 import { buttonVariants } from "@/components/ui/Button";
-import { ArrowLink } from "@/components/ui/ArrowButton";
 import { placeholders, usingPlaceholderImagery } from "@/content/placeholders";
 
 /**
- * Full-bleed hero, built to the reference's construction rather than a card
- * layout.
+ * Full-bleed hero: copy left, image bleeding off the right edge, contour ground
+ * spanning the whole band.
  *
- * Three things make it read the way the reference does:
+ * Two moves taken from BizFusionX, which is the closest reference to Seiran's
+ * situation — business advisory, navy plus a single warm accent:
  *
- * 1. **The image bleeds off the right edge.** It is positioned against the
- *    section, not inside the max-width container, so it runs to the viewport
- *    edge and the full height of the band. No rounded frame — a boxed photo is
- *    what made the earlier version look like a component dropped onto a page.
+ * 1. **One word of the headline in the accent.** "Clear" carries the brand
+ *    metaphor, so highlighting it says something rather than just adding colour.
+ *    Gold Deep, because this is a light ground — Gold Leaf would fail contrast
+ *    here and the token layer will not hand it over.
  *
- * 2. **The pattern spans the whole band**, behind both the copy and the image,
- *    rather than sitting in the empty half. That is what makes it read as a
- *    ground rather than as decoration parked in the gap.
+ * 2. **A real secondary action instead of the decorative arrow square.** The
+ *    reference pairs "Let's Discuss" with "How we Work". The square arrow that
+ *    used to sit here pointed at the same URL as the button beside it, which
+ *    gave keyboard users a duplicate tab stop for no gain. This sends people to
+ *    the seven-stage journey instead — the question a hesitant reader actually
+ *    has.
  *
- * 3. **The image dissolves into the ground on its left edge.** The reference
- *    uses a cut-out subject with no background; without cut-out photography the
- *    honest equivalent is a gradient wash from the parchment ground across the
- *    image's inner edge, so there is no hard vertical seam down the middle of
- *    the hero.
- *
- * This section deliberately does not use `Section` — it needs to break out of
- * the shared container to bleed, and forcing that through a `bare` prop would
- * make the shared component worse for every other caller.
+ * This section does not use `Section`: it has to break out of the shared
+ * container to bleed, and forcing that through a prop would make the shared
+ * component worse for every other caller.
  */
 export function HeroSection() {
   const hero = placeholders.heroAdvisory;
@@ -38,8 +35,8 @@ export function HeroSection() {
     <section className="bg-surface-sunken relative isolate overflow-hidden">
       <HeroPattern className="pointer-events-none absolute inset-0 -z-20 h-full w-full opacity-[0.13]" />
 
-      {/* Right half-bleed. Hidden below lg, where it becomes a normal block
-          under the copy — a half-bleed on a phone is just a cropped sliver. */}
+      {/* Right half-bleed. Below lg it becomes a normal block under the copy —
+          a 47% bleed on a phone is just a cropped sliver. */}
       <div className="absolute inset-y-0 right-0 -z-10 hidden w-[47%] lg:block">
         <img
           src={hero.src}
@@ -48,7 +45,6 @@ export function HeroSection() {
           loading="eager"
           decoding="sync"
         />
-        {/* Dissolves the inner edge into the ground so there is no seam. */}
         <div
           aria-hidden="true"
           className="absolute inset-0"
@@ -64,7 +60,7 @@ export function HeroSection() {
           <Eyebrow align="start">Turning complexity into clarity&hellip;</Eyebrow>
 
           <h1 className="text-hero mt-7">
-            Clear Thinking,
+            <span className="text-accent">Clear</span> Thinking,
             <br />
             Lasting Growth
           </h1>
@@ -75,34 +71,44 @@ export function HeroSection() {
             everything.
           </p>
 
-          <div className="mt-10 flex items-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
             <Link to="/contact" className={buttonVariants({ size: "lg" })}>
               Start a Conversation
             </Link>
-            <ArrowLink to="/contact" label="Start a conversation with Seiran" />
+
+            <Link
+              to="/approach"
+              className="text-body text-ink-strong hover:text-accent group inline-flex items-center gap-2.5 transition-colors"
+            >
+              <PlayCircle className="text-accent size-6 shrink-0" aria-hidden="true" />
+              How we work
+              <ArrowRight
+                className="size-4 transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
           </div>
 
           <div className="bg-surface border-border rounded-card mt-14 flex max-w-md items-center gap-5 border p-5">
-            <Compass className="text-accent size-7 shrink-0" aria-hidden="true" />
+            <div className="border-accent/30 flex flex-col items-center border-r pr-5">
+              <span className="text-accent font-serif text-[1.9rem] leading-none font-semibold tabular-nums">
+                7
+              </span>
+              <span className="text-ink-muted mt-1 text-[0.68rem] tracking-wide">
+                stages
+              </span>
+            </div>
             <div>
               <p className="text-small text-ink-strong font-semibold">
-                The seven-stage transformation journey
+                The Seiran Transformation Journey
               </p>
-              <Link
-                to="/approach"
-                className="text-small text-accent group mt-1.5 inline-flex items-center gap-1.5 hover:underline"
-              >
-                See how an engagement runs
-                <ArrowRight
-                  className="size-3.5 transition-transform group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </Link>
+              <p className="text-small text-ink-muted mt-1">
+                Understand, diagnose, clarify &mdash; then build it.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Below lg the image sits in the flow, full width of the container. */}
         <img
           src={hero.src}
           alt=""
