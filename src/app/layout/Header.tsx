@@ -29,7 +29,7 @@ function TopBar() {
         {contactDetails.email && (
           <a
             href={`mailto:${contactDetails.email}`}
-            className="text-ink-muted hover:text-ink hidden items-center gap-2 text-[0.8rem] transition-colors sm:flex"
+            className="text-ink-muted hover:text-ink ease-out-soft hidden items-center gap-2 text-[0.8rem] transition-colors duration-200 sm:flex"
           >
             <Mail className="text-accent size-3.5 shrink-0" aria-hidden="true" />
             {contactDetails.email}
@@ -43,7 +43,7 @@ function TopBar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Eldaah Toi on LinkedIn"
-            className="bg-accent text-accent-ink rounded-pill grid size-7 place-items-center transition-opacity hover:opacity-90"
+            className="bg-accent text-accent-ink rounded-pill ease-out-soft grid size-7 place-items-center transition-[opacity,transform] duration-200 hover:opacity-90 active:scale-95 active:duration-75"
           >
             <LinkedInIcon className="size-3.5" />
           </a>
@@ -75,9 +75,14 @@ export function Header() {
 
       <div className="bg-surface border-border border-b">
         <div className="mx-auto flex h-18 max-w-7xl items-center gap-6 px-4 md:px-8">
+          {/* The most-clicked link on the site and the only one that gave no
+              answer at all. Opacity rather than colour: the wordmark's whole
+              point is the relationship between the serif Seiran and the gold
+              PARTNERS, and dimming both together is the one hover that does not
+              disturb it. */}
           <Link
             to="/"
-            className="rounded-control focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="rounded-control focus-visible:outline-accent ease-out-soft transition-opacity duration-200 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 active:opacity-70 active:duration-75"
             onClick={() => setOpen(false)}
           >
             <Wordmark />
@@ -106,23 +111,32 @@ export function Header() {
                   >
                     <Link
                       to={item.to}
-                      className="text-small text-ink hover:text-accent flex items-center gap-1 transition-colors"
+                      className="text-small text-ink hover:text-accent nav-mark ease-out-soft flex items-center gap-1 transition-colors duration-200"
                       aria-expanded={servicesOpen}
                       onFocus={() => setServicesOpen(true)}
                     >
                       {item.label}
-                      <ChevronDown className="size-3.5" aria-hidden="true" />
+                      {/* The chevron turning is the only thing that tells you
+                          the panel below belongs to this item rather than
+                          having appeared over it. */}
+                      <ChevronDown
+                        className={cn(
+                          "ease-out-soft size-3.5 transition-transform duration-200",
+                          servicesOpen && "rotate-180",
+                        )}
+                        aria-hidden="true"
+                      />
                     </Link>
 
                     {servicesOpen && (
-                      <ul className="bg-surface border-border rounded-card absolute top-full left-0 w-72 border p-2 shadow-lg">
+                      <ul className="bg-surface border-border rounded-card animate-drop-in absolute top-full left-0 w-72 border p-2 shadow-lg">
                         {servicePillars.map((p) => (
                           <li key={p.slug}>
                             <Link
                               to="/services/$pillar"
                               params={{ pillar: p.slug }}
                               onClick={() => setServicesOpen(false)}
-                              className="text-small text-ink hover:bg-surface-sunken hover:text-accent rounded-control block px-3 py-2 transition-colors"
+                              className="text-small text-ink hover:bg-surface-sunken hover:text-accent rounded-control ease-out-soft block px-3 py-2 transition-colors duration-150"
                             >
                               {p.title}
                             </Link>
@@ -135,7 +149,7 @@ export function Header() {
                   <li key={item.to}>
                     <Link
                       to={item.to}
-                      className="text-small text-ink hover:text-accent transition-colors"
+                      className="text-small text-ink hover:text-accent nav-mark ease-out-soft transition-colors duration-200"
                     >
                       {item.label}
                     </Link>
@@ -147,8 +161,11 @@ export function Header() {
 
           {/* The reference puts a phone number here. Seiran's is outstanding,
               so the slot carries the primary action until one exists. */}
-          <div className="ml-auto hidden items-center gap-3 lg:ml-0 lg:flex">
-            <span className="bg-accent text-accent-ink rounded-pill grid size-11 place-items-center">
+          {/* Grouped so the gold disc answers a hover on the label beside it.
+              The two are one control to the reader; only one of them is a link,
+              and without the group the other looks inert. */}
+          <div className="group ml-auto hidden items-center gap-3 lg:ml-0 lg:flex">
+            <span className="bg-accent text-accent-ink rounded-pill ease-out-soft grid size-11 place-items-center transition-opacity duration-200 group-hover:opacity-90">
               <Phone className="size-4" aria-hidden="true" />
             </span>
             <span className="leading-tight">
@@ -156,12 +173,15 @@ export function Header() {
               {contactDetails.telephone ? (
                 <a
                   href={`tel:${contactDetails.telephone}`}
-                  className="text-body text-ink-strong font-semibold"
+                  className="text-body text-ink-strong hover:text-accent ease-out-soft font-semibold transition-colors duration-200"
                 >
                   {contactDetails.telephone}
                 </a>
               ) : (
-                <Link to="/contact" className="text-body text-ink-strong font-semibold">
+                <Link
+                  to="/contact"
+                  className="text-body text-ink-strong hover:text-accent ease-out-soft font-semibold transition-colors duration-200"
+                >
                   Start a Conversation
                 </Link>
               )}
@@ -170,7 +190,7 @@ export function Header() {
 
           <button
             type="button"
-            className="text-ink ml-auto inline-flex size-11 items-center justify-center lg:hidden"
+            className="text-ink hover:text-accent ease-out-soft ml-auto inline-flex size-11 items-center justify-center transition-colors duration-200 active:scale-95 active:duration-75 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -184,7 +204,14 @@ export function Header() {
           </button>
         </div>
 
-        <div id="mobile-nav" hidden={!open} className="border-border border-t lg:hidden">
+        {/* `hidden` still does the showing and hiding, so the panel is genuinely
+            absent from the tab order when closed. The animation only runs on the
+            frame it becomes visible. */}
+        <div
+          id="mobile-nav"
+          hidden={!open}
+          className={cn("border-border border-t lg:hidden", open && "animate-drop-in")}
+        >
           <nav
             aria-label="Primary, mobile"
             className="mx-auto max-w-7xl px-4 py-4 md:px-8"
@@ -195,7 +222,9 @@ export function Header() {
                   <Link
                     to={item.to}
                     onClick={() => setOpen(false)}
-                    className="text-body text-ink hover:text-accent block py-3 transition-colors"
+                    // active: rather than hover: is the one that matters here —
+                    // this list is only ever seen on a touch screen.
+                    className="text-body text-ink hover:text-accent active:text-accent ease-out-soft block py-3 transition-colors duration-150"
                   >
                     {item.label}
                   </Link>

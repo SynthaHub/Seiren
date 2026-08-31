@@ -108,7 +108,7 @@ export function InsightsPage() {
           <p className="text-body text-ink-muted mt-5">
             Then it is worth a conversation rather than a wait for the article.
           </p>
-          <div className="mt-9 flex items-center justify-center gap-3">
+          <div className="group mt-9 flex items-center justify-center gap-3">
             <Link to="/contact" className={buttonVariants({ size: "lg" })}>
               Start a Conversation
             </Link>

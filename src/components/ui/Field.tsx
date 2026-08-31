@@ -61,8 +61,11 @@ export function Field({
         "aria-invalid": error ? true : undefined,
       })}
 
+      {/* An error that appears instantly under a field the user has just left
+          is easy to miss on a long form. The fade is short enough not to delay
+          the reading and long enough to catch the eye moving away. */}
       {error && (
-        <p id={errorId} className="text-small text-danger">
+        <p id={errorId} className="text-small text-danger animate-rise-in">
           {error}
         </p>
       )}
@@ -73,6 +76,13 @@ export function Field({
 const controlBase = [
   "w-full rounded-control border bg-surface px-3 py-2.5 text-body text-ink",
   "border-border placeholder:text-ink-muted",
+  // The border resolving to the stronger rule under the pointer is the whole
+  // interaction here: eleven fields on the contact form, and this is what tells
+  // you which one you are about to land in before you click.
+  // Scoped so it cannot fight the two states below: a disabled field is not
+  // offering anything to hover, and an invalid one must keep its red rule.
+  "transition-[border-color,color] duration-150 ease-out-soft",
+  "enabled:not-aria-[invalid=true]:hover:border-border-strong",
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
   // aria-invalid is not one of Tailwind's built-in aria variants, so this uses
   // the arbitrary form rather than silently doing nothing.

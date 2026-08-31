@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Field, Input, Select, Textarea } from "@/components/ui/Field";
@@ -68,7 +69,7 @@ export function EnquiryForm() {
       <div
         role="status"
         aria-live="polite"
-        className="border-accent border-l-2 py-2 pl-6"
+        className="border-accent animate-rise-in border-l-2 py-2 pl-6"
       >
         <h2 className="text-h2 text-ink-strong font-serif">
           Thank you — that has reached us.
@@ -215,13 +216,18 @@ export function EnquiryForm() {
       </div>
 
       {status.state === "error" && (
-        <p role="alert" aria-live="polite" className="text-body text-danger">
+        <p
+          role="alert"
+          aria-live="polite"
+          className="text-body text-danger animate-rise-in"
+        >
           {status.message}
         </p>
       )}
 
       <div className="flex flex-col gap-4">
         <Button type="submit" size="lg" disabled={submitting} className="self-start">
+          {submitting && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
           {submitting ? "Sending…" : "Start a Conversation"}
         </Button>
 

@@ -41,12 +41,19 @@ export function ArrowLink({
       to={to}
       aria-label={label}
       className={cn(
-        "rounded-control border-accent/40 text-accent hover:bg-accent hover:text-accent-ink grid size-12 shrink-0 place-items-center border transition-colors",
+        "rounded-control border-accent/40 text-accent hover:bg-accent hover:text-accent-ink group grid size-12 shrink-0 place-items-center border",
+        "ease-out-soft transition-[color,background-color,border-color,transform] duration-200",
+        "active:translate-y-px active:duration-75",
         "focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-2",
         className,
       )}
     >
-      <ArrowUpRight className="size-5" aria-hidden="true" />
+      {/* The glyph travels the way it points. 2px, so it registers as the
+          control acknowledging the pointer rather than as an animation. */}
+      <ArrowUpRight
+        className="ease-out-soft size-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        aria-hidden="true"
+      />
     </Link>
   );
 }

@@ -69,7 +69,7 @@ export function ContactPage() {
                       {d.href ? (
                         <a
                           href={d.href}
-                          className="text-body text-ink-strong hover:text-accent"
+                          className="text-body text-ink-strong hover:text-accent ease-out-soft transition-colors duration-200"
                         >
                           {d.value}
                         </a>

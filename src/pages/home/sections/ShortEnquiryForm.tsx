@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -61,7 +62,11 @@ export function ShortEnquiryForm() {
 
   if (status === "success") {
     return (
-      <p role="status" aria-live="polite" className="text-body text-ink mt-6">
+      <p
+        role="status"
+        aria-live="polite"
+        className="text-body text-ink animate-rise-in mt-6"
+      >
         Thank you — that has reached us. Eldaah will reply within two working days.
       </p>
     );
@@ -128,12 +133,19 @@ export function ShortEnquiryForm() {
       </div>
 
       {status === "error" && (
-        <p role="alert" aria-live="polite" className="text-small text-danger">
+        <p
+          role="alert"
+          aria-live="polite"
+          className="text-small text-danger animate-rise-in"
+        >
           We could not send that just now. Please try again.
         </p>
       )}
 
       <Button type="submit" size="lg" disabled={status === "submitting"}>
+        {status === "submitting" && (
+          <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+        )}
         {status === "submitting" ? "Sending…" : "Submit"}
       </Button>
     </form>

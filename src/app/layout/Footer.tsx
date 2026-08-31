@@ -57,7 +57,7 @@ export function Footer() {
                   <li key={item.to}>
                     <Link
                       to={item.to}
-                      className="text-small text-ink-muted hover:text-accent transition-colors"
+                      className="text-small text-ink-muted hover:text-accent ease-out-soft transition-colors duration-200"
                     >
                       {item.label}
                     </Link>
@@ -94,7 +94,7 @@ export function Footer() {
                   />
                   <a
                     href={`mailto:${contactDetails.email}`}
-                    className="text-small text-ink-muted hover:text-accent"
+                    className="text-small text-ink-muted hover:text-accent ease-out-soft transition-colors duration-200"
                   >
                     {contactDetails.email}
                   </a>
@@ -109,7 +109,7 @@ export function Footer() {
                   />
                   <a
                     href={`tel:${contactDetails.telephone}`}
-                    className="text-small text-ink-muted hover:text-accent"
+                    className="text-small text-ink-muted hover:text-accent ease-out-soft transition-colors duration-200"
                   >
                     {contactDetails.telephone}
                   </a>
@@ -132,7 +132,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Eldaah Toi on LinkedIn"
-            className="bg-accent text-accent-ink rounded-pill grid size-9 place-items-center transition-opacity hover:opacity-90"
+            className="bg-accent text-accent-ink rounded-pill ease-out-soft grid size-9 place-items-center transition-[opacity,transform] duration-200 hover:opacity-90 active:scale-95 active:duration-75"
           >
             <LinkedInIcon className="size-4" />
           </a>

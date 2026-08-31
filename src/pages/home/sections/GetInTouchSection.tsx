@@ -51,7 +51,7 @@ export function GetInTouchSection() {
                   <span className="text-small text-ink-muted block">Email us</span>
                   <a
                     href={`mailto:${contactDetails.email}`}
-                    className="text-body text-ink-strong hover:text-accent"
+                    className="text-body text-ink-strong hover:text-accent ease-out-soft transition-colors duration-200"
                   >
                     {contactDetails.email}
                   </a>
@@ -68,7 +68,7 @@ export function GetInTouchSection() {
                   <span className="text-small text-ink-muted block">Phone</span>
                   <a
                     href={`tel:${contactDetails.telephone}`}
-                    className="text-body text-ink-strong hover:text-accent"
+                    className="text-body text-ink-strong hover:text-accent ease-out-soft transition-colors duration-200"
                   >
                     {contactDetails.telephone}
                   </a>

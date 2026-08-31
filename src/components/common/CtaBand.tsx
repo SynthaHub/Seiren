@@ -27,7 +27,11 @@ export function CtaBand({
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-h1 font-serif">{heading}</h2>
         <p className="text-body text-ink-muted mt-5">{body}</p>
-        <div className="mt-9 flex items-center justify-center gap-3">
+        {/* Grouped so the arrow answers a hover on the button. The two point at
+            the same destination and read as one control, and an arrow square
+            that sits inert while the thing beside it lights up is what makes a
+            paired CTA look like two unrelated buttons. */}
+        <div className="group mt-9 flex items-center justify-center gap-3">
           <Link to={to} className={buttonVariants({ size: "lg" })}>
             {action}
           </Link>

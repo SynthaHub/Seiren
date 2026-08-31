@@ -134,3 +134,46 @@
     }
   }
 }
+
+@layer utilities {
+  /* The header hover mark.
+     
+     The nav links already shift to the accent on hover; on their own that
+     reads as a colour change rather than as a response. This adds the same
+     2px accent bar the Eyebrow uses, wiped in from the left rather than
+     appearing whole — which is the difference between a state and a gesture.
+     
+     Nothing is drawn at rest: the bar is scaled to zero, so the header looks
+     exactly as it did. Kept as a utility rather than a component because it is
+     applied to Links that are already fully styled at their call sites. */
+  .nav-mark {
+    position: relative;
+  }
+
+  .nav-mark::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.4rem;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms var(--ease-out-soft);
+  }
+
+  /* Matching what Tailwind's own `hover:` does — without the guard a tap on a
+     touch screen leaves the mark drawn until something else is tapped. Focus
+     and the open state are unconditional. */
+  @media (hover: hover) {
+    .nav-mark:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  .nav-mark:focus-visible::after,
+  .nav-mark[aria-expanded="true"]::after {
+    transform: scaleX(1);
+  }
+}

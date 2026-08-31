@@ -95,7 +95,7 @@ export function TeamPage() {
               href={contactDetails.linkedInFounder}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-small text-ink hover:text-accent border-border rounded-control mt-9 inline-flex items-center gap-2 border px-4 py-2.5 transition-colors"
+              className="text-small text-ink hover:text-accent hover:border-accent/50 border-border rounded-control ease-out-soft mt-9 inline-flex items-center gap-2 border px-4 py-2.5 transition-[color,border-color,transform] duration-200 active:translate-y-px active:duration-75"
             >
               <LinkedInIcon className="text-accent size-4" />
               Eldaah Toi on LinkedIn

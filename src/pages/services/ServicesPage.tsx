@@ -44,7 +44,7 @@ export function ServicesPage() {
                   <Link
                     to="/services/$pillar"
                     params={{ pillar: pillar.slug }}
-                    className="hover:text-accent transition-colors"
+                    className="hover:text-accent ease-out-soft transition-colors duration-200"
                   >
                     {pillar.title}
                   </Link>
@@ -59,7 +59,7 @@ export function ServicesPage() {
                 >
                   Explore {pillar.title}
                   <ArrowRight
-                    className="size-3.5 transition-transform group-hover:translate-x-0.5"
+                    className="ease-out-soft size-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
                 </Link>

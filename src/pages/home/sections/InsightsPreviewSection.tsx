@@ -76,12 +76,24 @@ export function InsightsPreviewSection() {
       </div>
 
       <div className="mt-14 grid gap-8 lg:grid-cols-2 lg:gap-12">
-        <article className="bg-surface border-border rounded-card overflow-hidden border">
-          <Photo slot="teamWorkshop" aspect="aspect-[16/9]" className="rounded-none" />
+        {/* The one place on the site an image moves. It is already clipped by
+            the card, so the only thing a 1.03 scale does is close the gap
+            between pointing at the card and the card acknowledging it — there
+            is no crop change worth noticing. Slower than the interface
+            transitions on purpose: an image that snaps looks like a glitch. */}
+        <article className="bg-surface border-border hover:border-accent/50 rounded-card ease-out-soft group overflow-hidden border transition-[transform,border-color] duration-200 hover:-translate-y-0.5">
+          <Photo
+            slot="teamWorkshop"
+            aspect="aspect-[16/9]"
+            className="ease-out-soft rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
+          />
           <div className="p-6 md:p-7">
             <Meta category={featured.category} />
             <h3 className="text-h2 text-ink-strong mt-4 font-serif">
-              <Link to="/insights" className="hover:text-accent transition-colors">
+              <Link
+                to="/insights"
+                className="hover:text-accent ease-out-soft transition-colors duration-200"
+              >
                 {featured.title}
               </Link>
             </h3>
@@ -93,7 +105,7 @@ export function InsightsPreviewSection() {
           {rest.map((post) => (
             <li
               key={post.title}
-              className="bg-surface border-border rounded-card flex flex-1 gap-5 border p-4"
+              className="bg-surface border-border hover:border-accent/50 rounded-card ease-out-soft flex flex-1 gap-5 border p-4 transition-[transform,border-color] duration-200 hover:-translate-y-0.5"
             >
               <Photo
                 slot={post.slot}
@@ -103,7 +115,10 @@ export function InsightsPreviewSection() {
               <div className="min-w-0 self-center">
                 <Meta category={post.category} />
                 <h3 className="text-h3 text-ink-strong mt-3 font-semibold">
-                  <Link to="/insights" className="hover:text-accent transition-colors">
+                  <Link
+                    to="/insights"
+                    className="hover:text-accent ease-out-soft transition-colors duration-200"
+                  >
                     {post.title}
                   </Link>
                 </h3>

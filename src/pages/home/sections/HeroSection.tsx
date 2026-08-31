@@ -78,12 +78,12 @@ export function HeroSection() {
 
             <Link
               to="/approach"
-              className="text-body text-ink-strong hover:text-accent group inline-flex items-center gap-2.5 transition-colors"
+              className="text-body text-ink-strong hover:text-accent ease-out-soft group inline-flex items-center gap-2.5 transition-colors duration-200"
             >
               <PlayCircle className="text-accent size-6 shrink-0" aria-hidden="true" />
               How we work
               <ArrowRight
-                className="size-4 transition-transform group-hover:translate-x-0.5"
+                className="ease-out-soft size-4 transition-transform duration-200 group-hover:translate-x-0.5"
                 aria-hidden="true"
               />
             </Link>

@@ -3,6 +3,7 @@ import { ArrowRight, Compass, Settings2, Users, LineChart } from "lucide-react";
 import { Section } from "@/components/common/Section";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { servicePillars } from "@/content/services";
+import { cn } from "@/lib/cn";
 
 /**
  * The services block, rebuilt on BizFusionX's dark-services pattern: a navy
@@ -45,13 +46,17 @@ export function PillarsSection() {
           const featured = index === 0;
 
           return (
+            // `group` on the card rather than on the link, so the arrow answers
+            // a hover anywhere on the card — the whole tile is what a reader
+            // treats as the target, even though only the link is one.
             <article
               key={pillar.slug}
-              className={
+              className={cn(
+                "group rounded-card ease-out-soft p-7 transition-[transform,border-color] duration-200 hover:-translate-y-0.5 md:p-8",
                 featured
-                  ? "bg-accent text-accent-ink rounded-card p-7 md:p-8"
-                  : "bg-surface-sunken border-border rounded-card border p-7 md:p-8"
-              }
+                  ? "bg-accent text-accent-ink"
+                  : "bg-surface-sunken border-border hover:border-accent/50 border",
+              )}
             >
               <Icon
                 className={featured ? "text-accent-ink size-7" : "text-accent size-7"}
@@ -86,13 +91,13 @@ export function PillarsSection() {
               <Link
                 to="/services/$pillar"
                 params={{ pillar: pillar.slug }}
-                className={`group text-small mt-7 inline-flex items-center gap-2 font-medium transition-opacity hover:opacity-80 ${
+                className={`text-small ease-out-soft mt-7 inline-flex items-center gap-2 font-medium transition-opacity duration-200 hover:opacity-80 ${
                   featured ? "text-accent-ink" : "text-accent"
                 }`}
               >
                 Discover more
                 <ArrowRight
-                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                  className="ease-out-soft size-4 transition-transform duration-200 group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
               </Link>

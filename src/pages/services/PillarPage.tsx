@@ -48,7 +48,7 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
           {others.map((other) => (
             <article
               key={other.slug}
-              className="bg-surface border-border rounded-card border p-6"
+              className="bg-surface border-border hover:border-accent/50 rounded-card ease-out-soft group border p-6 transition-[transform,border-color] duration-200 hover:-translate-y-0.5"
             >
               <h3 className="text-h3 text-ink-strong font-serif font-semibold">
                 {other.title}
@@ -57,11 +57,11 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
               <Link
                 to="/services/$pillar"
                 params={{ pillar: other.slug }}
-                className="text-small text-accent group mt-5 inline-flex items-center gap-1.5 hover:underline"
+                className="text-small text-accent mt-5 inline-flex items-center gap-1.5 hover:underline"
               >
                 Explore
                 <ArrowRight
-                  className="size-3.5 transition-transform group-hover:translate-x-0.5"
+                  className="ease-out-soft size-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
               </Link>

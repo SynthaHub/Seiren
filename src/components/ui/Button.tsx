@@ -11,11 +11,19 @@ import { cn } from "@/lib/cn";
  * cannot be produced by accident.
  *
  * Radius is 2px (`rounded-control`): institutional, not friendly-rounded.
+ *
+ * Press is a 1px drop rather than a scale. Scaling a button re-renders its text
+ * at a fractional size for the duration of the press, which on a 17px label
+ * reads as a wobble; translating it does not. It is deliberately faster than
+ * the hover (75ms against 200ms) — a press should feel like contact, and the
+ * release is where the easing belongs.
  */
 export const buttonVariants = cva(
   [
     "inline-flex items-center justify-center gap-2 rounded-control",
-    "font-medium whitespace-nowrap transition-colors",
+    "font-medium whitespace-nowrap",
+    "transition-[color,background-color,border-color,opacity,transform] duration-200 ease-out-soft",
+    "active:translate-y-px active:duration-75",
     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
     "disabled:pointer-events-none disabled:opacity-50",
   ],

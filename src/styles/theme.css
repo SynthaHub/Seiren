@@ -173,3 +173,92 @@
   /* Measure — SPES-001 · 04 requires 60–75 characters. */
   --container-measure: 68ch;
 }
+
+/* --- Motion (screen only; SPES-001 covers print and says nothing about it).
+
+       Two easings and a short set of named animations, so no component has to
+       invent a duration or a curve. The rule is the same one that governs
+       colour here: if a value is needed and has no token, the token gets added
+       rather than the value inlined.
+
+       Everything below is interaction-driven — hover, press, focus, open,
+       close, submit. Nothing animates on scroll. anti-slop §22 is right that
+       scattered scroll reveals read as generated, and the tonal navy →
+       parchment → white gradient is built from section grounds precisely so it
+       needs no motion at all.
+
+       All of it is disabled wholesale by the prefers-reduced-motion block in
+       globals.css, so no individual rule has to remember. --- */
+
+@theme {
+  /* The site's default curve. A decelerating ease with no overshoot: things
+     arrive quickly and settle, which is what reads as responsive rather than
+     animated. Never a spring — a consulting practice does not bounce. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  /* For anything leaving. Symmetrical exits feel slow; this pulls away. */
+  --ease-in-soft: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Content arriving: 4px of travel, not 24px. Enough to register as movement
+     in peripheral vision, not enough to be watched. */
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Panels dropping from a trigger — the services menu, the mobile nav. */
+  @keyframes drop-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Radix publishes the measured height on the content element, which is what
+     makes a real height transition possible without a fixed pixel value. */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+    }
+  }
+
+  --animate-rise-in: rise-in 240ms var(--ease-out-soft) both;
+  --animate-drop-in: drop-in 140ms var(--ease-out-soft) both;
+  --animate-fade-in: fade-in 200ms var(--ease-out-soft) both;
+  --animate-accordion-down: accordion-down 220ms var(--ease-out-soft);
+  --animate-accordion-up: accordion-up 170ms var(--ease-in-soft);
+}

@@ -38,14 +38,24 @@ export function AccordionItem({
           )}
         >
           <span>{question}</span>
-          <span className="text-accent mt-0.5 shrink-0" aria-hidden="true">
-            <Plus className="size-4 group-data-[state=open]:hidden" />
-            <Minus className="hidden size-4 group-data-[state=open]:block" />
+          {/* The two glyphs are stacked rather than swapped, so the plus can
+              rotate a quarter turn into the minus instead of the icon cutting.
+              The vertical stroke is the only difference between them, which is
+              what makes the rotation read as one mark changing state. */}
+          <span
+            className="text-accent ease-out-soft mt-0.5 grid shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-90"
+            aria-hidden="true"
+          >
+            <Plus className="col-start-1 row-start-1 size-4 transition-opacity duration-200 group-data-[state=open]:opacity-0" />
+            <Minus className="col-start-1 row-start-1 size-4 -rotate-90 opacity-0 transition-opacity duration-200 group-data-[state=open]:opacity-100" />
           </span>
         </RadixAccordion.Trigger>
       </RadixAccordion.Header>
 
-      <RadixAccordion.Content className="overflow-hidden">
+      {/* Radix measures the panel and publishes the height as a custom
+          property, which is what lets this be a real height animation rather
+          than a fixed pixel guess that breaks when an answer wraps. */}
+      <RadixAccordion.Content className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden">
         <div className="measure text-body text-ink-muted pb-6">{children}</div>
       </RadixAccordion.Content>
     </RadixAccordion.Item>
