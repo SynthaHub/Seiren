@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Mail, Phone } from "lucide-react";
 import { footerNav, contactDetails, officeAddress } from "@/content/navigation";
-import { LinkedInIcon } from "@/components/ui/icons";
+import { SocialLinks } from "@/components/common/SocialLinks";
 import { NewsletterForm } from "@/pages/home/sections/NewsletterForm";
 import { Wordmark } from "./Wordmark";
 
@@ -16,15 +16,24 @@ import { Wordmark } from "./Wordmark";
  * Navy rather than the reference's light ground: with a light-led page above
  * it, this is what keeps SPES-001's navy-dominant proportion within reach.
  *
- * The reference's fourth column is an Instagram grid. Seiran has no confirmed
- * social channels beyond the founder's LinkedIn (brief §9), and a grid of
- * placeholder tiles would be worse than none.
+ * The reference's fourth column is an Instagram grid. Seiran now has four live
+ * channels, but a grid of embedded tiles depends on the feeds staying active —
+ * the closing line carries the marks instead, which cannot go stale.
+ *
+ * The gold rule on top is structural, not decoration. Ten of the twelve pages
+ * end on a navy CtaBand, and a navy footer directly beneath it meant the
+ * closing call to action dissolved into the footer chrome — the one block every
+ * page is built to finish on had no edge at all. Toning the CTA light would
+ * have fixed the seam at the cost of the navy proportion SPES-001 · 01 fixes at
+ * 60%, so the seam is drawn instead. Gold Leaf is legal here because the footer
+ * is navy, and holding a structural edge is exactly what the 12% accent
+ * allocation is for.
  */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="on-navy bg-surface text-ink">
+    <footer className="on-navy bg-surface text-ink border-accent border-t-2">
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
         <div className="border-border grid gap-10 border-b pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           <div>
@@ -40,7 +49,8 @@ export function Footer() {
               Occasional writing, worth reading
             </h2>
             <p className="text-small text-ink-muted mt-2">
-              No more than once a month, and nothing you did not ask for.
+              Stay ahead of the challenges that come with growth. Get practical insights
+              on building a stronger, more enduring business.
             </p>
             <NewsletterForm />
           </div>
@@ -108,7 +118,7 @@ export function Footer() {
                     aria-hidden="true"
                   />
                   <a
-                    href={`tel:${contactDetails.telephone}`}
+                    href={`tel:${contactDetails.telephoneE164 ?? contactDetails.telephone}`}
                     className="text-small text-ink-muted hover:text-accent ease-out-soft transition-colors duration-200"
                   >
                     {contactDetails.telephone}
@@ -127,15 +137,7 @@ export function Footer() {
           {/* Privacy Policy, Terms and Cookie notice are outstanding (brief §9).
               They belong on this line, and the enquiry form should not go live
               without the privacy policy. */}
-          <a
-            href={contactDetails.linkedInFounder}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Eldaah Toi on LinkedIn"
-            className="bg-accent text-accent-ink rounded-pill ease-out-soft grid size-9 place-items-center transition-[opacity,transform] duration-200 hover:opacity-90 active:scale-95 active:duration-75"
-          >
-            <LinkedInIcon className="size-4" />
-          </a>
+          <SocialLinks size={9} />
         </div>
       </div>
     </footer>

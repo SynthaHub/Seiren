@@ -1,4 +1,5 @@
 import { MapPin, Mail, Phone } from "lucide-react";
+import { Photo } from "@/components/common/Photo";
 import { Section } from "@/components/common/Section";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { PageHero } from "@/components/common/PageHero";
@@ -36,7 +37,7 @@ export function ContactPage() {
           icon: Phone,
           label: "Phone",
           value: contactDetails.telephone,
-          href: `tel:${contactDetails.telephone}`,
+          href: `tel:${contactDetails.telephoneE164 ?? contactDetails.telephone}`,
         }
       : null,
   ].filter((d): d is NonNullable<typeof d> => d !== null);
@@ -54,6 +55,10 @@ export function ContactPage() {
           <EnquiryForm />
 
           <aside className="flex flex-col gap-8">
+            {/* Grounds the firm in a real place beside the enquiry form. The
+                slot was defined and rendered nowhere. */}
+            <Photo slot="nairobiExterior" aspect="aspect-[4/3]" />
+
             <div className="bg-surface-sunken rounded-card p-6 md:p-7">
               <h2 className="text-label text-ink-muted font-semibold tracking-[0.1em] uppercase">
                 Contact

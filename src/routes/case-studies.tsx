@@ -8,7 +8,7 @@ export const Route = createFileRoute("/case-studies")({
     seo({
       title: "Case Studies | Seiran Partners",
       description:
-        "Seiran publishes a case study only where there has been a genuine engagement and the client has given permission. Nothing is published yet.",
+        "Real business problems, clear thinking and practical change, in six parts. Seiran publishes a real case study only where there has been a genuine engagement and the client has given permission.",
       path: "/case-studies",
     }),
 });

@@ -35,8 +35,8 @@ export function PillarsSection() {
         <Eyebrow align="start">Four pillars, one system</Eyebrow>
         <h2 className="text-h1 mt-6 font-serif">Advisory that holds together</h2>
         <p className="text-body text-ink-muted mt-5">
-          Strategy that ignores operations does not survive contact with the business.
-          These are separated for navigation, not because they are addressed separately.
+          Good strategy has to work in the real business. These areas are separated for
+          navigation, but we look at them together.
         </p>
       </div>
 
@@ -84,7 +84,10 @@ export function PillarsSection() {
                   featured ? "text-accent-ink" : "text-ink-muted"
                 }`}
               >
-                {pillar.services.slice(0, 4).join(" · ")}
+                {pillar.services
+                  .slice(0, 4)
+                  .map((s) => s.name)
+                  .join(" · ")}
                 {pillar.services.length > 4 && ` · +${pillar.services.length - 4} more`}
               </p>
 

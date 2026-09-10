@@ -8,6 +8,8 @@
  * See .claude/skills/hawi-structure/references/seo.md.
  */
 
+import { officeAddress, contactDetails } from "@/content/navigation";
+
 export const site = {
   name: "Seiran Partners",
   /** OUTSTANDING (SPES brief §9): final domain not yet confirmed by Seiran. */
@@ -15,10 +17,14 @@ export const site = {
   description:
     "Seiran Partners helps owner-managed businesses in Kenya turn complexity into clarity, stronger execution and sustainable growth.",
   locale: "en_KE",
-  /** Nairobi Garage, Delta Corner Annex — confirmed in the brief. */
+  /** Derived from content/navigation, never retyped. This used to be a second
+   *  hard-coded copy of the office address, and when the office moved only one
+   *  of the two was updated — leaving the visible footer correct while the
+   *  structured data kept publishing the old Westlands address to search
+   *  engines. One definition removes that whole failure mode. */
   address: {
-    street: "Delta Corner Annex, Ring Rd Westlands Ln",
-    locality: "Nairobi",
+    street: officeAddress.street,
+    locality: officeAddress.locality,
     country: "KE",
   },
 } as const;
@@ -132,6 +138,17 @@ export function organizationJsonLd() {
       addressLocality: site.address.locality,
       addressCountry: site.address.country,
     },
+    ...(contactDetails.telephoneE164
+      ? { telephone: contactDetails.telephoneE164 }
+      : {}),
+    /** Every profile Seiran controls. `sameAs` is how a search engine ties the
+     *  site to those accounts and treats them as the same entity. */
+    sameAs: [
+      contactDetails.linkedInCompany,
+      contactDetails.instagram,
+      contactDetails.facebook,
+      contactDetails.tiktok,
+    ].filter(Boolean),
     areaServed: [
       { "@type": "Country", name: "Kenya" },
       { "@type": "Place", name: "Africa" },

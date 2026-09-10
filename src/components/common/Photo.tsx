@@ -2,7 +2,8 @@ import { ImageIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
 import {
   placeholders,
-  usingPlaceholderImagery,
+  placeholderSrc,
+  placeholderSrcSet,
   type PlaceholderKey,
 } from "@/content/placeholders";
 
@@ -13,19 +14,26 @@ import {
  * photograph. With neither it renders an empty frame carrying the art direction
  * for that slot, so the layout can still be judged.
  *
- * Alt text is the point of care here. While `usingPlaceholderImagery` is true,
- * every stand-in announces itself as a placeholder — so a screen-reader user is
- * never told that a stock workspace photo is a portrait of Eldaah Toi. See
- * src/content/placeholders.ts.
+ * Alt text is the point of care here, and it comes from the slot's own `alt`
+ * field — never from `note`, which is art direction for the photographer. The
+ * two used to be one field, which put review notes into the alt attribute of
+ * every image on the site. See src/content/placeholders.ts.
+ *
+ * The standing rule survives that change: alt text must never name a real
+ * person unless the photograph is genuinely of them. That is what stops a
+ * stock interior being announced as a portrait of Eldaah Toi.
  */
 
 export type PhotoProps = {
-  /** Art direction for this slot. Used as alt text once real imagery lands. */
+  /** Art direction for the empty frame. NEVER used as alt text — see the note
+   *  on `placeholders`, where the two were once the same field. */
   note?: string;
   /** Draws from the placeholder set. */
   slot?: PlaceholderKey;
   /** A real photograph. Wins over `slot`. */
   src?: string;
+  /** Overrides the slot's alt. Required when passing a bare `src`, since there
+   *  is no slot entry to describe it. */
   alt?: string;
   className?: string;
   /** Tailwind aspect utility, e.g. "aspect-[4/5]". */
@@ -43,17 +51,28 @@ export function Photo({
   priority,
 }: PhotoProps) {
   const entry = slot ? placeholders[slot] : undefined;
-  const resolvedSrc = src ?? entry?.src;
+  const resolvedSrc = src ?? (entry && placeholderSrc(entry));
   const description = note ?? entry?.note ?? "";
 
   if (resolvedSrc) {
-    const isStandIn = !src && usingPlaceholderImagery;
     return (
       <img
         src={resolvedSrc}
-        alt={alt ?? (isStandIn ? `Placeholder image — ${description}` : description)}
+        // Only a slot has variants on disk; a bare `src` is served as given.
+        srcSet={entry ? placeholderSrcSet(entry) : undefined}
+        sizes={entry?.sizes}
+        // The slot's own alt, never the art-direction note.
+        alt={alt ?? entry?.alt ?? ""}
+        // Intrinsic size, so the browser knows the ratio before bytes arrive
+        // and can still reserve the box if the stylesheet is slow or blocked.
+        // The aspect utility governs the rendered box; these do not fight it.
+        width={entry?.intrinsic.w}
+        height={entry?.intrinsic.h}
         loading={priority ? "eager" : "lazy"}
         decoding={priority ? "sync" : "async"}
+        // The hero is the largest-contentful paint on the homepage; telling the
+        // browser that up front lets it start the fetch before layout.
+        fetchPriority={priority ? "high" : undefined}
         className={cn("rounded-media h-full w-full object-cover", aspect, className)}
       />
     );

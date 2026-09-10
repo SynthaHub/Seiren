@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, MapPin, Mail, Phone, ChevronDown } from "lucide-react";
-import { LinkedInIcon } from "@/components/ui/icons";
+import { SocialLinks } from "@/components/common/SocialLinks";
 import { primaryNav, contactDetails, officeAddress } from "@/content/navigation";
 import { servicePillars } from "@/content/services";
 import { buttonVariants } from "@/components/ui/Button";
@@ -11,13 +11,17 @@ import { Wordmark } from "./Wordmark";
 /**
  * Utility bar over a white nav bar, following the approved reference layout.
  *
- * Contact details and social channels are outstanding (brief §9), so each item
- * renders only once it has a value. The bar collapses to just the address on
- * small screens rather than wrapping into two cramped rows.
+ * Email is still outstanding, so each item renders only once it has a value.
+ *
+ * Hidden below md. The header is sticky, and on a phone this bar plus the nav
+ * pinned about 112px — roughly a sixth of a 640px viewport — permanently. Below
+ * md the bar had already dropped its email and socials, so all it cost that
+ * space for was the address, which is in the footer and on /contact anyway. Social channels are live and come from SocialLinks,
+ * which points at the company profiles rather than the founder's personal one.
  */
 function TopBar() {
   return (
-    <div className="on-navy bg-surface text-ink">
+    <div className="on-navy bg-surface text-ink hidden md:block">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-2 px-4 py-2.5 md:px-8">
         <p className="text-ink-muted flex items-center gap-2 text-[0.8rem]">
           <MapPin className="text-accent size-3.5 shrink-0" aria-hidden="true" />
@@ -38,15 +42,7 @@ function TopBar() {
 
         <div className="ml-auto hidden items-center gap-3 md:flex">
           <span className="text-ink-muted text-[0.8rem]">Follow us</span>
-          <a
-            href={contactDetails.linkedInFounder}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Eldaah Toi on LinkedIn"
-            className="bg-accent text-accent-ink rounded-pill ease-out-soft grid size-7 place-items-center transition-[opacity,transform] duration-200 hover:opacity-90 active:scale-95 active:duration-75"
-          >
-            <LinkedInIcon className="size-3.5" />
-          </a>
+          <SocialLinks size={7} />
         </div>
       </div>
     </div>
@@ -82,11 +78,14 @@ export function Header() {
               disturb it. */}
           <Link
             to="/"
+            aria-label="Seiran Partners — home"
             className="rounded-control focus-visible:outline-accent ease-out-soft transition-opacity duration-200 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 active:opacity-70 active:duration-75"
             onClick={() => setOpen(false)}
           >
+            {/* aria-label names the LINK, which overrides the lockup's own alt
+                text. Without it the two combined and a screen reader announced
+                "Seiran Partners, Seiran Partners — home". */}
             <Wordmark />
-            <span className="sr-only">Seiran Partners — home</span>
           </Link>
 
           <nav aria-label="Primary" className="mx-auto hidden lg:block">
@@ -109,10 +108,18 @@ export function Header() {
                       }
                     }}
                   >
+                    {/* No aria-expanded here. This is a link: activating it
+                        navigates to /services, it does not expand anything. The
+                        panel is a hover/focus convenience on top of that, so
+                        announcing the link as an expandable control promised
+                        behaviour it does not have — a keyboard user told
+                        "collapsed" would press Enter expecting a menu and get a
+                        page navigation instead. The panel's own links are in
+                        the tab order, which is what actually makes it
+                        reachable. */}
                     <Link
                       to={item.to}
                       className="text-small text-ink hover:text-accent nav-mark ease-out-soft flex items-center gap-1 transition-colors duration-200"
-                      aria-expanded={servicesOpen}
                       onFocus={() => setServicesOpen(true)}
                     >
                       {item.label}
@@ -159,8 +166,8 @@ export function Header() {
             </ul>
           </nav>
 
-          {/* The reference puts a phone number here. Seiran's is outstanding,
-              so the slot carries the primary action until one exists. */}
+          {/* The reference puts a phone number here, and Seiran's is now live.
+              The CTA fallback stays for the case where it is cleared again. */}
           {/* Grouped so the gold disc answers a hover on the label beside it.
               The two are one control to the reader; only one of them is a link,
               and without the group the other looks inert. */}
@@ -172,7 +179,7 @@ export function Header() {
               <span className="text-ink-muted block text-[0.75rem]">Speak to us</span>
               {contactDetails.telephone ? (
                 <a
-                  href={`tel:${contactDetails.telephone}`}
+                  href={`tel:${contactDetails.telephoneE164 ?? contactDetails.telephone}`}
                   className="text-body text-ink-strong hover:text-accent ease-out-soft font-semibold transition-colors duration-200"
                 >
                   {contactDetails.telephone}

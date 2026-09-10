@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/common/Section";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { PageHero } from "@/components/common/PageHero";
@@ -54,8 +55,8 @@ export function InsightsPage() {
     <>
       <PageHero
         eyebrow="Writing for owner-managers"
-        title="Thinking on growth, systems and founder transition"
-        lede="Articles, research, guides and founder perspectives on the problems owner-managed businesses hit as they scale."
+        title="Practical thinking on growth, systems and the founder&rsquo;s role"
+        lede="Articles, guides and practical perspectives on the challenges owner-managed businesses face as they grow."
       />
 
       <Section tone="white" width="wide" className="py-20 md:py-28">
@@ -89,14 +90,39 @@ export function InsightsPage() {
             </article>
           ))}
         </div>
+
+        {/* The reason this page exists is that these five pieces are the whole
+            SEO plan. Arriving from a headline link and finding nothing to do
+            was the dead end; this is the only honest next step while nothing
+            is published. */}
+        <p className="mt-10">
+          <a
+            href="#notify"
+            className="text-small text-accent ease-out-soft group inline-flex items-center gap-1.5 transition-colors duration-200 hover:underline"
+          >
+            Tell me when these are published
+            <ArrowRight
+              className="ease-out-soft size-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </a>
+        </p>
       </Section>
 
-      <Section tone="parchment" width="default" className="py-20 md:py-24">
+      <Section
+        id="notify"
+        tone="parchment"
+        width="default"
+        className="py-20 md:py-24 scroll-mt-24"
+      >
         <div className="max-w-xl">
           <Eyebrow align="start">When they land</Eyebrow>
-          <h2 className="text-h1 mt-6 font-serif">Get these when they land.</h2>
+          <h2 className="text-h1 mt-6 font-serif">
+            Get practical insights for growing your business.
+          </h2>
           <p className="text-body text-ink-muted mt-5">
-            No more than once a month, and nothing you did not ask for.
+            Get occasional insights from Seiran on growth, leadership, systems and
+            business performance. We send no more than one email a month.
           </p>
           <NewsletterForm />
         </div>
@@ -106,7 +132,8 @@ export function InsightsPage() {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-h1 font-serif">Is one of these a live question for you?</h2>
           <p className="text-body text-ink-muted mt-5">
-            Then it is worth a conversation rather than a wait for the article.
+            If one of these is a question you&rsquo;re facing now, you do not have to
+            wait for the article. Let&rsquo;s talk.
           </p>
           <div className="group mt-9 flex items-center justify-center gap-3">
             <Link to="/contact" className={buttonVariants({ size: "lg" })}>

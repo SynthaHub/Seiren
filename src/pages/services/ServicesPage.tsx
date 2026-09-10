@@ -24,7 +24,7 @@ export function ServicesPage() {
       <PageHero
         eyebrow="What the work covers"
         title="Four pillars, worked as one system"
-        lede="Strategy that ignores operations does not survive contact with the business. These are separated for navigation, not because they are addressed separately."
+        lede="Good strategy has to work in the real business. These areas are separated for navigation, but we look at them together."
       />
 
       {servicePillars.map((pillar, index) => {
@@ -68,14 +68,14 @@ export function ServicesPage() {
               <ul className="border-border grid gap-2.5 border-t pt-8 sm:grid-cols-2 lg:border-t-0 lg:pt-2">
                 {pillar.services.map((service) => (
                   <li
-                    key={service}
+                    key={service.name}
                     className="text-small text-ink flex items-start gap-2.5"
                   >
                     <span
                       className="bg-accent rounded-pill mt-2 size-1.5 shrink-0"
                       aria-hidden="true"
                     />
-                    {service}
+                    {service.name}
                   </li>
                 ))}
               </ul>

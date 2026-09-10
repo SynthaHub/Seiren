@@ -17,6 +17,22 @@ type Status =
   { state: "idle" | "submitting" | "success" } | { state: "error"; message: string };
 
 /**
+ * Field labels for the error summary, keyed by the same name `Field` uses to
+ * build its id — so `#field-${key}` always lands on the right control.
+ *
+ * Only the required fields can appear here, because only they can fail. Kept
+ * as a literal rather than derived from the JSX: the summary has to name a
+ * field the reader may not be able to see, and a summary entry that does not
+ * match its label is worse than no summary. Update both together.
+ */
+const FIELD_LABELS: Record<string, string> = {
+  name: "Name",
+  email: "Email",
+  organization: "Organisation",
+  challenge: "What is the business or organisational challenge?",
+};
+
+/**
  * Grouped into three fieldsets so eleven fields read as three short forms
  * rather than one wall.
  *
@@ -28,17 +44,30 @@ type Status =
 export function EnquiryForm() {
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const mountedAt = useRef(Date.now());
+  const summaryRef = useRef<HTMLDivElement>(null);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
     reset,
   } = useForm<EnquiryValues>({
     resolver: zodResolver(enquirySchema),
     mode: "onBlur",
     reValidateMode: "onChange",
   });
+
+  /**
+   * Eleven fields across three fieldsets meant a failed submit could look like
+   * nothing happening at all: the first invalid field was usually scrolled off
+   * the top of the viewport, and neither focus nor any announcement moved. This
+   * sends the reader to a summary that names what is wrong and links to it.
+   */
+  const onInvalid = () => {
+    // The summary is rendered by the same commit that sets the errors, so wait
+    // one frame for it to exist before trying to focus it.
+    requestAnimationFrame(() => summaryRef.current?.focus());
+  };
 
   const onSubmit = handleSubmit(async (values) => {
     // Bots submit near-instantly. A human cannot complete this form in four
@@ -62,7 +91,9 @@ export function EnquiryForm() {
             : "Something went wrong on our end. Please try again.",
       });
     }
-  });
+  }, onInvalid);
+
+  const errorEntries = Object.entries(errors).filter(([, e]) => e?.message);
 
   if (status.state === "success") {
     return (
@@ -86,6 +117,33 @@ export function EnquiryForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-12">
+      {isSubmitted && errorEntries.length > 0 && (
+        <div
+          ref={summaryRef}
+          tabIndex={-1}
+          role="alert"
+          className="border-danger bg-surface-sunken rounded-card animate-rise-in focus-visible:outline-accent border-l-4 p-5 focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          <h2 className="text-body text-ink-strong font-semibold">
+            {errorEntries.length === 1
+              ? "One field needs your attention"
+              : `${errorEntries.length} fields need your attention`}
+          </h2>
+          <ul className="mt-3 flex flex-col gap-1.5">
+            {errorEntries.map(([field, error]) => (
+              <li key={field}>
+                <a
+                  href={`#field-${field}`}
+                  className="text-small text-danger underline underline-offset-2"
+                >
+                  {FIELD_LABELS[field] ?? field}: {String(error?.message)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <fieldset className="flex flex-col gap-6 border-0 p-0">
         <legend className="text-label text-accent font-semibold tracking-[0.1em] uppercase">
           About you

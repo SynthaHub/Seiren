@@ -8,7 +8,7 @@ export const Route = createFileRoute("/insights/")({
     seo({
       title: "Insights | Seiran Partners",
       description:
-        "Thinking on SME growth, operating models, founder dependency, business systems and performance visibility for owner-managed businesses in Kenya.",
+        "Practical thinking on growth, systems and the founder's role — articles, guides and perspectives on the challenges owner-managed businesses in Kenya face as they grow.",
       path: "/insights",
     }),
 });

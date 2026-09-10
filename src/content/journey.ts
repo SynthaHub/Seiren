@@ -1,5 +1,4 @@
-import { z } from "zod";
-import { journeyStageSchema, type JourneyStage } from "./schemas";
+import type { JourneyStage } from "./schemas";
 
 /**
  * The Seiran Transformation Journey, from the content brief §5.
@@ -9,9 +8,17 @@ import { journeyStageSchema, type JourneyStage } from "./schemas";
  * anywhere else would be decoration borrowed from here, which is exactly what
  * would drain the meaning out of it.
  */
-export const journeyStages: ReadonlyArray<JourneyStage> = z
-  .array(journeyStageSchema)
-  .parse([
+/**
+ * Plain typed data. No Zod at runtime — see src/content/validate.dev.ts.
+ *
+ * This content is a literal in the bundle and cannot differ at runtime from
+ * what it was at build time, so validating it in every visitor's browser buys
+ * nothing. It also cost real bytes: the schema module was reachable from the
+ * chunk that every route loads, so /about and /team shipped Zod for content
+ * they only read. The type annotation below is what keeps the shape honest at
+ * compile time; the runtime rules Zod adds are checked on every dev start.
+ */
+export const journeyStages: ReadonlyArray<JourneyStage> = [
     {
       name: "Understand",
       description:
@@ -20,17 +27,17 @@ export const journeyStages: ReadonlyArray<JourneyStage> = z
     {
       name: "Diagnose",
       description:
-        "Identify what is genuinely holding growth back, and separate it from noise.",
+        "Identify what is really holding the business back, beyond the symptoms.",
     },
     {
       name: "Clarify",
       description:
-        "Agree where the business is going and what it will stop doing to get there.",
+        "Agree what needs to change, what matters most, and what success looks like.",
     },
     {
       name: "Design",
       description:
-        "Build the operating model, structure and systems the direction requires.",
+        "Develop the strategy, structure, systems and ways of working needed to move forward.",
     },
     {
       name: "Execute",
@@ -46,4 +53,4 @@ export const journeyStages: ReadonlyArray<JourneyStage> = z
       name: "Transform",
       description: "The business runs differently — and keeps running differently.",
     },
-  ]);
+];

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/team")({
     seo({
       title: "Team | Seiran Partners",
       description:
-        "Eldaah Toi, PMP, Founder and Managing Consultant, and Seiran's network of strategic associates across strategy, operations, people and performance.",
+        "Eldaah Toi, PMP®, Founder and Managing Consultant. Every Seiran engagement has a named consultant accountable for the work, drawing on strategic associates and specialist expertise where the work calls for it.",
       path: "/team",
     }),
 });

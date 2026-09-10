@@ -1,5 +1,5 @@
 import { HeroSection } from "./sections/HeroSection";
-import { SectorsSection } from "./sections/SectorsSection";
+import { CapabilityTicker } from "./sections/CapabilityTicker";
 import { AboutSection } from "./sections/AboutSection";
 import { PillarsSection } from "./sections/PillarsSection";
 import { ProcessSection } from "./sections/ProcessSection";
@@ -29,7 +29,7 @@ export function HomePage() {
   return (
     <>
       <HeroSection />
-      <SectorsSection />
+      <CapabilityTicker />
       <AboutSection />
       <PillarsSection />
       <ProcessSection />

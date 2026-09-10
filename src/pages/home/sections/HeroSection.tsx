@@ -3,7 +3,11 @@ import { ArrowRight, PlayCircle } from "lucide-react";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { HeroPattern } from "@/components/common/HeroPattern";
 import { buttonVariants } from "@/components/ui/Button";
-import { placeholders, usingPlaceholderImagery } from "@/content/placeholders";
+import {
+  placeholders,
+  placeholderSrc,
+  placeholderSrcSet,
+} from "@/content/placeholders";
 
 /**
  * Full-bleed hero: copy left, image bleeding off the right edge, contour ground
@@ -38,19 +42,29 @@ export function HeroSection() {
       {/* Right half-bleed. Below lg it becomes a normal block under the copy —
           a 47% bleed on a phone is just a cropped sliver. */}
       <div className="absolute inset-y-0 right-0 -z-10 hidden w-[47%] lg:block">
+        {/* A flat 47vw, NOT the slot's own `sizes`. This element is `hidden`
+            below lg, but `sizes` is evaluated by the preload scanner before any
+            of that is known — a media-query sizes string would resolve to 100vw
+            on a phone and eager-fetch the 1400px file for an image the phone
+            never displays. The mobile copy below carries its own value. */}
         <img
-          src={hero.src}
-          alt={usingPlaceholderImagery ? `Placeholder image — ${hero.note}` : hero.note}
+          src={placeholderSrc(hero)}
+          srcSet={placeholderSrcSet(hero)}
+          sizes="47vw"
+          alt={hero.alt}
+          width={hero.intrinsic.w}
+          height={hero.intrinsic.h}
           className="h-full w-full object-cover object-center"
           loading="eager"
           decoding="sync"
+          fetchPriority="high"
         />
         <div
           aria-hidden="true"
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, var(--color-surface-sunken) 0%, color-mix(in oklch, var(--color-surface-sunken) 55%, transparent) 28%, transparent 62%)",
+              "linear-gradient(to right, var(--surface-sunken) 0%, color-mix(in oklch, var(--surface-sunken) 55%, transparent) 28%, transparent 62%)",
           }}
         />
       </div>
@@ -66,9 +80,9 @@ export function HeroSection() {
           </h1>
 
           <p className="text-body text-ink-muted mt-7 max-w-md">
-            Seiran partners with owner-managed businesses to build clarity, strengthen
-            leadership, and design the systems that let a founder stop carrying
-            everything.
+            Seiran Partners works with owner-managed businesses to bring clarity to
+            strategic decisions, strengthen leadership and build the systems, structures
+            and capabilities required for sustainable growth.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
@@ -110,9 +124,13 @@ export function HeroSection() {
         </div>
 
         <img
-          src={hero.src}
+          src={placeholderSrc(hero)}
+          srcSet={placeholderSrcSet(hero)}
+          sizes="100vw"
           alt=""
           aria-hidden="true"
+          width={hero.intrinsic.w}
+          height={hero.intrinsic.h}
           className="rounded-media mt-12 aspect-[4/3] w-full object-cover lg:hidden"
           loading="lazy"
           decoding="async"

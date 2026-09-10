@@ -17,25 +17,34 @@ import { contactDetails } from "@/content/navigation";
  * the column.
  *
  * **The checklist.** The reference pairs its About copy with a short list of
- * ticked differentiators. For a one-consultant practice that is the most useful
- * thing on the page: it answers "what am I actually getting" in four lines,
- * which a biography does not.
+ * ticked differentiators. It answers "what am I actually getting" in three
+ * lines, which a biography does not. Three rather than four since the client's
+ * review: two of the original ticks made the same point about who runs the
+ * engagement, so they were merged.
  */
 
 const differentiators = [
-  "The consultant in the first conversation runs the engagement",
-  "No account layer and no rotating team",
-  "Specialists brought in only where an engagement needs them",
-  "Work continues through execution, not to the report",
+  "You work directly with the consultant leading your engagement",
+  "The right specialist expertise is brought in where the work needs it",
+  "We stay involved through execution, not just to the report",
 ] as const;
 
+/**
+ * The four advisory pillars, not a longer list of invented disciplines.
+ *
+ * This used to name six areas including "Marketing & Customer Experience" and
+ * "Technology & Digital Transformation" — capability Seiran had not claimed
+ * anywhere else on the site. The client's review replaced it with the pillars
+ * the practice actually sells, extended by specialists where an engagement
+ * needs them. Kept as a literal rather than derived from `servicePillars`
+ * because these are titles in a sentence about capability, not links to the
+ * service pages.
+ */
 const associateAreas = [
-  "Strategy",
-  "Operations & Transformation",
+  "Strategy & Growth",
+  "Operations & Business Systems",
   "People & Organization",
-  "Finance & Business Performance",
-  "Marketing & Customer Experience",
-  "Technology & Digital Transformation",
+  "Business Performance",
 ] as const;
 
 export function TeamPage() {
@@ -44,7 +53,7 @@ export function TeamPage() {
       <PageHero
         eyebrow="Who does the work"
         title="A specialist practice, not a pyramid"
-        lede="One named consultant leads the work, with a network of associates brought in where a specific engagement needs them."
+        lede="Every Seiran engagement has a named consultant accountable for the work. The consultant leads the engagement and draws on strategic associates and specialist expertise where the work calls for it."
       />
 
       <Section tone="white" width="wide" className="py-20 md:py-24">
@@ -60,20 +69,29 @@ export function TeamPage() {
 
           <div>
             <Eyebrow align="start">The person leading it</Eyebrow>
-            <h2 className="text-h1 text-ink-strong mt-6 font-serif">Eldaah Toi, PMP</h2>
+            <h2 className="text-h1 text-ink-strong mt-6 font-serif">
+              Eldaah Toi, PMP&reg;
+            </h2>
             <p className="text-label text-accent mt-3 font-semibold tracking-[0.1em] uppercase">
               Founder &amp; Managing Consultant
             </p>
 
             <div className="text-body text-ink-muted border-border mt-7 flex flex-col gap-5 border-t pt-7">
               <p>
-                Experience across telecommunications, project management, business
-                analytics, strategic management and strategic consulting.
+                Eldaah brings experience across telecommunications, project management
+                and strategic management. He holds an MBA in Strategic Management from
+                USIU-Africa and a Bachelor of Engineering in Electrical &amp; Electronic
+                Engineering from the Technical University of Kenya, and is a PMP&reg;
+                credential holder. He has also undertaken professional training in
+                strategic consulting practice through the Strathmore University Research
+                and Consultancy Centre.
               </p>
               <p>
-                Leads Seiran&rsquo;s advisory work, translating complex organisational
-                challenges into practical strategies, stronger systems and sustainable
-                growth.
+                His experience includes strategic and business advisory work, alongside
+                leadership of complex projects and initiatives. At Seiran, he helps
+                owner-managed businesses make clearer decisions, strengthen how they
+                operate, and build the structures and capabilities required for
+                sustainable growth.
               </p>
             </div>
 
@@ -105,15 +123,18 @@ export function TeamPage() {
       </Section>
 
       <Section tone="parchment" width="wide" className="py-20 md:py-24">
-        <Eyebrow>Specialists, when needed</Eyebrow>
-        <h2 className="text-h1 mt-6 text-center font-serif">Strategic associates</h2>
-        <p className="text-body text-ink-muted mx-auto mt-5 max-w-xl text-center">
-          Seiran works with a network of associates across the disciplines below,
-          alongside sector-specific expertise. Individual profiles are added as associates
-          are formally engaged.
+        <Eyebrow>The right expertise for the work</Eyebrow>
+        <h2 className="text-h1 mt-6 text-center font-serif">
+          Strategic associates &amp; specialist expertise
+        </h2>
+        <p className="text-body text-ink-muted mx-auto mt-5 max-w-2xl text-center">
+          Seiran&rsquo;s four advisory pillars define our core work. Strategic associates
+          and specialist expertise extend that capability where an engagement requires
+          additional knowledge or experience. Our growing associate and specialist network
+          includes expertise across:
         </p>
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2">
           {associateAreas.map((area) => (
             <li
               key={area}
@@ -123,11 +144,18 @@ export function TeamPage() {
             </li>
           ))}
         </ul>
+
+        <p className="text-body text-ink-muted mx-auto mt-10 max-w-2xl text-center">
+          Where a client&rsquo;s situation calls for expertise beyond our core advisory
+          work, Seiran can bring the appropriate specialist capability into the
+          engagement. The work remains led by a Seiran consultant, with the right
+          expertise brought around the engagement where it adds value.
+        </p>
       </Section>
 
       <CtaBand
         heading="Work with the person doing the work."
-        body="No account layer and no rotating team. The consultant in the first conversation is the one who runs the engagement."
+        body="You will not be passed from one person to another. The consultant leading your engagement stays close to the work from the first conversation through execution."
       />
     </>
   );

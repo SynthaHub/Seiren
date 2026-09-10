@@ -10,7 +10,8 @@ import { cn } from "@/lib/cn";
  * Gold Leaf is unreachable on a light ground, so the failing 2.78:1 pairing
  * cannot be produced by accident.
  *
- * Radius is 2px (`rounded-control`): institutional, not friendly-rounded.
+ * Radius is `rounded-control` — 10px since the art-direction call that moved
+ * the site onto generously rounded cards and pill controls.
  *
  * Press is a 1px drop rather than a scale. Scaling a button re-renders its text
  * at a fractional size for the duration of the press, which on a 17px label

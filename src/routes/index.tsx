@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
     seo({
       title: "Seiran Partners | Strategy & Business Advisory, Nairobi",
       description:
-        "Seiran partners with owner-managed businesses in Kenya to turn complexity into clarity, stronger execution and sustainable growth.",
+        "Seiran Partners works with owner-managed businesses in Kenya to bring clarity to strategic decisions, strengthen leadership and build the systems and capabilities required for sustainable growth.",
       path: "/",
     }),
 });

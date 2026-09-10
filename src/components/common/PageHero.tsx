@@ -23,7 +23,9 @@ export function PageHero({
 }: {
   eyebrow: string;
   title: React.ReactNode;
-  lede?: string;
+  /** ReactNode, not string — /about needs to mark up the Japanese 晴嵐 with
+   *  lang="ja" so a screen reader switches pronunciation for it. */
+  lede?: React.ReactNode;
   photoNote?: string;
   children?: React.ReactNode;
 }) {

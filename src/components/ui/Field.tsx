@@ -75,6 +75,9 @@ export function Field({
 
 const controlBase = [
   "w-full rounded-control border bg-surface px-3 py-2.5 text-body text-ink",
+  // The header is sticky. Without this, jumping to #field-x from the enquiry
+  // form's error summary parks the control underneath it.
+  "scroll-mt-28",
   "border-border placeholder:text-ink-muted",
   // The border resolving to the stronger rule under the pointer is the whole
   // interaction here: eleven fields on the contact form, and this is what tells

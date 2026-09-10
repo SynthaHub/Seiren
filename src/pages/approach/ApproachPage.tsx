@@ -25,7 +25,7 @@ export function ApproachPage() {
       <PageHero
         eyebrow="The transformation journey"
         title="A report is not the finish line. Transformation is."
-        lede="The Seiran Transformation Journey runs in seven stages. They are sequential because each depends on the last — you cannot design an operating model for a direction that has not been agreed."
+        lede="The Seiran Transformation Journey runs in seven stages. Each builds on the one before it, taking the business from understanding what is happening to creating lasting change."
       />
 
       <Section tone="white" width="default" className="py-20 md:py-24">
@@ -75,19 +75,19 @@ export function ApproachPage() {
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Where most consulting stops</Eyebrow>
           <p className="text-quote mt-8 font-serif italic">
-            The later stages are where most consulting stops and most change fails.
+            The later stages are where good plans become real change.
           </p>
           <p className="text-body text-ink-muted mt-6">
-            Seiran works through execution and capability-building alongside the team that
-            has to live with the result. A change that depends on an outside adviser being
-            in the room is not a change that has been made.
+            Seiran stays involved through execution, working alongside the team that has
+            to make the change work. If the change only works when the adviser is in the
+            room, it isn&rsquo;t built to last.
           </p>
         </div>
       </Section>
 
       <CtaBand
         heading="Find out which stage you are actually at."
-        body="Most owners arrive expecting stage four and turn out to need stage two. Establishing that is what a first conversation is for."
+        body="Many owners come looking for a solution before they have identified the real problem. The first conversation helps us understand where the business really needs to start."
       />
     </>
   );

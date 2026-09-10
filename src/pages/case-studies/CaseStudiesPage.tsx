@@ -29,12 +29,16 @@ import type { IllustrativeCaseStudy } from "@/content/schemas";
  */
 
 const parts = [
-  ["Context", "context"],
-  ["Challenge", "challenge"],
-  ["Diagnosis", "diagnosis"],
-  ["Intervention", "intervention"],
-  ["Outcome", "outcome"],
-  ["Learning", "learning"],
+  ["Context", "context", "Brief description of the organisation and situation."],
+  ["Challenge", "challenge", "What the client was experiencing or trying to achieve."],
+  [
+    "Diagnosis",
+    "diagnosis",
+    "What Seiran identified as the underlying issue or constraint.",
+  ],
+  ["Intervention", "intervention", "What Seiran designed, changed or implemented."],
+  ["Outcome", "outcome", "What changed as a result of the work."],
+  ["Learning", "learning", "The broader insight from the engagement."],
 ] as const;
 
 function Scenario({ study }: { study: IllustrativeCaseStudy }) {
@@ -67,9 +71,9 @@ export function CaseStudiesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Method, before proof"
-        title="How the work actually runs"
-        lede="Seiran is a new practice, so what follows are illustrative scenarios rather than client engagements — worked examples showing how a problem is diagnosed and what gets built. Real case studies are published only with a client's permission."
+        eyebrow="What the work looks like in practice"
+        title="Real business problems. Clear thinking. Practical change."
+        lede="Each case study shows how Seiran moves from understanding the situation to identifying what is really holding the business back, deciding what needs to change, and putting that change into practice. Seiran is a new practice, so what follows are illustrative scenarios rather than client engagements — real case studies are published only with a client's permission."
       />
 
       <Section tone="parchment" width="default" className="py-12 md:py-14">
@@ -90,14 +94,31 @@ export function CaseStudiesPage() {
       </Section>
 
       <Section tone="white" width="default" className="py-16 md:py-20">
-        <Eyebrow align="start">Three worked examples</Eyebrow>
+        <Eyebrow align="start">From problem to progress</Eyebrow>
         <h2 className="text-h1 mt-6 max-w-2xl font-serif">
-          The same six parts, every time
+          Every case study follows the same six parts
         </h2>
         <p className="text-body text-ink-muted mt-5 max-w-xl">
-          Context, challenge, diagnosis, intervention, outcome, learning — so examples can
-          be read against one another rather than each written to flatter its own result.
+          This makes the work easy to understand, and shows not only what changed, but
+          why. It also means examples can be read against one another, rather than each
+          being written to flatter its own result.
         </p>
+
+        {/* The spine, explained once, so a reader knows what they are looking at
+            before the first scenario rather than inferring it from three. */}
+        <ol className="border-border mt-12 grid gap-x-10 gap-y-7 border-t pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          {parts.map(([label, , description], index) => (
+            <li key={label}>
+              <p className="text-label text-accent font-semibold tracking-[0.1em] tabular-nums">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3 className="text-h3 text-ink-strong mt-2 font-serif font-semibold">
+                {label}
+              </h3>
+              <p className="text-small text-ink-muted mt-2">{description}</p>
+            </li>
+          ))}
+        </ol>
 
         <div className="mt-14 flex flex-col gap-14">
           {illustrativeCaseStudies.map((study) => (
@@ -108,22 +129,22 @@ export function CaseStudiesPage() {
 
       <Section tone="navy" width="default" className="py-16 md:py-20">
         <div className="max-w-2xl">
-          <Eyebrow align="start">On publishing real work</Eyebrow>
+          <Eyebrow align="start">How we share client work</Eyebrow>
           <p className="text-quote mt-7 font-serif italic">
             A client&rsquo;s situation is theirs to disclose, not ours.
           </p>
           <p className="text-body text-ink-muted mt-6">
-            Much of this work touches ownership, succession and performance problems that
-            businesses do not discuss publicly. Where a client is willing to have an
-            engagement written up, it will appear here in full and be labelled as real.
-            Where they are not, it will not appear at all.
+            Our work can involve sensitive issues around growth, leadership, operations
+            and performance. We respect that confidentiality. Where a client gives
+            permission for an engagement to be published, we share the work clearly and
+            accurately. Where they do not, the work remains confidential.
           </p>
         </div>
       </Section>
 
       <CtaBand
-        heading="Recognise one of these?"
-        body="If a scenario above sounds close to your situation, the first conversation is where we find out how close."
+        heading="Recognise your situation?"
+        body="If something in these examples sounds familiar, the first conversation is where we explore what is really happening in your business."
       />
     </>
   );

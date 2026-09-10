@@ -1,5 +1,4 @@
-import { z } from "zod";
-import { illustrativeCaseStudySchema, type IllustrativeCaseStudy } from "./schemas";
+import type { IllustrativeCaseStudy } from "./schemas";
 
 /**
  * Illustrative scenarios — worked examples of method, not client engagements.
@@ -24,9 +23,17 @@ import { illustrativeCaseStudySchema, type IllustrativeCaseStudy } from "./schem
  *    describe what changes structurally, which is both truer to the work and
  *    not mistakable for a result.
  */
-export const illustrativeCaseStudies: ReadonlyArray<IllustrativeCaseStudy> = z
-  .array(illustrativeCaseStudySchema)
-  .parse([
+/**
+ * Plain typed data. No Zod at runtime — see src/content/validate.dev.ts.
+ *
+ * This content is a literal in the bundle and cannot differ at runtime from
+ * what it was at build time, so validating it in every visitor's browser buys
+ * nothing. It also cost real bytes: the schema module was reachable from the
+ * chunk that every route loads, so /about and /team shipped Zod for content
+ * they only read. The type annotation below is what keeps the shape honest at
+ * compile time; the runtime rules Zod adds are checked on every dev start.
+ */
+export const illustrativeCaseStudies: ReadonlyArray<IllustrativeCaseStudy> = [
     {
       slug: "founder-dependency-wholesale",
       title: "When every decision still routes through the owner",
@@ -81,7 +88,7 @@ export const illustrativeCaseStudies: ReadonlyArray<IllustrativeCaseStudy> = z
       learning:
         "Most businesses do not need more measures. They need the few that report while there is still time to do something.",
     },
-  ]);
+];
 
 /**
  * Real engagements, published with client permission. Empty by policy until a

@@ -27,14 +27,22 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
         <ul className="border-border mt-12 grid border-t sm:grid-cols-2 sm:gap-x-12">
           {pillar.services.map((service) => (
             <li
-              key={service}
-              className="border-border text-body text-ink flex items-start gap-3 border-b py-4"
+              key={service.name}
+              className="border-border flex items-start gap-3 border-b py-4"
             >
               <span
                 className="bg-accent rounded-pill mt-2.5 size-1.5 shrink-0"
                 aria-hidden="true"
               />
-              {service}
+              <span>
+                <span className="text-body text-ink block">{service.name}</span>
+                {/* The question is the half an owner-manager recognises, so it
+                    sits directly under the name rather than in a second column
+                    that would collapse to nowhere on a phone. */}
+                <span className="text-small text-ink-muted mt-1 block">
+                  {service.question}
+                </span>
+              </span>
             </li>
           ))}
         </ul>
@@ -42,7 +50,7 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
 
       <Section tone="parchment" width="wide" className="py-20 md:py-28">
         <Eyebrow align="start">The other three</Eyebrow>
-        <h2 className="text-h1 mt-6 font-serif">Rarely addressed in isolation</h2>
+        <h2 className="text-h1 mt-6 font-serif">Often part of the solution</h2>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {others.map((other) => (
@@ -72,7 +80,7 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
 
       <CtaBand
         heading={`Discuss a ${pillar.title.toLowerCase()} challenge.`}
-        body="Most engagements in this area begin with a diagnostic rather than a proposal, because the presenting problem is rarely the constraint."
+        body="We start by understanding the business before recommending a solution. The problem you see may not be the real problem holding the business back."
       />
     </>
   );

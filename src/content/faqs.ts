@@ -1,5 +1,4 @@
-import { z } from "zod";
-import { faqSchema, type Faq } from "./schemas";
+import type { Faq } from "./schemas";
 
 /**
  * The eleven questions are fixed by the content brief §8.
@@ -17,7 +16,17 @@ import { faqSchema, type Faq } from "./schemas";
  * These also become FAQPage structured data, so a wrong answer here can surface
  * directly in Google results. Confirm before launch.
  */
-export const faqs: ReadonlyArray<Faq> = z.array(faqSchema).parse([
+/**
+ * Plain typed data. No Zod at runtime — see src/content/validate.dev.ts.
+ *
+ * This content is a literal in the bundle and cannot differ at runtime from
+ * what it was at build time, so validating it in every visitor's browser buys
+ * nothing. It also cost real bytes: the schema module was reachable from the
+ * chunk that every route loads, so /about and /team shipped Zod for content
+ * they only read. The type annotation below is what keeps the shape honest at
+ * compile time; the runtime rules Zod adds are checked on every dev start.
+ */
+export const faqs: ReadonlyArray<Faq> = [
   {
     question: "Who does Seiran work with?",
     answer:
@@ -36,7 +45,7 @@ export const faqs: ReadonlyArray<Faq> = z.array(faqSchema).parse([
   {
     question: "Does Seiran only work with businesses in Nairobi?",
     answer:
-      "No. Seiran is based at Nairobi Garage in Westlands and works with organisations across Kenya, with the intention of serving the wider African market over time.",
+      "No. Seiran is based at Nairobi Garage, Spring Valley on General Mathenge Drive, and works with organisations across Kenya, with the intention of serving the wider African market over time.",
   },
   {
     question: "Does Seiran work remotely?",
@@ -51,7 +60,7 @@ export const faqs: ReadonlyArray<Faq> = z.array(faqSchema).parse([
   {
     question: "Does Seiran only provide strategy?",
     answer:
-      "No. Strategy is one of four pillars alongside operations and business systems, people and organisation, and business performance. Strategy that ignores operations does not survive contact with the business.",
+      "No. Strategy is one of four pillars alongside operations and business systems, people and organisation, and business performance. Good strategy has to work in the real business, so the four are looked at together.",
   },
   {
     question: "How does an engagement begin?",
@@ -73,4 +82,4 @@ export const faqs: ReadonlyArray<Faq> = z.array(faqSchema).parse([
     answer:
       "Kenya is the primary market today. Seiran's longer-term intention is to serve owner-managed businesses across Africa, and enquiries from outside Kenya are welcome.",
   },
-]);
+];

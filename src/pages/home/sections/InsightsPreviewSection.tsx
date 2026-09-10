@@ -47,7 +47,7 @@ const rest = [
 function Meta({ category }: { category: string }) {
   return (
     <p className="flex flex-wrap items-center gap-2">
-      <span className="bg-surface-sunken text-ink-muted rounded-pill px-3 py-1 text-[0.7rem] font-semibold tracking-[0.08em] uppercase">
+      <span className="border-border text-ink-muted rounded-pill border px-3 py-1 text-[0.7rem] font-semibold tracking-[0.08em] uppercase">
         {category}
       </span>
       <span className="text-ink-muted border-border rounded-pill border px-3 py-1 text-[0.7rem] font-medium">
@@ -62,7 +62,7 @@ function Meta({ category }: { category: string }) {
 
 export function InsightsPreviewSection() {
   return (
-    <Section tone="parchment" width="wide" className="py-20 md:py-24">
+    <Section tone="navy" width="wide" className="py-20 md:py-24">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
           <Eyebrow align="start">Questions owners actually ask</Eyebrow>
@@ -81,7 +81,7 @@ export function InsightsPreviewSection() {
             between pointing at the card and the card acknowledging it — there
             is no crop change worth noticing. Slower than the interface
             transitions on purpose: an image that snaps looks like a glitch. */}
-        <article className="bg-surface border-border hover:border-accent/50 rounded-card ease-out-soft group overflow-hidden border transition-[transform,border-color] duration-200 hover:-translate-y-0.5">
+        <article className="bg-surface-sunken border-border hover:border-accent/50 rounded-card ease-out-soft group overflow-hidden border transition-[transform,border-color] duration-200 hover:-translate-y-0.5">
           <Photo
             slot="teamWorkshop"
             aspect="aspect-[16/9]"
@@ -105,7 +105,7 @@ export function InsightsPreviewSection() {
           {rest.map((post) => (
             <li
               key={post.title}
-              className="bg-surface border-border hover:border-accent/50 rounded-card ease-out-soft flex flex-1 gap-5 border p-4 transition-[transform,border-color] duration-200 hover:-translate-y-0.5"
+              className="bg-surface-sunken border-border hover:border-accent/50 rounded-card ease-out-soft flex flex-1 gap-5 border p-4 transition-[transform,border-color] duration-200 hover:-translate-y-0.5"
             >
               <Photo
                 slot={post.slot}

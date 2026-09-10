@@ -27,13 +27,13 @@ export function ProcessSection() {
   return (
     <Section tone="white" width="wide" className="py-20 md:py-24">
       <div className="max-w-2xl">
-        <Eyebrow align="start">Seven stages, in order</Eyebrow>
+        <Eyebrow align="start">Seven stages. One integrated journey.</Eyebrow>
         <h2 className="text-h1 mt-6 font-serif">
           A report is not the finish line. Transformation is.
         </h2>
         <p className="text-body text-ink-muted mt-5">
-          Seven stages, in order, because each depends on the last. These are the first
-          four.
+          From understanding how your business really works to building the capability
+          for lasting change. These are the first four.
         </p>
       </div>
 

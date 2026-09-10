@@ -1,11 +1,24 @@
 import { useState, type FormEvent } from "react";
 import { Loader2 } from "lucide-react";
-import { z } from "zod";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Field";
 import { env } from "@/lib/env";
 
-const emailSchema = z.email("Enter an email address we can send to");
+/**
+ * Deliberately a regex rather than Zod.
+ *
+ * This component sits in the footer, so it renders on every page — importing a
+ * validation library for one field put Zod into the chunk that every route
+ * loads. The two forms that genuinely need schema validation (the enquiry form
+ * and the short enquiry form) still use it, and they are only on /contact and
+ * the homepage.
+ *
+ * Permissive on purpose. The point is to catch a missing @ before a round trip,
+ * not to adjudicate RFC 5322 — every real address must survive the endpoint's
+ * own validation anyway, and over-strict client rules reject valid addresses.
+ */
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const EMAIL_ERROR = "Enter an email address we can send to";
 
 /**
  * Single-field capture from the reference's closing band.
@@ -20,6 +33,13 @@ const emailSchema = z.email("Enter an email address we can send to");
  * every page could not be typed into, and read as broken rather than as
  * pending. The field now behaves normally and the submit says plainly that
  * sign-up is not open yet, which keeps the guarantee without the dead control.
+ *
+ * ⚠ THAT NOTICE IS PUBLIC. The client asked (Sept 2026) whether it was an
+ * internal development note — it is not. It renders to every visitor whenever
+ * VITE_NEWSLETTER_ENDPOINT is unset, which is true of any build not given one.
+ * It is now worded as a launch-state message rather than a developer note, but
+ * the real fix is to set that environment variable: once it is present the
+ * notice disappears on its own and the form goes live. Nothing else changes.
  */
 export function NewsletterForm() {
   const [value, setValue] = useState("");
@@ -32,10 +52,10 @@ export function NewsletterForm() {
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
-    const parsed = emailSchema.safeParse(value.trim());
-    if (!parsed.success) {
+    const email = value.trim();
+    if (!EMAIL.test(email)) {
       setState("error");
-      setMessage(parsed.error.issues[0]?.message ?? "Enter a valid email address");
+      setMessage(EMAIL_ERROR);
       return;
     }
 
@@ -55,7 +75,7 @@ export function NewsletterForm() {
       const res = await fetch(env.VITE_NEWSLETTER_ENDPOINT as string, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: parsed.data }),
+        body: JSON.stringify({ email }),
       });
       if (!res.ok) throw new Error(String(res.status));
       setState("done");
@@ -113,7 +133,7 @@ export function NewsletterForm() {
           }
           className={`text-small mt-3 ${state === "error" ? "text-danger" : "text-ink-muted"} ${message ? "animate-rise-in" : ""}`}
         >
-          {message ?? "Sign-up opens once the mailing list is connected."}
+          {message ?? "Sign-up opens shortly — the mailing list is being set up."}
         </p>
       )}
     </form>

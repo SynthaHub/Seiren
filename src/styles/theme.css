@@ -24,6 +24,19 @@
   --seiran-parchment: #edebe5;
   --seiran-rule: #d8d5cc;
   --seiran-white: #ffffff;
+
+  /* NOT IN SPES-001 — found in the supplied logo artwork, September 2026.
+     The primary lockup sets PARTNERS in this deep green on light grounds
+     (the reversed cut uses Gold Leaf instead, on navy). The identity spec
+     documents no green at all, so this is recorded here rather than invented:
+     it is a real brand value the palette sheet is missing.
+
+     Deliberately unused by any component. It is here so that nobody "corrects"
+     the green in the logo to gold on the assumption that it was a mistake, and
+     so anyone producing collateral that sits beside the mark has the value.
+     Before using it anywhere on screen it needs a contrast check and Seiran's
+     sign-off — measured 8.68:1 on white, but it has no defined role. */
+  --seiran-green: #2f4b3c;
 }
 
 /* --- Semantic roles, light ground (White 25% of the palette proportion) --- */
@@ -113,22 +126,44 @@
      that has to come first or the page silently falls through to the print
      fallbacks below. The plain names are kept for anyone who has the retail
      fonts installed locally. Tail of each stack is the SPES-001 · 03 fallback. */
+  /* The CJK faces at the tail are not a design choice and change nothing about
+     how the site looks in Latin. The About page prints the Japanese 晴嵐 in its
+     origin story, and neither Source Serif 4 nor Inter carries CJK glyphs — on
+     a device without a CJK system font those two characters render as empty
+     tofu boxes in the middle of the brand story. A browser only reaches these
+     entries for glyphs every earlier family lacks, so Latin text is untouched.
+     The list covers Apple, Windows and Android/Noto in that order. */
   --font-serif:
-    "Source Serif 4 Variable", "Source Serif 4", Georgia, "Times New Roman", serif;
+    "Source Serif 4 Variable", "Source Serif 4", Georgia, "Times New Roman",
+    "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", "Noto Serif JP",
+    serif;
   --font-sans:
-    "Inter Variable", "Inter", Calibri, "Helvetica Neue", system-ui, sans-serif;
+    "Inter Variable", "Inter", Calibri, "Helvetica Neue", system-ui,
+    "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
 
   /* Print pt converted at 17px body, preserving the spec's ratios.
      Label is floored at 14px per the spec's own screen minimum, which
      overrides its 13px strict conversion. */
-  /* PROPOSED EXTENSION to SPES-001 · 04 — needs Seiran's sign-off.
-     The spec's Display step (32pt ≈ 52px) is a document size. In a full-width
-     web hero it reads quiet, which is what made the first Home hero feel weak.
-     This adds one screen-only step above Display, fluid from the spec's own H1
-     (36px) on a 320px phone up to 68px on desktop, with leading tightened to
-     1.1 as display sizes require.
-     Used by page heroes ONLY. To revert: delete this token and put page h1s
-     back to `text-h1 md:text-display`. */
+  /* PROPOSED EXTENSION to SPES-001 · 04 — STILL AWAITING SEIRAN'S SIGN-OFF.
+     Every page hero on the site depends on this token, so it is load-bearing
+     while unapproved. Measured so the decision can actually be made:
+
+         viewport     renders    vs SPES-001 (H1 36px, Display 52px)
+         320px         36.0px    exactly the spec's H1
+         375px         36.0px    at the H1 step
+         768px         54.5px    above Display
+         1024px        66.5px    above Display
+         1280px+       68.0px    ceiling
+
+     It exceeds the Display step above a 715px viewport and hits its 68px
+     ceiling at 1056px. So on phones it is precisely the spec; the extension
+     only applies from tablet up, where Display — a 32pt DOCUMENT size — reads
+     quiet across a full-bleed web hero. That is what made the first Home hero
+     feel weak.
+
+     TO APPROVE: delete this paragraph, keep the token.
+     TO REJECT: delete the token and set page h1s to `text-h1 md:text-display`
+     (one line in PageHero and one in HeroSection). Nothing else refers to it. */
   --text-hero: clamp(2.25rem, 1.15rem + 4.7vw, 4.25rem);
   --text-hero--line-height: 1.1;
   --text-hero--letter-spacing: -0.02em;

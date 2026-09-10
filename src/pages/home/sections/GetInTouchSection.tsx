@@ -20,7 +20,7 @@ export function GetInTouchSection() {
           <Eyebrow align="start">The first conversation</Eyebrow>
 
           <h2 className="text-h1 mt-6 font-serif">
-            Talk to an adviser who has run the problem before
+            Talk to an adviser who has handled problems like yours before.
           </h2>
 
           <p className="text-body text-ink-muted mt-6 max-w-lg">
@@ -67,7 +67,7 @@ export function GetInTouchSection() {
                 <span>
                   <span className="text-small text-ink-muted block">Phone</span>
                   <a
-                    href={`tel:${contactDetails.telephone}`}
+                    href={`tel:${contactDetails.telephoneE164 ?? contactDetails.telephone}`}
                     className="text-body text-ink-strong hover:text-accent ease-out-soft transition-colors duration-200"
                   >
                     {contactDetails.telephone}
@@ -81,7 +81,7 @@ export function GetInTouchSection() {
         <div className="on-navy bg-surface rounded-card p-6 md:p-8">
           <h3 className="text-h3 text-ink font-semibold">Book an initial conversation</h3>
           <p className="text-small text-ink-muted mt-2">
-            Four fields. Eldaah reads every enquiry personally.
+            Four fields. Every enquiry is reviewed personally.
           </p>
           <ShortEnquiryForm />
         </div>

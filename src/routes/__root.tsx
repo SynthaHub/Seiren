@@ -29,7 +29,18 @@ export const Route = createRootRoute({
         path: "/",
       }),
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      // The client's own icon artwork, not generated. The SVG carries its own
+      // white plate, so the navy arch stays legible against dark browser chrome
+      // where a transparent mark would disappear.
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      // 180x180, opaque, square. iOS applies its own corner rounding, so the
+      // unrounded navy square is correct here — a pre-rounded source is clipped
+      // twice and comes out with pinched corners.
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "manifest", href: "/site.webmanifest" },
+    ],
     scripts: [
       {
         type: "application/ld+json",

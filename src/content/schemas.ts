@@ -5,11 +5,26 @@ import { z } from "zod";
  * rather than rendering as `undefined` on a live page.
  */
 
+/**
+ * A named service, paired with the question an owner-manager would actually
+ * ask to describe it.
+ *
+ * The question is required, not optional. It is the whole point of the client's
+ * September 2026 revision: "Business Operating Structure" means nothing to a
+ * reader who has never bought consulting, while "How should the business be
+ * organized and run?" is recognisably their own problem. Making it optional
+ * would let a service ship as jargon alone, which is the state this replaced.
+ */
+export const serviceSchema = z.object({
+  name: z.string().min(1),
+  question: z.string().min(1).endsWith("?"),
+});
+
 export const servicePillarSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),
   summary: z.string().min(1),
-  services: z.array(z.string().min(1)).min(1),
+  services: z.array(serviceSchema).min(1),
 });
 
 export const journeyStageSchema = z.object({
@@ -73,6 +88,7 @@ export const insightSchema = z.object({
   image: z.string().optional(),
 });
 
+export type Service = z.infer<typeof serviceSchema>;
 export type ServicePillar = z.infer<typeof servicePillarSchema>;
 export type JourneyStage = z.infer<typeof journeyStageSchema>;
 export type Faq = z.infer<typeof faqSchema>;

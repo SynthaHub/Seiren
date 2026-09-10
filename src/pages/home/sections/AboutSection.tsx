@@ -26,9 +26,8 @@ import { journeyStages } from "@/content/journey";
 
 const differentiators = [
   "Diagnosis before proposal",
-  "The consultant you meet runs the engagement",
+  "Your engagement is led by a dedicated Seiran consultant, with specialist expertise brought in where the work requires it",
   "Work continues through execution",
-  "Specialists brought in only where needed",
 ] as const;
 
 export function AboutSection() {
@@ -42,7 +41,7 @@ export function AboutSection() {
       value: String(journeyStages.length),
       label: "Stages, start to finish",
     },
-    { icon: UserRound, value: "1", label: "Consultant on your engagement" },
+    { icon: UserRound, value: "1", label: "Dedicated lead consultant" },
   ];
 
   return (
@@ -55,10 +54,9 @@ export function AboutSection() {
           </h2>
         </div>
         <p className="text-body text-ink-muted lg:pt-14">
-          What worked at ten people quietly stops working at eighty, and the founder
-          cannot keep carrying all of it. Seiran works on the structural constraint rather
-          than the symptom — because the presenting problem is rarely the one holding
-          growth back.
+          What worked when the business was smaller can quietly stop working as the
+          business grows. We look beyond the immediate problem to understand what is
+          really holding the business back — and help you fix it.
         </p>
       </div>
 
