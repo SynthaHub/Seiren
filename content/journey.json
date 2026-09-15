@@ -1,0 +1,32 @@
+{
+  "stages": [
+    {
+      "name": "Understand",
+      "description": "Learn how the business actually works, not how the org chart says it does."
+    },
+    {
+      "name": "Diagnose",
+      "description": "Identify what is really holding the business back, beyond the symptoms."
+    },
+    {
+      "name": "Clarify",
+      "description": "Agree what needs to change, what matters most, and what success looks like."
+    },
+    {
+      "name": "Design",
+      "description": "Develop the strategy, structure, systems and ways of working needed to move forward."
+    },
+    {
+      "name": "Execute",
+      "description": "Put the work into practice alongside the team that has to live with it."
+    },
+    {
+      "name": "Strengthen",
+      "description": "Build the internal capability so the change holds without us in the room."
+    },
+    {
+      "name": "Transform",
+      "description": "The business runs differently — and keeps running differently."
+    }
+  ]
+}

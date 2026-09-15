@@ -3,11 +3,12 @@ import {
   servicePillarSchema,
   journeyStageSchema,
   illustrativeCaseStudySchema,
+  caseStudySchema,
   faqSchema,
 } from "./schemas";
 import { servicePillars } from "./services";
 import { journeyStages } from "./journey";
-import { illustrativeCaseStudies } from "./case-studies";
+import { illustrativeCaseStudies, caseStudies } from "./case-studies";
 import { faqs } from "./faqs";
 
 /**
@@ -45,6 +46,7 @@ function check(label: string, schema: z.ZodTypeAny, data: unknown) {
 check("servicePillars", servicePillarSchema, servicePillars);
 check("journeyStages", journeyStageSchema, journeyStages);
 check("illustrativeCaseStudies", illustrativeCaseStudySchema, illustrativeCaseStudies);
+check("caseStudies", caseStudySchema, caseStudies);
 check("faqs", faqSchema, faqs);
 
 /**

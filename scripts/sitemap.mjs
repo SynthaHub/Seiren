@@ -18,7 +18,7 @@ const DIST = "dist/client";
 const BASE = process.env.SITE_URL ?? "https://seiranpartners.co.ke";
 
 /** Routes that exist but should never be indexed. */
-const EXCLUDE = [/^\/404$/];
+const EXCLUDE = [/^\/404$/, /^\/admin$/];
 
 async function findPages(dir) {
   const out = [];
@@ -71,6 +71,7 @@ await writeFile(join(DIST, "sitemap.xml"), xml, "utf8");
 // base URL being duplicated in a static file that nobody remembers to update.
 const robots = `User-agent: *
 Allow: /
+Disallow: /admin
 
 Sitemap: ${BASE}/sitemap.xml
 `;

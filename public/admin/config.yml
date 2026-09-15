@@ -1,0 +1,191 @@
+# Decap CMS configuration for the Seiran Partners site.
+#
+# Every collection below maps straight onto a file under content/ that
+# src/content/*.ts loads at build time. Field names must match those files
+# exactly — see the loader in the matching src/content/*.ts for the shape,
+# and src/content/schemas.ts for the validation rules the CI pipeline
+# enforces on every save (npm run validate-content).
+#
+# Login is email + password (Netlify Identity + Git Gateway), not GitHub —
+# the owner never sees GitHub. See netlify-identity-gateway/README.md.
+#
+# ⚠ backend.identity_url / gateway_url still need your actual Netlify
+# gateway site's URL filled in below (see netlify-identity-gateway/README.md).
+# site_url / display_url point at the test domain for now — swap to the
+# real production domain before launch (see README.md's "Before launch").
+
+backend:
+  name: git-gateway
+  repo: SynthaHub/Seiren
+  branch: main
+  identity_url: https://REPLACE-WITH-YOUR-GATEWAY-SITE.netlify.app/.netlify/identity
+  gateway_url: https://REPLACE-WITH-YOUR-GATEWAY-SITE.netlify.app/.netlify/git
+
+# Every edit becomes a draft the owner reviews before it goes live, rather
+# than publishing straight to `main` (and triggering a deploy) on save.
+publish_mode: editorial_workflow
+
+media_folder: "public/placeholders"
+public_folder: "/placeholders"
+
+site_url: https://tell.sazara.co.ke
+display_url: https://tell.sazara.co.ke
+
+collections:
+  - name: "faqs"
+    label: "FAQs"
+    files:
+      - name: "faqs"
+        label: "Frequently Asked Questions"
+        file: "content/faqs.json"
+        format: json
+        fields:
+          - label: "Questions"
+            name: "faqs"
+            widget: list
+            summary: "{{fields.question}}"
+            fields:
+              - { label: "Question", name: "question", widget: string, required: true }
+              - { label: "Answer", name: "answer", widget: text, required: true }
+
+  - name: "journey"
+    label: "Transformation Journey"
+    files:
+      - name: "journey"
+        label: "Journey Stages"
+        file: "content/journey.json"
+        format: json
+        fields:
+          - label: "Stages — order matters, this is the one place on the site where numbering is real"
+            name: "stages"
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: string, required: true }
+              - { label: "Description", name: "description", widget: text, required: true }
+
+  - name: "services"
+    label: "Services"
+    files:
+      - name: "services"
+        label: "Service Pillars"
+        file: "content/services.json"
+        format: json
+        fields:
+          - label: "Pillars"
+            name: "pillars"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Slug (URL — changing this breaks the page link, check with a developer first)"
+                name: "slug"
+                widget: string
+                required: true
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Summary", name: "summary", widget: text, required: true }
+              - label: "Services"
+                name: "services"
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "Name", name: "name", widget: string, required: true }
+                  - label: "Question (must end with a question mark — this is what makes the list persuasive, not jargon)"
+                    name: "question"
+                    widget: string
+                    required: true
+                    pattern: ["\\?$", "Must end with a question mark"]
+
+  - name: "navigation"
+    label: "Navigation & Contact"
+    files:
+      - name: "navigation"
+        label: "Site Navigation & Contact Details"
+        file: "content/navigation.json"
+        format: json
+        fields:
+          - label: "Primary Nav (menu labels only — do not change the links without a developer)"
+            name: "primaryNav"
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: string, required: true }
+              - { label: "Link — developer only", name: "to", widget: string, required: true }
+          - label: "Footer Nav"
+            name: "footerNav"
+            widget: list
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - label: "Items"
+                name: "items"
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Label", name: "label", widget: string, required: true }
+                  - { label: "Link — developer only", name: "to", widget: string, required: true }
+          - label: "Contact Details"
+            name: "contactDetails"
+            widget: object
+            fields:
+              - { label: "Email", name: "email", widget: string, required: false }
+              - label: "Telephone (local format, e.g. 0712345678 — the site derives the dial-out +254 form automatically)"
+                name: "telephone"
+                widget: string
+                required: false
+              - { label: "WhatsApp", name: "whatsapp", widget: string, required: false }
+              - { label: "LinkedIn (Company)", name: "linkedInCompany", widget: string, required: false }
+              - { label: "LinkedIn (Founder)", name: "linkedInFounder", widget: string, required: false }
+              - { label: "Instagram", name: "instagram", widget: string, required: false }
+              - { label: "TikTok", name: "tiktok", widget: string, required: false }
+              - label: "Facebook (use the canonical facebook.com/<page> URL, not a share link with a tracking token)"
+                name: "facebook"
+                widget: string
+                required: false
+          - label: "Office Address"
+            name: "officeAddress"
+            widget: object
+            fields:
+              - { label: "Name", name: "name", widget: string, required: true }
+              - { label: "Street", name: "street", widget: string, required: true }
+              - { label: "Locality", name: "locality", widget: string, required: true }
+              - { label: "Country", name: "country", widget: string, required: true }
+
+  - name: "case_studies"
+    label: "Case Studies"
+    folder: "content/case-studies"
+    create: true
+    identifier_field: slug
+    format: json
+    extension: json
+    summary: "{{title}} ({{sector}})"
+    fields:
+      - label: "Slug (URL-safe, unique — do not change once published)"
+        name: "slug"
+        widget: string
+        required: true
+      - { label: "Title", name: "title", widget: string, required: true }
+      - { label: "Sector", name: "sector", widget: string, required: true }
+      - label: "Illustrative? (a worked example, NOT a real client)"
+        name: "illustrative"
+        widget: boolean
+        default: true
+        hint: >-
+          Leave this ON unless this is a real client engagement, cleared for
+          publication. Illustrative entries must never name a real
+          organisation and must never state a numeric outcome (e.g. "revenue
+          up 40%") — describe what changed structurally instead.
+      - label: "Published with the client's explicit permission?"
+        name: "publishedWithPermission"
+        widget: boolean
+        default: false
+        required: false
+        hint: >-
+          Only relevant when "Illustrative?" above is OFF. A real case study
+          cannot go live without this checked — the build pipeline rejects
+          it otherwise, regardless of this checkbox.
+      - { label: "Context", name: "context", widget: text, required: true }
+      - { label: "Challenge", name: "challenge", widget: text, required: true }
+      - { label: "Diagnosis", name: "diagnosis", widget: text, required: true }
+      - { label: "Intervention", name: "intervention", widget: text, required: true }
+      - { label: "Outcome", name: "outcome", widget: text, required: true }
+      - { label: "Learning", name: "learning", widget: text, required: true }

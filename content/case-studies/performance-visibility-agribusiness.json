@@ -1,0 +1,13 @@
+{
+  "slug": "performance-visibility-agribusiness",
+  "title": "Finding out about problems too late to act on them",
+  "sector": "Agribusiness · owner-managed",
+  "illustrative": true,
+  "publishedWithPermission": false,
+  "context": "An agribusiness with strong operational knowledge and monthly accounts that arrived several weeks after month end.",
+  "challenge": "The owner learned about margin problems long after the decisions that caused them, and had no way to tell a seasonal dip from a structural one.",
+  "diagnosis": "Not a reporting problem but a measurement one. The business tracked what its accounting system produced rather than what its decisions depended on, so nothing reported early enough to act on.",
+  "intervention": "A short set of leading indicators defined against the decisions they inform, with weekly reporting for the few that move fast. Management reporting rebuilt so it can be read in one page.",
+  "outcome": "Margin movement is visible while it is still cheap to correct, and seasonal variation can be distinguished from a real change.",
+  "learning": "Most businesses do not need more measures. They need the few that report while there is still time to do something."
+}

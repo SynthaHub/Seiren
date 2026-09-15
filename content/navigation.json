@@ -1,0 +1,52 @@
+{
+  "primaryNav": [
+    { "label": "Who We Are", "to": "/about" },
+    { "label": "Services", "to": "/services" },
+    { "label": "Our Approach", "to": "/approach" },
+    { "label": "Team", "to": "/team" },
+    { "label": "Insights", "to": "/insights" },
+    { "label": "Case Studies", "to": "/case-studies" }
+  ],
+  "footerNav": [
+    {
+      "heading": "Advisory",
+      "items": [
+        { "label": "Strategy & Growth", "to": "/services/strategy-and-growth" },
+        { "label": "Operations & Business Systems", "to": "/services/operations-and-business-systems" },
+        { "label": "People & Organization", "to": "/services/people-and-organization" },
+        { "label": "Business Performance", "to": "/services/business-performance" }
+      ]
+    },
+    {
+      "heading": "Firm",
+      "items": [
+        { "label": "Who We Are", "to": "/about" },
+        { "label": "Our Approach", "to": "/approach" },
+        { "label": "Team", "to": "/team" }
+      ]
+    },
+    {
+      "heading": "Thinking",
+      "items": [
+        { "label": "Insights", "to": "/insights" },
+        { "label": "Case Studies", "to": "/case-studies" }
+      ]
+    }
+  ],
+  "contactDetails": {
+    "email": null,
+    "telephone": "0180357040",
+    "whatsapp": null,
+    "linkedInCompany": "https://www.linkedin.com/company/seiran-partners/",
+    "linkedInFounder": "https://www.linkedin.com/in/eldaah-toi-pmp-63355bb0",
+    "instagram": "https://www.instagram.com/seiranpartners",
+    "tiktok": "https://www.tiktok.com/@seiran.partners",
+    "facebook": "https://www.facebook.com/share/1BkvTgN5U2/"
+  },
+  "officeAddress": {
+    "name": "Nairobi Garage",
+    "street": "Spring Valley, The Promenade, General Mathenge Drive",
+    "locality": "Nairobi",
+    "country": "Kenya"
+  }
+}

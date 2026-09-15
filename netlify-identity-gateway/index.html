@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Seiran Partners — CMS sign-in</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <p>Redirecting…</p>
+    <script>
+      // This page exists only to catch the invite/recovery link Netlify
+      // Identity emails out (it always points at this Netlify site, not at
+      // the real site on HostAfrica), then hand the token off to the actual
+      // CMS at /admin/ on the production domain.
+      //
+      // Testing domain — swap to the final production domain before launch,
+      // then redeploy this site (see README.md in this folder).
+      var PRODUCTION_ADMIN_URL = "https://tell.sazara.co.ke/admin/";
+
+      if (window.location.hash && window.location.hash.length > 1) {
+        window.location.href = PRODUCTION_ADMIN_URL + window.location.hash;
+      } else {
+        window.location.href = PRODUCTION_ADMIN_URL;
+      }
+    </script>
+  </body>
+</html>
