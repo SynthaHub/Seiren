@@ -9,17 +9,16 @@
 # Login is email + password (Netlify Identity + Git Gateway), not GitHub —
 # the owner never sees GitHub. See netlify-identity-gateway/README.md.
 #
-# ⚠ backend.identity_url / gateway_url still need your actual Netlify
-# gateway site's URL filled in below (see netlify-identity-gateway/README.md).
 # site_url / display_url point at the test domain for now — swap to the
-# real production domain before launch (see README.md's "Before launch").
+# real production domain before launch (see README.md's "Before launch"),
+# and update netlify-identity-gateway/index.html's redirect target to match.
 
 backend:
   name: git-gateway
   repo: SynthaHub/Seiren
   branch: main
-  identity_url: https://REPLACE-WITH-YOUR-GATEWAY-SITE.netlify.app/.netlify/identity
-  gateway_url: https://REPLACE-WITH-YOUR-GATEWAY-SITE.netlify.app/.netlify/git
+  identity_url: https://profound-alpaca-7bc0ff.netlify.app/.netlify/identity
+  gateway_url: https://profound-alpaca-7bc0ff.netlify.app/.netlify/git
 
 # Every edit becomes a draft the owner reviews before it goes live, rather
 # than publishing straight to `main` (and triggering a deploy) on save.
