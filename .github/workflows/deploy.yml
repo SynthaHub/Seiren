@@ -37,6 +37,6 @@ jobs:
           server: ${{ secrets.HOSTAFRICA_FTP_HOST }}
           username: ${{ secrets.HOSTAFRICA_FTP_USERNAME }}
           password: ${{ secrets.HOSTAFRICA_FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           local-dir: ./dist/client/
           server-dir: ${{ secrets.HOSTAFRICA_FTP_TARGET_DIR }}
