@@ -11,6 +11,12 @@
       Netlify Identity widget — handles email/password login for the site
       owner. Points at the gateway site (see netlify-identity-gateway/), not
       at this domain, since Identity isn't hosted here.
+
+      ⚠ APIUrl below must match backend.identity_url in config.yml — the
+      widget does NOT read config.yml itself, it needs its own explicit
+      init(). Without this it defaults to this page's own origin
+      (tell.sazara.co.ke/.netlify/identity), which doesn't exist and fails
+      with "Failed to load settings from /.netlify/identity".
     -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
@@ -21,6 +27,9 @@
               document.location.reload();
             });
           }
+        });
+        window.netlifyIdentity.init({
+          APIUrl: "https://profound-alpaca-7bc0ff.netlify.app/.netlify/identity",
         });
       }
     </script>
