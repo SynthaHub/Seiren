@@ -63,7 +63,6 @@ src/
 content/             CMS-editable copy and data — faqs/journey/services/
                      navigation.json, case-studies/*.json. Owner-facing.
 public/admin/        Decap CMS — the /admin editing UI. See "Content editing".
-netlify-identity-gateway/ email/password login for /admin — no GitHub needed.
 brand/               logo masters from the client. Never referenced by the app.
 public/brand/        derived web logo assets. Generated — do not hand-edit.
 public/placeholders/ photography, in responsive variants. Generated.
@@ -104,11 +103,15 @@ git, or a terminal. Behind that form UI:
   real client engagement and **cannot build** without
   `publishedWithPermission: true` — see `caseStudySchema` in `schemas.ts`.
 
-The owner logs in with **just an email and a password** — Decap's Git
-Gateway backend, not a GitHub account, so nothing GitHub-shaped is ever
-visible to them. One-time setup (a free Netlify project for Identity/Git
-Gateway, FTP secrets, inviting the owner's email) is documented in
-`netlify-identity-gateway/README.md` and the "Before launch" table below.
+The owner logs in with **just an email and a password** (or Google/Microsoft)
+— never a GitHub account. That's handled by
+[DecapBridge](https://decapbridge.com), a hosted service built specifically
+as a non-technical-editor-friendly replacement for Decap's Git Gateway
+backend (Netlify Identity, the service Git Gateway traditionally relies on,
+is deprecated). One-time setup (create a DecapBridge site pointed at this
+repo, copy its generated backend config into `public/admin/config.yml`, add
+FTP secrets, invite the owner's email from DecapBridge's dashboard) is in the
+"Before launch" table below.
 
 ---
 
@@ -217,9 +220,9 @@ Everything here is blocked on the client, not on code. Each is marked
 | **`--seiran-green`** | `styles/theme.css` | `#2F4B3C`, found in the logo artwork. SPES-001 documents no green. Recorded, unused, needs sign-off. |
 | **Photography** | `content/placeholders.ts` | Stand-ins. Every `note` is written as the brief for the real shoot. |
 | **Facebook URL** | `content/navigation.json` | A `/share/` redirect rather than a canonical page URL. |
-| **CMS Identity gateway** | `netlify-identity-gateway/` | Not deployed yet. Owner can't log into `/admin` until this Netlify project exists with Identity + Git Gateway enabled and `public/admin/config.yml`'s `backend.identity_url`/`gateway_url` point at it — see `netlify-identity-gateway/README.md`. |
-| **HostAfrica FTP secrets** | GitHub repo → Settings → Secrets → Actions | `HOSTAFRICA_FTP_HOST`, `HOSTAFRICA_FTP_USERNAME`, `HOSTAFRICA_FTP_PASSWORD`, `HOSTAFRICA_FTP_TARGET_DIR` must be set or `.github/workflows/deploy.yml` fails at the deploy step. |
-| **Invite the owner** | Netlify → Identity → Invite users | Only step that needs the owner's involvement: they click the emailed invite link and set a password. No GitHub account, no git, no code. |
+| **DecapBridge setup** | `public/admin/config.yml` | Create a site at decapbridge.com pointed at `SynthaHub/Seiren`, generate a GitHub token scoped to Contents (and Pull Requests, since `publish_mode: editorial_workflow`) read/write, paste DecapBridge's generated `backend.identity_url` (includes your site ID) in place of the placeholder. |
+| **HostAfrica FTP secrets** | GitHub repo → Settings → Secrets → Actions | `HOSTAFRICA_FTP_HOST`, `HOSTAFRICA_FTP_USERNAME`, `HOSTAFRICA_FTP_PASSWORD`, `HOSTAFRICA_FTP_TARGET_DIR` must be set or `.github/workflows/deploy.yml` fails at the deploy step. Protocol is plain `ftp` — HostAfrica's FTPS timed out in testing. |
+| **Invite the owner** | DecapBridge → Manage collaborators | Only step that needs the owner's involvement: they get an emailed invite, set a password (or use Google/Microsoft). No GitHub account, no git, no code. |
 
 ### Two standing rules
 

@@ -6,19 +6,23 @@
 # and src/content/schemas.ts for the validation rules the CI pipeline
 # enforces on every save (npm run validate-content).
 #
-# Login is email + password (Netlify Identity + Git Gateway), not GitHub —
-# the owner never sees GitHub. See netlify-identity-gateway/README.md.
+# Login is email + password (or Google/Microsoft), not GitHub — the owner
+# never sees GitHub. Handled by DecapBridge (decapbridge.com), a hosted
+# replacement for Netlify Identity + Git Gateway purpose-built for Decap CMS.
+#
+# ⚠ backend.identity_url below is a placeholder — DecapBridge generates the
+# real one (including your site ID) when you create the site in their
+# dashboard and point it at this repo. Copy it in from there.
 #
 # site_url / display_url point at the test domain for now — swap to the
-# real production domain before launch (see README.md's "Before launch"),
-# and update netlify-identity-gateway/index.html's redirect target to match.
+# real production domain before launch (see README.md's "Before launch").
 
 backend:
   name: git-gateway
   repo: SynthaHub/Seiren
   branch: main
-  identity_url: https://profound-alpaca-7bc0ff.netlify.app/.netlify/identity
-  gateway_url: https://profound-alpaca-7bc0ff.netlify.app/.netlify/git
+  identity_url: https://auth.decapbridge.com/sites/REPLACE-WITH-YOUR-SITE-ID
+  gateway_url: https://gateway.decapbridge.com
 
 # Every edit becomes a draft the owner reviews before it goes live, rather
 # than publishing straight to `main` (and triggering a deploy) on save.
