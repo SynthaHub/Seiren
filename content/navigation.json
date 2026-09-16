@@ -1,40 +1,85 @@
 {
   "primaryNav": [
-    { "label": "Who We Are", "to": "/about" },
-    { "label": "Services", "to": "/services" },
-    { "label": "Our Approach", "to": "/approach" },
-    { "label": "Team", "to": "/team" },
-    { "label": "Insights", "to": "/insights" },
-    { "label": "Case Studies", "to": "/case-studies" }
+    {
+      "label": "Who We Are",
+      "to": "/about"
+    },
+    {
+      "label": "Services",
+      "to": "/services"
+    },
+    {
+      "label": "Our Approach",
+      "to": "/approach"
+    },
+    {
+      "label": "Team",
+      "to": "/team"
+    },
+    {
+      "label": "Insights",
+      "to": "/insights"
+    },
+    {
+      "label": "Case Studies",
+      "to": "/case-studies"
+    }
   ],
   "footerNav": [
     {
       "heading": "Advisory",
       "items": [
-        { "label": "Strategy & Growth", "to": "/services/strategy-and-growth" },
-        { "label": "Operations & Business Systems", "to": "/services/operations-and-business-systems" },
-        { "label": "People & Organization", "to": "/services/people-and-organization" },
-        { "label": "Business Performance", "to": "/services/business-performance" }
+        {
+          "label": "Strategy & Growth",
+          "to": "/services/strategy-and-growth"
+        },
+        {
+          "label": "Operations & Business Systems",
+          "to": "/services/operations-and-business-systems"
+        },
+        {
+          "label": "People & Organization",
+          "to": "/services/people-and-organization"
+        },
+        {
+          "label": "Business Performance",
+          "to": "/services/business-performance"
+        }
       ]
     },
     {
       "heading": "Firm",
       "items": [
-        { "label": "Who We Are", "to": "/about" },
-        { "label": "Our Approach", "to": "/approach" },
-        { "label": "Team", "to": "/team" }
+        {
+          "label": "Who We Are",
+          "to": "/about"
+        },
+        {
+          "label": "Our Approach",
+          "to": "/approach"
+        },
+        {
+          "label": "Team",
+          "to": "/team"
+        }
       ]
     },
     {
       "heading": "Thinking",
       "items": [
-        { "label": "Insights", "to": "/insights" },
-        { "label": "Case Studies", "to": "/case-studies" }
+        {
+          "label": "Insights",
+          "to": "/insights"
+        },
+        {
+          "label": "Case Studies",
+          "to": "/case-studies"
+        }
       ]
     }
   ],
   "contactDetails": {
-    "email": null,
+    "email": "gitau@sazara.co.ke",
     "telephone": "0180357040",
     "whatsapp": null,
     "linkedInCompany": "https://www.linkedin.com/company/seiran-partners/",
