@@ -88,6 +88,189 @@ export const insightSchema = z.object({
   image: z.string().optional(),
 });
 
+/**
+ * Page-level "chrome" copy — hero, section intros, CTA labels — for pages
+ * that used to hold this as hardcoded JSX. Deliberately narrow: computed
+ * values (figures derived from other content), form microcopy, and anything
+ * structurally tied to a schema's field names stay in code — see the plan
+ * that introduced this for the reasoning per exclusion.
+ */
+const str = z.string().min(1);
+
+const pageHeroSchema = z.object({
+  eyebrow: str,
+  title: str,
+  lede: str,
+});
+
+export const homePageContentSchema = z.object({
+  hero: z.object({
+    eyebrow: str,
+    headingAccent: str,
+    headingLine1: str,
+    headingLine2: str,
+    body: str,
+    primaryCtaLabel: str,
+    primaryCtaHref: str,
+    secondaryCtaLabel: str,
+    secondaryCtaHref: str,
+    statNumber: str,
+    statLabel: str,
+    statTitle: str,
+    statCaption: str,
+  }),
+  about: z.object({
+    eyebrow: str,
+    heading: str,
+    body: str,
+    differentiators: z.array(str).length(3),
+    ctaLabel: str,
+    figureLabels: z.object({
+      pillars: str,
+      services: str,
+      stages: str,
+      leadConsultant: str,
+    }),
+  }),
+  capabilityTicker: z.object({
+    words: z.array(str).min(1),
+    srHeading: str,
+  }),
+  pillars: z.object({
+    eyebrow: str,
+    heading: str,
+    body: str,
+    cardCtaLabel: str,
+  }),
+  process: z.object({
+    eyebrow: str,
+    heading: str,
+    body: str,
+    ctaLabel: str,
+  }),
+  getInTouch: z.object({
+    eyebrow: str,
+    heading: str,
+    body: str,
+    labelWhereWeAre: str,
+    labelEmailUs: str,
+    labelPhone: str,
+    cardHeading: str,
+    cardSubcopy: str,
+  }),
+  insightsPreview: z.object({
+    eyebrow: str,
+    heading: str,
+    ctaLabel: str,
+    featured: z.object({ title: str, excerpt: str, category: str }),
+    posts: z.array(z.object({ title: str, category: str })).length(3),
+    forthcomingLabel: str,
+    authorName: str,
+  }),
+});
+
+export const aboutPageContentSchema = z.object({
+  hero: z.object({ eyebrow: str, title: str }),
+  nameOrigin: z.object({
+    eyebrow: str,
+    heading: str,
+    paragraphs: z.array(str).length(4),
+  }),
+  foundationsSection: z.object({ eyebrow: str, heading: str }),
+  foundations: z.array(z.object({ heading: str, body: str })).length(3),
+  whoWeWorkWith: z.object({
+    eyebrow: str,
+    heading: str,
+    body: str,
+    experienceLabel: str,
+  }),
+  sectors: z.array(str).min(1),
+  cta: z.object({ heading: str, body: str }),
+});
+
+export const approachPageContentSchema = z.object({
+  hero: pageHeroSchema,
+  stageByStage: z.object({ eyebrow: str, heading: str }),
+  quoteSection: z.object({ eyebrow: str, quote: str, body: str }),
+  cta: z.object({ heading: str, body: str }),
+});
+
+export const teamPageContentSchema = z.object({
+  hero: pageHeroSchema,
+  founder: z.object({
+    eyebrowLabel: str,
+    name: str,
+    title: str,
+    bioParagraph1: str,
+    bioParagraph2: str,
+    linkedInLabel: str,
+  }),
+  differentiators: z.array(str).length(3),
+  associates: z.object({
+    eyebrow: str,
+    heading: str,
+    intro: str,
+    areas: z.array(str).min(1),
+    closing: str,
+  }),
+  cta: z.object({ heading: str, body: str }),
+});
+
+export const contactPageContentSchema = z.object({
+  hero: pageHeroSchema,
+  nextSteps: z.array(str).length(4),
+  panelHeading: str,
+  whatHappensNextHeading: str,
+  faqSection: z.object({ eyebrow: str, heading: str }),
+});
+
+export const servicesPageContentSchema = z.object({
+  hero: pageHeroSchema,
+  exploreLabel: str,
+  quoteSection: z.object({ eyebrow: str, quote: str, body: str }),
+  cta: z.object({ heading: str, body: str }),
+  pillarPage: z.object({
+    heroEyebrow: str,
+    fullListEyebrow: str,
+    fullListHeadingTemplate: str,
+    otherPillarsEyebrow: str,
+    otherPillarsHeading: str,
+    exploreLabel: str,
+    ctaHeadingTemplate: str,
+    ctaBody: str,
+  }),
+});
+
+export const caseStudiesPageContentSchema = z.object({
+  hero: pageHeroSchema,
+  noticeBanner: z.object({
+    boldLead: str,
+    bodyIntro: str,
+    permissionNote: str,
+  }),
+  methodSection: z.object({ eyebrow: str, heading: str, intro: str }),
+  confidentialitySection: z.object({ eyebrow: str, quote: str, body: str }),
+  cta: z.object({ heading: str, body: str }),
+});
+
+export const insightsPageContentSchema = z.object({
+  hero: pageHeroSchema,
+  forthcoming: z.array(z.object({ title: str, excerpt: str, category: str })).min(1),
+  firstPublishedSection: z.object({ eyebrow: str, heading: str, intro: str }),
+  notifyLinkLabel: str,
+  notifySection: z.object({ eyebrow: str, heading: str, body: str }),
+  finalCta: z.object({ heading: str, body: str, ctaLabel: str }),
+});
+
+export type HomePageContent = z.infer<typeof homePageContentSchema>;
+export type AboutPageContent = z.infer<typeof aboutPageContentSchema>;
+export type ApproachPageContent = z.infer<typeof approachPageContentSchema>;
+export type TeamPageContent = z.infer<typeof teamPageContentSchema>;
+export type ContactPageContent = z.infer<typeof contactPageContentSchema>;
+export type ServicesPageContent = z.infer<typeof servicesPageContentSchema>;
+export type CaseStudiesPageContent = z.infer<typeof caseStudiesPageContentSchema>;
+export type InsightsPageContent = z.infer<typeof insightsPageContentSchema>;
+
 export type Service = z.infer<typeof serviceSchema>;
 export type ServicePillar = z.infer<typeof servicePillarSchema>;
 export type JourneyStage = z.infer<typeof journeyStageSchema>;

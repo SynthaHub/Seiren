@@ -10,6 +10,10 @@
 # never sees GitHub. Handled by DecapBridge (decapbridge.com), a hosted
 # replacement for Netlify Identity + Git Gateway purpose-built for Decap CMS.
 #
+# Collections are ordered to roughly match the site's own navigation, and
+# labelled with an emoji since Decap has no real sidebar grouping — this is
+# the closest thing to visual organisation the list supports.
+#
 # site_url / display_url point at the test domain for now — swap to the
 # real production domain before launch (see README.md's "Before launch").
 # If that happens, also update the CMS login URL in the DecapBridge
@@ -45,24 +49,230 @@ site_url: https://tell.sazara.co.ke
 display_url: https://tell.sazara.co.ke
 
 collections:
-  - name: "faqs"
-    label: "FAQs"
+  - name: "page_home"
+    label: "🏠 Home Page"
+    description: "Every section of the home page — hero, intro, pillars, process, contact, insights preview."
     files:
-      - name: "faqs"
-        label: "Frequently Asked Questions"
-        file: "content/faqs.json"
+      - name: "home"
+        label: "Home Page"
+        file: "content/pages/home.json"
         format: json
         fields:
-          - label: "Questions"
-            name: "faqs"
-            widget: list
-            summary: "{{fields.question}}"
+          - label: "Hero (top banner)"
+            name: "hero"
+            widget: object
+            collapsed: true
             fields:
-              - { label: "Question", name: "question", widget: string, required: true }
-              - { label: "Answer", name: "answer", widget: text, required: true }
+              - { label: "Eyebrow (small label above the heading)", name: "eyebrow", widget: string, required: true }
+              - label: "Heading — accented word (rendered in gold)"
+                name: "headingAccent"
+                widget: string
+                required: true
+              - { label: "Heading — rest of line 1", name: "headingLine1", widget: string, required: true }
+              - { label: "Heading — line 2", name: "headingLine2", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+              - { label: "Primary button label", name: "primaryCtaLabel", widget: string, required: true }
+              - label: "Primary button link — developer only"
+                name: "primaryCtaHref"
+                widget: string
+                required: true
+              - { label: "Secondary link label", name: "secondaryCtaLabel", widget: string, required: true }
+              - label: "Secondary link target — developer only"
+                name: "secondaryCtaHref"
+                widget: string
+                required: true
+              - { label: "Stat number", name: "statNumber", widget: string, required: true }
+              - { label: "Stat unit label", name: "statLabel", widget: string, required: true }
+              - { label: "Stat card title", name: "statTitle", widget: string, required: true }
+              - { label: "Stat card caption", name: "statCaption", widget: string, required: true }
+          - label: "About / why growth gets harder"
+            name: "about"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+              - label: "Checklist (3 items)"
+                name: "differentiators"
+                widget: list
+              - { label: "Button label", name: "ctaLabel", widget: string, required: true }
+              - label: "Figure labels (the numbers themselves are computed automatically and can't be edited here)"
+                name: "figureLabels"
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Pillars figure label", name: "pillars", widget: string, required: true }
+                  - { label: "Services figure label", name: "services", widget: string, required: true }
+                  - { label: "Stages figure label", name: "stages", widget: string, required: true }
+                  - { label: "Lead consultant figure label", name: "leadConsultant", widget: string, required: true }
+          - label: "Capability ticker (the scrolling navy strip)"
+            name: "capabilityTicker"
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Words (order matters — they scroll in this order)"
+                name: "words"
+                widget: list
+              - { label: "Screen-reader heading (not visible)", name: "srHeading", widget: string, required: true }
+          - label: "Pillars intro"
+            name: "pillars"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+              - label: "Card link label (e.g. \"Discover more\")"
+                name: "cardCtaLabel"
+                widget: string
+                required: true
+          - label: "Process intro (\"Seven stages\")"
+            name: "process"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+              - { label: "Button label", name: "ctaLabel", widget: string, required: true }
+          - label: "Get in touch"
+            name: "getInTouch"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+              - { label: "\"Where we are\" label", name: "labelWhereWeAre", widget: string, required: true }
+              - { label: "\"Email us\" label", name: "labelEmailUs", widget: string, required: true }
+              - { label: "\"Phone\" label", name: "labelPhone", widget: string, required: true }
+              - { label: "Form card heading", name: "cardHeading", widget: string, required: true }
+              - { label: "Form card subcopy", name: "cardSubcopy", widget: string, required: true }
+          - label: "Insights preview"
+            name: "insightsPreview"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Link label", name: "ctaLabel", widget: string, required: true }
+              - label: "Featured post"
+                name: "featured"
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: string, required: true }
+                  - { label: "Excerpt", name: "excerpt", widget: text, required: true }
+                  - { label: "Category tag", name: "category", widget: string, required: true }
+              - label: "Other posts (exactly 3 — each one's photo is fixed in code by position, so don't add or remove rows)"
+                name: "posts"
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Title", name: "title", widget: string, required: true }
+                  - { label: "Category tag", name: "category", widget: string, required: true }
+              - { label: "\"Forthcoming\" pill text", name: "forthcomingLabel", widget: string, required: true }
+              - { label: "Author name", name: "authorName", widget: string, required: true }
+
+  - name: "page_about"
+    label: "ℹ️ About Page"
+    description: "The /about page — the Seiran name story, purpose/vision/mission, who we work with."
+    files:
+      - name: "about"
+        label: "About Page"
+        file: "content/pages/about.json"
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+          - label: "\"Where the name comes from\""
+            name: "nameOrigin"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - label: "Paragraphs (exactly 4 — the last one is styled bold)"
+                name: "paragraphs"
+                widget: list
+          - label: "\"Purpose, vision and mission\" section heading"
+            name: "foundationsSection"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+          - label: "Purpose / Vision / Mission (exactly 3, in this order)"
+            name: "foundations"
+            widget: list
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+          - label: "\"Who we work with\""
+            name: "whoWeWorkWith"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+              - { label: "Label above the sector list", name: "experienceLabel", widget: string, required: true }
+          - label: "Sectors list"
+            name: "sectors"
+            widget: list
+          - label: "Closing call to action"
+            name: "cta"
+            widget: object
+            fields:
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+
+  - name: "page_approach"
+    label: "🧭 Approach Page"
+    description: "The /approach page's hero, section headings and closing quote. The seven stages themselves are edited under \"🪜 Transformation Journey\"."
+    files:
+      - name: "approach"
+        label: "Approach Page"
+        file: "content/pages/approach.json"
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Lede", name: "lede", widget: text, required: true }
+          - label: "\"Stage by stage\" section heading"
+            name: "stageByStage"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+          - label: "Closing quote section"
+            name: "quoteSection"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Quote", name: "quote", widget: text, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+          - label: "Closing call to action"
+            name: "cta"
+            widget: object
+            fields:
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
 
   - name: "journey"
-    label: "Transformation Journey"
+    label: "🪜 Transformation Journey"
+    description: "The seven stages, in order — used on the home page (first four) and the Approach page (all seven)."
     files:
       - name: "journey"
         label: "Journey Stages"
@@ -77,8 +287,60 @@ collections:
               - { label: "Name", name: "name", widget: string, required: true }
               - { label: "Description", name: "description", widget: text, required: true }
 
+  - name: "page_services"
+    label: "🧩 Services Pages"
+    description: "Hero, intro and CTA text shared by /services and each pillar's detail page. Pillar names/services themselves are under \"🛠️ Service Pillars\"."
+    files:
+      - name: "services"
+        label: "Services Pages"
+        file: "content/pages/services.json"
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Lede", name: "lede", widget: text, required: true }
+          - { label: "\"Explore\" link prefix (e.g. \"Explore Strategy & Growth\")", name: "exploreLabel", widget: string, required: true }
+          - label: "Quote section"
+            name: "quoteSection"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Quote", name: "quote", widget: text, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+          - label: "Closing call to action"
+            name: "cta"
+            widget: object
+            fields:
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+          - label: "Pillar detail page (the \"/services/$pillar\" pages)"
+            name: "pillarPage"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Hero eyebrow", name: "heroEyebrow", widget: string, required: true }
+              - { label: "\"The full list\" eyebrow", name: "fullListEyebrow", widget: string, required: true }
+              - label: "Heading template — keep {n} and {title} exactly as shown, they're replaced automatically"
+                name: "fullListHeadingTemplate"
+                widget: string
+                required: true
+              - { label: "\"The other three\" eyebrow", name: "otherPillarsEyebrow", widget: string, required: true }
+              - { label: "\"Often part of the solution\" heading", name: "otherPillarsHeading", widget: string, required: true }
+              - { label: "\"Explore\" link label", name: "exploreLabel", widget: string, required: true }
+              - label: "CTA heading template — keep {pillar} exactly as shown"
+                name: "ctaHeadingTemplate"
+                widget: string
+                required: true
+              - { label: "CTA body", name: "ctaBody", widget: text, required: true }
+
   - name: "services"
-    label: "Services"
+    label: "🛠️ Service Pillars"
+    description: "The four advisory pillars and their named services — feeds /services, each pillar page, and the home page pillars section."
     files:
       - name: "services"
         label: "Service Pillars"
@@ -108,63 +370,111 @@ collections:
                     required: true
                     pattern: ["\\?$", "Must end with a question mark"]
 
-  - name: "navigation"
-    label: "Navigation & Contact"
+  - name: "page_team"
+    label: "👤 Team Page"
+    description: "The /team page — founder bio, credentials, and the strategic associates section."
     files:
-      - name: "navigation"
-        label: "Site Navigation & Contact Details"
-        file: "content/navigation.json"
+      - name: "team"
+        label: "Team Page"
+        file: "content/pages/team.json"
         format: json
         fields:
-          - label: "Primary Nav (menu labels only — do not change the links without a developer)"
-            name: "primaryNav"
-            widget: list
-            summary: "{{fields.label}}"
+          - label: "Hero"
+            name: "hero"
+            widget: object
             fields:
-              - { label: "Label", name: "label", widget: string, required: true }
-              - { label: "Link — developer only", name: "to", widget: string, required: true }
-          - label: "Footer Nav"
-            name: "footerNav"
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Lede", name: "lede", widget: text, required: true }
+          - label: "Founder"
+            name: "founder"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow label", name: "eyebrowLabel", widget: string, required: true }
+              - { label: "Name", name: "name", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Bio — paragraph 1", name: "bioParagraph1", widget: text, required: true }
+              - { label: "Bio — paragraph 2", name: "bioParagraph2", widget: text, required: true }
+              - { label: "LinkedIn button label", name: "linkedInLabel", widget: string, required: true }
+          - label: "Checklist (3 items)"
+            name: "differentiators"
             widget: list
-            summary: "{{fields.heading}}"
+          - label: "Strategic associates section"
+            name: "associates"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Intro", name: "intro", widget: text, required: true }
+              - label: "Areas of expertise"
+                name: "areas"
+                widget: list
+              - { label: "Closing paragraph", name: "closing", widget: text, required: true }
+          - label: "Closing call to action"
+            name: "cta"
+            widget: object
             fields:
               - { label: "Heading", name: "heading", widget: string, required: true }
-              - label: "Items"
-                name: "items"
-                widget: list
-                summary: "{{fields.label}}"
-                fields:
-                  - { label: "Label", name: "label", widget: string, required: true }
-                  - { label: "Link — developer only", name: "to", widget: string, required: true }
-          - label: "Contact Details"
-            name: "contactDetails"
+              - { label: "Body", name: "body", widget: text, required: true }
+
+  - name: "page_case_studies"
+    label: "📁 Case Studies Page"
+    description: "The /case-studies page's hero, notice banner and section text. The scenarios themselves are under \"📚 Case Studies\"."
+    files:
+      - name: "case-studies"
+        label: "Case Studies Page"
+        file: "content/pages/case-studies.json"
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
             widget: object
             fields:
-              - { label: "Email", name: "email", widget: string, required: false }
-              - label: "Telephone (local format, e.g. 0712345678 — the site derives the dial-out +254 form automatically)"
-                name: "telephone"
-                widget: string
-                required: false
-              - { label: "WhatsApp", name: "whatsapp", widget: string, required: false }
-              - { label: "LinkedIn (Company)", name: "linkedInCompany", widget: string, required: false }
-              - { label: "LinkedIn (Founder)", name: "linkedInFounder", widget: string, required: false }
-              - { label: "Instagram", name: "instagram", widget: string, required: false }
-              - { label: "TikTok", name: "tiktok", widget: string, required: false }
-              - label: "Facebook (use the canonical facebook.com/<page> URL, not a share link with a tracking token)"
-                name: "facebook"
-                widget: string
-                required: false
-          - label: "Office Address"
-            name: "officeAddress"
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Lede", name: "lede", widget: text, required: true }
+          - label: "Notice banner (the illustrative-scenarios disclaimer)"
+            name: "noticeBanner"
+            widget: object
+            collapsed: true
+            hint: >-
+              This renders as: [Bold lead] [Body intro] "Seiran has published
+              <N> real case studies" [Permission note] — the middle clause
+              with the actual count is generated automatically, so bodyIntro
+              should end right before it and permissionNote should start
+              right after "studies".
+            fields:
+              - { label: "Bold lead sentence", name: "boldLead", widget: string, required: true }
+              - { label: "Body intro (ends right before the auto-generated count)", name: "bodyIntro", widget: text, required: true }
+              - { label: "Permission note (starts right after the auto-generated count)", name: "permissionNote", widget: text, required: true }
+          - label: "\"Every case study follows the same six parts\""
+            name: "methodSection"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Intro", name: "intro", widget: text, required: true }
+          - label: "Confidentiality section"
+            name: "confidentialitySection"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Quote", name: "quote", widget: text, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+          - label: "Closing call to action"
+            name: "cta"
             widget: object
             fields:
-              - { label: "Name", name: "name", widget: string, required: true }
-              - { label: "Street", name: "street", widget: string, required: true }
-              - { label: "Locality", name: "locality", widget: string, required: true }
-              - { label: "Country", name: "country", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
 
   - name: "case_studies"
-    label: "Case Studies"
+    label: "📚 Case Studies"
+    description: "Illustrative scenarios and (once permitted) real client engagements. See the hint on \"Illustrative?\" before adding a real one."
     folder: "content/case-studies"
     create: true
     identifier_field: slug
@@ -202,3 +512,157 @@ collections:
       - { label: "Intervention", name: "intervention", widget: text, required: true }
       - { label: "Outcome", name: "outcome", widget: text, required: true }
       - { label: "Learning", name: "learning", widget: text, required: true }
+
+  - name: "page_insights"
+    label: "📰 Insights Page"
+    description: "The /insights page — hero, the forthcoming article list, and the newsletter/closing sections."
+    files:
+      - name: "insights"
+        label: "Insights Page"
+        file: "content/pages/insights.json"
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Lede", name: "lede", widget: text, required: true }
+          - label: "Forthcoming articles (the editorial seed list)"
+            name: "forthcoming"
+            widget: list
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title (used as the eventual page's heading)", name: "title", widget: string, required: true }
+              - { label: "Excerpt", name: "excerpt", widget: text, required: true }
+              - { label: "Category tag", name: "category", widget: string, required: true }
+          - label: "\"First to be published\" section"
+            name: "firstPublishedSection"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Intro", name: "intro", widget: text, required: true }
+          - { label: "\"Tell me when these are published\" link label", name: "notifyLinkLabel", widget: string, required: true }
+          - label: "Newsletter section"
+            name: "notifySection"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+          - label: "Closing call to action"
+            name: "finalCta"
+            widget: object
+            fields:
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - { label: "Body", name: "body", widget: text, required: true }
+              - { label: "Button label", name: "ctaLabel", widget: string, required: true }
+
+  - name: "page_contact"
+    label: "✉️ Contact Page"
+    description: "The /contact page's hero, \"what happens next\" steps, and FAQ section heading. The enquiry form itself and the FAQ answers are edited elsewhere (❓ FAQs) — form field labels stay developer-only since they're tied to validation."
+    files:
+      - name: "contact"
+        label: "Contact Page"
+        file: "content/pages/contact.json"
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Title", name: "title", widget: string, required: true }
+              - { label: "Lede", name: "lede", widget: text, required: true }
+          - label: "\"What happens next\" steps (exactly 4, in order)"
+            name: "nextSteps"
+            widget: list
+          - { label: "Contact panel heading", name: "panelHeading", widget: string, required: true }
+          - { label: "\"What happens next\" panel heading", name: "whatHappensNextHeading", widget: string, required: true }
+          - label: "FAQ section heading"
+            name: "faqSection"
+            widget: object
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: string, required: true }
+              - { label: "Heading", name: "heading", widget: string, required: true }
+
+  - name: "faqs"
+    label: "❓ FAQs"
+    description: "Eleven questions and answers shown on the Contact page and emitted as FAQPage structured data for search results."
+    files:
+      - name: "faqs"
+        label: "Frequently Asked Questions"
+        file: "content/faqs.json"
+        format: json
+        fields:
+          - label: "Questions"
+            name: "faqs"
+            widget: list
+            summary: "{{fields.question}}"
+            fields:
+              - { label: "Question", name: "question", widget: string, required: true }
+              - { label: "Answer", name: "answer", widget: text, required: true }
+
+  - name: "navigation"
+    label: "🔗 Navigation & Contact"
+    description: "Menu labels, office address, and every contact/social link on the site."
+    files:
+      - name: "navigation"
+        label: "Site Navigation & Contact Details"
+        file: "content/navigation.json"
+        format: json
+        fields:
+          - label: "Primary Nav (menu labels only — do not change the links without a developer)"
+            name: "primaryNav"
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: string, required: true }
+              - { label: "Link — developer only", name: "to", widget: string, required: true }
+          - label: "Footer Nav"
+            name: "footerNav"
+            widget: list
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: "Heading", name: "heading", widget: string, required: true }
+              - label: "Items"
+                name: "items"
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Label", name: "label", widget: string, required: true }
+                  - { label: "Link — developer only", name: "to", widget: string, required: true }
+          - label: "Contact Details"
+            name: "contactDetails"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Email", name: "email", widget: string, required: false }
+              - label: "Telephone (local format, e.g. 0712345678 — the site derives the dial-out +254 form automatically)"
+                name: "telephone"
+                widget: string
+                required: false
+              - { label: "WhatsApp", name: "whatsapp", widget: string, required: false }
+              - { label: "LinkedIn (Company)", name: "linkedInCompany", widget: string, required: false }
+              - { label: "LinkedIn (Founder)", name: "linkedInFounder", widget: string, required: false }
+              - { label: "Instagram", name: "instagram", widget: string, required: false }
+              - { label: "TikTok", name: "tiktok", widget: string, required: false }
+              - label: "Facebook (use the canonical facebook.com/<page> URL, not a share link with a tracking token)"
+                name: "facebook"
+                widget: string
+                required: false
+          - label: "Office Address"
+            name: "officeAddress"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Name", name: "name", widget: string, required: true }
+              - { label: "Street", name: "street", widget: string, required: true }
+              - { label: "Locality", name: "locality", widget: string, required: true }
+              - { label: "Country", name: "country", widget: string, required: true }

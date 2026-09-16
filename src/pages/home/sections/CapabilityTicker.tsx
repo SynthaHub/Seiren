@@ -1,4 +1,5 @@
 import { Asterisk } from "lucide-react";
+import { homeContent } from "@/content/pages/home";
 
 /**
  * The ticker strip, on BizFusionX's construction: a navy band with the accent
@@ -20,20 +21,10 @@ import { Asterisk } from "lucide-react";
  * a real accessibility problem, not a nicety.
  */
 
-const capabilities = [
-  "Clarity",
-  "Leadership",
-  "Systems",
-  "People",
-  "Execution",
-  "Performance",
-  "Growth",
-] as const;
-
 function Run({ hidden = false }: { hidden?: boolean }) {
   return (
     <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
-      {capabilities.map((capability) => (
+      {homeContent.capabilityTicker.words.map((capability) => (
         <li key={capability} className="flex items-center gap-8 pr-8 whitespace-nowrap">
           <span className="text-body text-ink font-medium">{capability}</span>
           <Asterisk className="text-accent size-4 shrink-0" aria-hidden="true" />
@@ -46,7 +37,7 @@ function Run({ hidden = false }: { hidden?: boolean }) {
 export function CapabilityTicker() {
   return (
     <section className="on-navy bg-surface text-ink overflow-hidden py-5">
-      <h2 className="sr-only">What Seiran helps businesses build</h2>
+      <h2 className="sr-only">{homeContent.capabilityTicker.srHeading}</h2>
       <div className="animate-marquee flex w-max">
         <Run />
         <Run hidden />

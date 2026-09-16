@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/common/Eyebrow";
 import { PageHero } from "@/components/common/PageHero";
 import { CtaBand } from "@/components/common/CtaBand";
 import { servicePillars } from "@/content/services";
+import { servicesPageContent } from "@/content/pages/services";
 
 /**
  * One row per pillar: the title and summary on the left, its full service list
@@ -19,13 +20,11 @@ import { servicePillars } from "@/content/services";
 const icons = [Compass, Settings2, Users, LineChart];
 
 export function ServicesPage() {
+  const { hero, exploreLabel, quoteSection, cta } = servicesPageContent;
+
   return (
     <>
-      <PageHero
-        eyebrow="What the work covers"
-        title="Four pillars, worked as one system"
-        lede="Good strategy has to work in the real business. These areas are separated for navigation, but we look at them together."
-      />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} />
 
       {servicePillars.map((pillar, index) => {
         const Icon = icons[index] ?? Compass;
@@ -57,7 +56,7 @@ export function ServicesPage() {
                   params={{ pillar: pillar.slug }}
                   className="text-small text-accent group mt-6 inline-flex items-center gap-1.5 hover:underline"
                 >
-                  Explore {pillar.title}
+                  {exploreLabel} {pillar.title}
                   <ArrowRight
                     className="ease-out-soft size-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
                     aria-hidden="true"
@@ -86,21 +85,13 @@ export function ServicesPage() {
 
       <Section tone="navy" width="default" className="py-20 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Rarely one pillar alone</Eyebrow>
-          <p className="text-quote mt-8 font-serif italic">
-            The presenting problem is rarely the constraint.
-          </p>
-          <p className="text-body text-ink-muted mt-6">
-            An owner who asks for a growth strategy often needs an operating model first.
-            Most engagements begin with a diagnostic for exactly that reason.
-          </p>
+          <Eyebrow>{quoteSection.eyebrow}</Eyebrow>
+          <p className="text-quote mt-8 font-serif italic">{quoteSection.quote}</p>
+          <p className="text-body text-ink-muted mt-6">{quoteSection.body}</p>
         </div>
       </Section>
 
-      <CtaBand
-        heading="Not sure which pillar you need?"
-        body="That is a normal place to start. Working it out is part of the first conversation rather than something to resolve beforehand."
-      />
+      <CtaBand heading={cta.heading} body={cta.body} />
     </>
   );
 }

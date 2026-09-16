@@ -6,6 +6,7 @@ import { CtaBand } from "@/components/common/CtaBand";
 import { Photo } from "@/components/common/Photo";
 import { LinkedInIcon } from "@/components/ui/icons";
 import { contactDetails } from "@/content/navigation";
+import { teamContent } from "@/content/pages/team";
 
 /**
  * The founder profile, with two details borrowed from BizFusionX.
@@ -21,40 +22,17 @@ import { contactDetails } from "@/content/navigation";
  * lines, which a biography does not. Three rather than four since the client's
  * review: two of the original ticks made the same point about who runs the
  * engagement, so they were merged.
- */
-
-const differentiators = [
-  "You work directly with the consultant leading your engagement",
-  "The right specialist expertise is brought in where the work needs it",
-  "We stay involved through execution, not just to the report",
-] as const;
-
-/**
- * The four advisory pillars, not a longer list of invented disciplines.
  *
- * This used to name six areas including "Marketing & Customer Experience" and
- * "Technology & Digital Transformation" — capability Seiran had not claimed
- * anywhere else on the site. The client's review replaced it with the pillars
- * the practice actually sells, extended by specialists where an engagement
- * needs them. Kept as a literal rather than derived from `servicePillars`
- * because these are titles in a sentence about capability, not links to the
- * service pages.
+ * The four advisory pillars named in "associates" are kept as CMS copy rather
+ * than derived from `servicePillars` because these are titles in a sentence
+ * about capability, not links to the service pages.
  */
-const associateAreas = [
-  "Strategy & Growth",
-  "Operations & Business Systems",
-  "People & Organization",
-  "Business Performance",
-] as const;
-
 export function TeamPage() {
+  const { hero, founder, differentiators, associates, cta } = teamContent;
+
   return (
     <>
-      <PageHero
-        eyebrow="Who does the work"
-        title="A specialist practice, not a pyramid"
-        lede="Every Seiran engagement has a named consultant accountable for the work. The consultant leads the engagement and draws on strategic associates and specialist expertise where the work calls for it."
-      />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} />
 
       <Section tone="white" width="wide" className="py-20 md:py-24">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:gap-16">
@@ -68,31 +46,15 @@ export function TeamPage() {
           </div>
 
           <div>
-            <Eyebrow align="start">The person leading it</Eyebrow>
-            <h2 className="text-h1 text-ink-strong mt-6 font-serif">
-              Eldaah Toi, PMP&reg;
-            </h2>
+            <Eyebrow align="start">{founder.eyebrowLabel}</Eyebrow>
+            <h2 className="text-h1 text-ink-strong mt-6 font-serif">{founder.name}</h2>
             <p className="text-label text-accent mt-3 font-semibold tracking-[0.1em] uppercase">
-              Founder &amp; Managing Consultant
+              {founder.title}
             </p>
 
             <div className="text-body text-ink-muted border-border mt-7 flex flex-col gap-5 border-t pt-7">
-              <p>
-                Eldaah brings experience across telecommunications, project management
-                and strategic management. He holds an MBA in Strategic Management from
-                USIU-Africa and a Bachelor of Engineering in Electrical &amp; Electronic
-                Engineering from the Technical University of Kenya, and is a PMP&reg;
-                credential holder. He has also undertaken professional training in
-                strategic consulting practice through the Strathmore University Research
-                and Consultancy Centre.
-              </p>
-              <p>
-                His experience includes strategic and business advisory work, alongside
-                leadership of complex projects and initiatives. At Seiran, he helps
-                owner-managed businesses make clearer decisions, strengthen how they
-                operate, and build the structures and capabilities required for
-                sustainable growth.
-              </p>
+              <p>{founder.bioParagraph1}</p>
+              <p>{founder.bioParagraph2}</p>
             </div>
 
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -116,26 +78,21 @@ export function TeamPage() {
               className="text-small text-ink hover:text-accent hover:border-accent/50 border-border rounded-control ease-out-soft mt-9 inline-flex items-center gap-2 border px-4 py-2.5 transition-[color,border-color,transform] duration-200 active:translate-y-px active:duration-75"
             >
               <LinkedInIcon className="text-accent size-4" />
-              Eldaah Toi on LinkedIn
+              {founder.linkedInLabel}
             </a>
           </div>
         </div>
       </Section>
 
       <Section tone="parchment" width="wide" className="py-20 md:py-24">
-        <Eyebrow>The right expertise for the work</Eyebrow>
-        <h2 className="text-h1 mt-6 text-center font-serif">
-          Strategic associates &amp; specialist expertise
-        </h2>
+        <Eyebrow>{associates.eyebrow}</Eyebrow>
+        <h2 className="text-h1 mt-6 text-center font-serif">{associates.heading}</h2>
         <p className="text-body text-ink-muted mx-auto mt-5 max-w-2xl text-center">
-          Seiran&rsquo;s four advisory pillars define our core work. Strategic associates
-          and specialist expertise extend that capability where an engagement requires
-          additional knowledge or experience. Our growing associate and specialist network
-          includes expertise across:
+          {associates.intro}
         </p>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">
-          {associateAreas.map((area) => (
+          {associates.areas.map((area) => (
             <li
               key={area}
               className="bg-surface border-border rounded-card text-body text-ink-strong border px-6 py-5 font-semibold"
@@ -146,17 +103,11 @@ export function TeamPage() {
         </ul>
 
         <p className="text-body text-ink-muted mx-auto mt-10 max-w-2xl text-center">
-          Where a client&rsquo;s situation calls for expertise beyond our core advisory
-          work, Seiran can bring the appropriate specialist capability into the
-          engagement. The work remains led by a Seiran consultant, with the right
-          expertise brought around the engagement where it adds value.
+          {associates.closing}
         </p>
       </Section>
 
-      <CtaBand
-        heading="Work with the person doing the work."
-        body="You will not be passed from one person to another. The consultant leading your engagement stays close to the work from the first conversation through execution."
-      />
+      <CtaBand heading={cta.heading} body={cta.body} />
     </>
   );
 }

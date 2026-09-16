@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "eyebrow": "The idea behind Seiran",
+    "title": "A clear sky after a storm"
+  },
+  "nameOrigin": {
+    "eyebrow": "Where the name comes from",
+    "heading": "What worked when a business was small stops working as it scales.",
+    "paragraphs": [
+      "Businesses grow, and complexity grows with them. The ways of working, decisions and structures that served the business when it was smaller can start to constrain it as it grows.",
+      "For us, the name became a metaphor for what happens when an organisation moves through uncertainty and complexity toward greater clarity, stronger leadership and sustainable growth. The storm is the uncertainty, disorder and pressure organisations face as they grow. The clear sky represents what becomes possible when that complexity is understood, addressed and transformed.",
+      "That is the idea behind Seiran: helping organisations move from complexity to clarity, and from clarity to lasting capability.",
+      "The goal is not simply a bigger organisation. It is an enduring one."
+    ]
+  },
+  "foundationsSection": {
+    "eyebrow": "What we are building toward",
+    "heading": "Purpose, vision and mission"
+  },
+  "foundations": [
+    {
+      "heading": "Purpose",
+      "body": "To help organisations build stronger, more capable and more resilient institutions — creating lasting value for owners, employees, customers, communities and future generations."
+    },
+    {
+      "heading": "Vision",
+      "body": "A future where owner-managed businesses become enduring institutions that create lasting value for people, communities, and generations."
+    },
+    {
+      "heading": "Mission",
+      "body": "To partner with owner-managed businesses to build clarity, strengthen leadership, design effective systems, execute meaningful strategies, and achieve sustainable transformation."
+    }
+  ],
+  "whoWeWorkWith": {
+    "eyebrow": "Who we work with",
+    "heading": "Owner-managed businesses facing the challenges that come with growth.",
+    "body": "Seiran works primarily with owner-managed businesses where the owner remains closely involved in the business. We also work with selected organisations navigating similar challenges and needing stronger leadership, systems and capability.",
+    "experienceLabel": "Our experience spans:"
+  },
+  "sectors": [
+    "Retail",
+    "Wholesale",
+    "Food & Hospitality",
+    "Professional & Business Services",
+    "Agribusiness",
+    "Private Education",
+    "Faith-based Organisations",
+    "Selected Non-profits"
+  ],
+  "cta": {
+    "heading": "Start with a conversation about your situation.",
+    "body": "The first conversation is about understanding what you are facing, not selling you a service. If Seiran is not the right fit, we will say so."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "eyebrow": "Who does the work",
+    "title": "A specialist practice, not a pyramid",
+    "lede": "Every Seiran engagement has a named consultant accountable for the work. The consultant leads the engagement and draws on strategic associates and specialist expertise where the work calls for it."
+  },
+  "founder": {
+    "eyebrowLabel": "The person leading it",
+    "name": "Eldaah Toi, PMP®",
+    "title": "Founder & Managing Consultant",
+    "bioParagraph1": "Eldaah brings experience across telecommunications, project management and strategic management. He holds an MBA in Strategic Management from USIU-Africa and a Bachelor of Engineering in Electrical & Electronic Engineering from the Technical University of Kenya, and is a PMP® credential holder. He has also undertaken professional training in strategic consulting practice through the Strathmore University Research and Consultancy Centre.",
+    "bioParagraph2": "His experience includes strategic and business advisory work, alongside leadership of complex projects and initiatives. At Seiran, he helps owner-managed businesses make clearer decisions, strengthen how they operate, and build the structures and capabilities required for sustainable growth.",
+    "linkedInLabel": "Eldaah Toi on LinkedIn"
+  },
+  "differentiators": [
+    "You work directly with the consultant leading your engagement",
+    "The right specialist expertise is brought in where the work needs it",
+    "We stay involved through execution, not just to the report"
+  ],
+  "associates": {
+    "eyebrow": "The right expertise for the work",
+    "heading": "Strategic associates & specialist expertise",
+    "intro": "Seiran’s four advisory pillars define our core work. Strategic associates and specialist expertise extend that capability where an engagement requires additional knowledge or experience. Our growing associate and specialist network includes expertise across:",
+    "areas": [
+      "Strategy & Growth",
+      "Operations & Business Systems",
+      "People & Organization",
+      "Business Performance"
+    ],
+    "closing": "Where a client’s situation calls for expertise beyond our core advisory work, Seiran can bring the appropriate specialist capability into the engagement. The work remains led by a Seiran consultant, with the right expertise brought around the engagement where it adds value."
+  },
+  "cta": {
+    "heading": "Work with the person doing the work.",
+    "body": "You will not be passed from one person to another. The consultant leading your engagement stays close to the work from the first conversation through execution."
+  }
+}

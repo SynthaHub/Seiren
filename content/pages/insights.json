@@ -1,0 +1,50 @@
+{
+  "hero": {
+    "eyebrow": "Writing for owner-managers",
+    "title": "Practical thinking on growth, systems and the founder’s role",
+    "lede": "Articles, guides and practical perspectives on the challenges owner-managed businesses face as they grow."
+  },
+  "forthcoming": [
+    {
+      "title": "How do owner-managed businesses prepare for growth?",
+      "excerpt": "The work that has to happen before headcount, before new premises, and before the next market.",
+      "category": "Guide"
+    },
+    {
+      "title": "When has a business outgrown its operating model?",
+      "excerpt": "The signals that the way a business is run no longer matches the size it has reached.",
+      "category": "Article"
+    },
+    {
+      "title": "How can founders reduce dependency on themselves?",
+      "excerpt": "Why delegation fails without decision rights, and what has to be built before it holds.",
+      "category": "Founder perspective"
+    },
+    {
+      "title": "What systems should an SME build before scaling?",
+      "excerpt": "The small number of processes worth formalising early, and the many that can wait.",
+      "category": "Guide"
+    },
+    {
+      "title": "How can owners gain visibility of business performance?",
+      "excerpt": "The short set of measures that tell you something is wrong while it is still cheap to fix.",
+      "category": "Article"
+    }
+  ],
+  "firstPublishedSection": {
+    "eyebrow": "First to be published",
+    "heading": "The questions owners ask most often",
+    "intro": "Nothing is published here yet. These are the pieces being written first."
+  },
+  "notifyLinkLabel": "Tell me when these are published",
+  "notifySection": {
+    "eyebrow": "When they land",
+    "heading": "Get practical insights for growing your business.",
+    "body": "Get occasional insights from Seiran on growth, leadership, systems and business performance. We send no more than one email a month."
+  },
+  "finalCta": {
+    "heading": "Is one of these a live question for you?",
+    "body": "If one of these is a question you’re facing now, you do not have to wait for the article. Let’s talk.",
+    "ctaLabel": "Start a Conversation"
+  }
+}

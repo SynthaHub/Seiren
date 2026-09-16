@@ -3,6 +3,7 @@ import { Section } from "@/components/common/Section";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { Photo } from "@/components/common/Photo";
 import { buttonVariants } from "@/components/ui/Button";
+import { homeContent } from "@/content/pages/home";
 
 /**
  * The writing band, on BizFusionX's blog construction: one featured piece with
@@ -19,59 +20,47 @@ import { buttonVariants } from "@/components/ui/Button";
  * reference's shape and position.
  */
 
-const featured = {
-  title: "How do owner-managed businesses prepare for growth?",
-  excerpt:
-    "The work that has to happen before headcount, before new premises, and before the next market — and why most of it is structural rather than commercial.",
-  category: "Guide",
-} as const;
+/** Image slots, positionally matched to `homeContent.insightsPreview.posts`. */
+const slots = ["officeDesk", "advisorySession", "workingDocuments"] as const;
 
-const rest = [
-  {
-    title: "When has a business outgrown its operating model?",
-    category: "Article",
-    slot: "officeDesk" as const,
-  },
-  {
-    title: "How can founders reduce dependency on themselves?",
-    category: "Founder perspective",
-    slot: "advisorySession" as const,
-  },
-  {
-    title: "What systems should an SME build before scaling?",
-    category: "Guide",
-    slot: "workingDocuments" as const,
-  },
-];
-
-function Meta({ category }: { category: string }) {
+function Meta({
+  category,
+  forthcomingLabel,
+  authorName,
+}: {
+  category: string;
+  forthcomingLabel: string;
+  authorName: string;
+}) {
   return (
     <p className="flex flex-wrap items-center gap-2">
       <span className="border-border text-ink-muted rounded-pill border px-3 py-1 text-[0.7rem] font-semibold tracking-[0.08em] uppercase">
         {category}
       </span>
       <span className="text-ink-muted border-border rounded-pill border px-3 py-1 text-[0.7rem] font-medium">
-        Forthcoming
+        {forthcomingLabel}
       </span>
       <span className="bg-accent text-accent-ink rounded-pill px-3 py-1 text-[0.7rem] font-medium">
-        Eldaah Toi
+        {authorName}
       </span>
     </p>
   );
 }
 
 export function InsightsPreviewSection() {
+  const { insightsPreview: content } = homeContent;
+  const featured = content.featured;
+  const rest = content.posts.map((post, index) => ({ ...post, slot: slots[index]! }));
+
   return (
     <Section tone="navy" width="wide" className="py-20 md:py-24">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
-          <Eyebrow align="start">Questions owners actually ask</Eyebrow>
-          <h2 className="text-h1 mt-6 font-serif">
-            Insights for owner-managed businesses
-          </h2>
+          <Eyebrow align="start">{content.eyebrow}</Eyebrow>
+          <h2 className="text-h1 mt-6 font-serif">{content.heading}</h2>
         </div>
         <Link to="/insights" className={buttonVariants({ variant: "outline" })}>
-          Everything planned
+          {content.ctaLabel}
         </Link>
       </div>
 
@@ -88,7 +77,11 @@ export function InsightsPreviewSection() {
             className="ease-out-soft rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
           />
           <div className="p-6 md:p-7">
-            <Meta category={featured.category} />
+            <Meta
+              category={featured.category}
+              forthcomingLabel={content.forthcomingLabel}
+              authorName={content.authorName}
+            />
             <h3 className="text-h2 text-ink-strong mt-4 font-serif">
               <Link
                 to="/insights"
@@ -113,7 +106,11 @@ export function InsightsPreviewSection() {
                 className="w-28 shrink-0 sm:w-32"
               />
               <div className="min-w-0 self-center">
-                <Meta category={post.category} />
+                <Meta
+                  category={post.category}
+                  forthcomingLabel={content.forthcomingLabel}
+                  authorName={content.authorName}
+                />
                 <h3 className="text-h3 text-ink-strong mt-3 font-semibold">
                   <Link
                     to="/insights"

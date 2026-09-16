@@ -5,23 +5,27 @@ import { Eyebrow } from "@/components/common/Eyebrow";
 import { PageHero } from "@/components/common/PageHero";
 import { CtaBand } from "@/components/common/CtaBand";
 import { servicePillars } from "@/content/services";
+import { servicesPageContent } from "@/content/pages/services";
 import type { ServicePillar } from "@/content/schemas";
 
 export function PillarPage({ pillar }: { pillar: ServicePillar }) {
   const others = servicePillars.filter((p) => p.slug !== pillar.slug);
+  const { pillarPage: content } = servicesPageContent;
 
   return (
     <>
       <PageHero
-        eyebrow="Within the four pillars"
+        eyebrow={content.heroEyebrow}
         title={pillar.title}
         lede={pillar.summary}
       />
 
       <Section tone="white" width="wide" className="py-20 md:py-28">
-        <Eyebrow align="start">The full list</Eyebrow>
+        <Eyebrow align="start">{content.fullListEyebrow}</Eyebrow>
         <h2 className="text-h1 mt-6 font-serif">
-          {pillar.services.length} services within {pillar.title}
+          {content.fullListHeadingTemplate
+            .replace("{n}", String(pillar.services.length))
+            .replace("{title}", pillar.title)}
         </h2>
 
         <ul className="border-border mt-12 grid border-t sm:grid-cols-2 sm:gap-x-12">
@@ -49,8 +53,8 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
       </Section>
 
       <Section tone="parchment" width="wide" className="py-20 md:py-28">
-        <Eyebrow align="start">The other three</Eyebrow>
-        <h2 className="text-h1 mt-6 font-serif">Often part of the solution</h2>
+        <Eyebrow align="start">{content.otherPillarsEyebrow}</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">{content.otherPillarsHeading}</h2>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {others.map((other) => (
@@ -67,7 +71,7 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
                 params={{ pillar: other.slug }}
                 className="text-small text-accent mt-5 inline-flex items-center gap-1.5 hover:underline"
               >
-                Explore
+                {content.exploreLabel}
                 <ArrowRight
                   className="ease-out-soft size-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
                   aria-hidden="true"
@@ -79,8 +83,11 @@ export function PillarPage({ pillar }: { pillar: ServicePillar }) {
       </Section>
 
       <CtaBand
-        heading={`Discuss a ${pillar.title.toLowerCase()} challenge.`}
-        body="We start by understanding the business before recommending a solution. The problem you see may not be the real problem holding the business back."
+        heading={content.ctaHeadingTemplate.replace(
+          "{pillar}",
+          pillar.title.toLowerCase(),
+        )}
+        body={content.ctaBody}
       />
     </>
   );

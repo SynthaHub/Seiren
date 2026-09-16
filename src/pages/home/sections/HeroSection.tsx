@@ -3,11 +3,8 @@ import { ArrowRight, PlayCircle } from "lucide-react";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { HeroPattern } from "@/components/common/HeroPattern";
 import { buttonVariants } from "@/components/ui/Button";
-import {
-  placeholders,
-  placeholderSrc,
-  placeholderSrcSet,
-} from "@/content/placeholders";
+import { placeholders, placeholderSrc, placeholderSrcSet } from "@/content/placeholders";
+import { homeContent } from "@/content/pages/home";
 
 /**
  * Full-bleed hero: copy left, image bleeding off the right edge, contour ground
@@ -34,6 +31,7 @@ import {
  */
 export function HeroSection() {
   const hero = placeholders.heroAdvisory;
+  const { hero: content } = homeContent;
 
   return (
     <section className="bg-surface-sunken relative isolate overflow-hidden">
@@ -71,31 +69,28 @@ export function HeroSection() {
 
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24 lg:py-28">
         <div className="lg:max-w-[54%]">
-          <Eyebrow align="start">From complexity to clarity&hellip;</Eyebrow>
+          <Eyebrow align="start">{content.eyebrow}</Eyebrow>
 
           <h1 className="text-hero mt-7">
-            <span className="text-accent">Clear</span> Thinking,
+            <span className="text-accent">{content.headingAccent}</span>{" "}
+            {content.headingLine1}
             <br />
-            Lasting Growth
+            {content.headingLine2}
           </h1>
 
-          <p className="text-body text-ink-muted mt-7 max-w-md">
-            Seiran Partners works with owner-managed businesses to bring clarity to
-            strategic decisions, strengthen leadership and build the systems, structures
-            and capabilities required for sustainable growth.
-          </p>
+          <p className="text-body text-ink-muted mt-7 max-w-md">{content.body}</p>
 
           <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
-            <Link to="/contact" className={buttonVariants({ size: "lg" })}>
-              Start a Conversation
+            <Link to={content.primaryCtaHref} className={buttonVariants({ size: "lg" })}>
+              {content.primaryCtaLabel}
             </Link>
 
             <Link
-              to="/approach"
+              to={content.secondaryCtaHref}
               className="text-body text-ink-strong hover:text-accent ease-out-soft group inline-flex items-center gap-2.5 transition-colors duration-200"
             >
               <PlayCircle className="text-accent size-6 shrink-0" aria-hidden="true" />
-              How we work
+              {content.secondaryCtaLabel}
               <ArrowRight
                 className="ease-out-soft size-4 transition-transform duration-200 group-hover:translate-x-0.5"
                 aria-hidden="true"
@@ -106,19 +101,17 @@ export function HeroSection() {
           <div className="bg-surface border-border rounded-card mt-14 flex max-w-md items-center gap-5 border p-5">
             <div className="border-accent/30 flex flex-col items-center border-r pr-5">
               <span className="text-accent font-serif text-[1.9rem] leading-none font-semibold tabular-nums">
-                7
+                {content.statNumber}
               </span>
               <span className="text-ink-muted mt-1 text-[0.68rem] tracking-wide">
-                stages
+                {content.statLabel}
               </span>
             </div>
             <div>
               <p className="text-small text-ink-strong font-semibold">
-                The Seiran Transformation Journey
+                {content.statTitle}
               </p>
-              <p className="text-small text-ink-muted mt-1">
-                Understand, diagnose, clarify &mdash; then build it.
-              </p>
+              <p className="text-small text-ink-muted mt-1">{content.statCaption}</p>
             </div>
           </div>
         </div>

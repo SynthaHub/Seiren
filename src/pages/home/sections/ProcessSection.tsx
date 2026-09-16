@@ -3,6 +3,7 @@ import { Section } from "@/components/common/Section";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { buttonVariants } from "@/components/ui/Button";
 import { journeyStages } from "@/content/journey";
+import { homeContent } from "@/content/pages/home";
 
 /**
  * The working-process band, on BizFusionX's horizontal timeline: step pills on
@@ -23,18 +24,14 @@ import { journeyStages } from "@/content/journey";
  */
 export function ProcessSection() {
   const shown = journeyStages.slice(0, 4);
+  const { process: content } = homeContent;
 
   return (
     <Section tone="white" width="wide" className="py-20 md:py-24">
       <div className="max-w-2xl">
-        <Eyebrow align="start">Seven stages. One integrated journey.</Eyebrow>
-        <h2 className="text-h1 mt-6 font-serif">
-          A report is not the finish line. Transformation is.
-        </h2>
-        <p className="text-body text-ink-muted mt-5">
-          From understanding how your business really works to building the capability
-          for lasting change. These are the first four.
-        </p>
+        <Eyebrow align="start">{content.eyebrow}</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">{content.heading}</h2>
+        <p className="text-body text-ink-muted mt-5">{content.body}</p>
       </div>
 
       <ol className="relative mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
@@ -67,7 +64,7 @@ export function ProcessSection() {
 
       <div className="mt-14">
         <Link to="/approach" className={buttonVariants({ variant: "outline" })}>
-          All seven stages
+          {content.ctaLabel}
         </Link>
       </div>
     </Section>

@@ -6,6 +6,7 @@ import { Photo } from "@/components/common/Photo";
 import { buttonVariants } from "@/components/ui/Button";
 import { servicePillars } from "@/content/services";
 import { journeyStages } from "@/content/journey";
+import { homeContent } from "@/content/pages/home";
 
 /**
  * About, rebuilt on BizFusionX's construction: heading left, supporting copy
@@ -24,40 +25,38 @@ import { journeyStages } from "@/content/journey";
  * practice rather than a pyramid, one named consultant is the selling point.
  */
 
-const differentiators = [
-  "Diagnosis before proposal",
-  "Your engagement is led by a dedicated Seiran consultant, with specialist expertise brought in where the work requires it",
-  "Work continues through execution",
-] as const;
-
 export function AboutSection() {
+  const { about: content } = homeContent;
+  const differentiators = content.differentiators;
   const serviceCount = servicePillars.reduce((n, p) => n + p.services.length, 0);
 
   const figures = [
-    { icon: Layers, value: String(servicePillars.length), label: "Advisory pillars" },
-    { icon: ListChecks, value: String(serviceCount), label: "Named services" },
+    {
+      icon: Layers,
+      value: String(servicePillars.length),
+      label: content.figureLabels.pillars,
+    },
+    {
+      icon: ListChecks,
+      value: String(serviceCount),
+      label: content.figureLabels.services,
+    },
     {
       icon: Route,
       value: String(journeyStages.length),
-      label: "Stages, start to finish",
+      label: content.figureLabels.stages,
     },
-    { icon: UserRound, value: "1", label: "Dedicated lead consultant" },
+    { icon: UserRound, value: "1", label: content.figureLabels.leadConsultant },
   ];
 
   return (
     <Section tone="parchment" width="wide" className="py-20 md:py-24">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
         <div>
-          <Eyebrow align="start">Why growth gets harder</Eyebrow>
-          <h2 className="text-h1 mt-6 font-serif">
-            Businesses grow. Complexity grows with them.
-          </h2>
+          <Eyebrow align="start">{content.eyebrow}</Eyebrow>
+          <h2 className="text-h1 mt-6 font-serif">{content.heading}</h2>
         </div>
-        <p className="text-body text-ink-muted lg:pt-14">
-          What worked when the business was smaller can quietly stop working as the
-          business grows. We look beyond the immediate problem to understand what is
-          really holding the business back — and help you fix it.
-        </p>
+        <p className="text-body text-ink-muted lg:pt-14">{content.body}</p>
       </div>
 
       <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-16">
@@ -101,7 +100,7 @@ export function AboutSection() {
           </ul>
 
           <Link to="/about" className={`${buttonVariants({ variant: "outline" })} mt-9`}>
-            More about the firm
+            {content.ctaLabel}
           </Link>
         </div>
       </div>

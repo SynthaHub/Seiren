@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "What the work looks like in practice",
+    "title": "Real business problems. Clear thinking. Practical change.",
+    "lede": "Each case study shows how Seiran moves from understanding the situation to identifying what is really holding the business back, deciding what needs to change, and putting that change into practice. Seiran is a new practice, so what follows are illustrative scenarios rather than client engagements — real case studies are published only with a client's permission."
+  },
+  "noticeBanner": {
+    "boldLead": "The scenarios below are illustrative, not client engagements.",
+    "bodyIntro": "They are composed to show method and are not drawn from, or representative of, any identifiable organisation. Outcomes describe what changes structurally, not results achieved. Seiran has published",
+    "permissionNote": "to date — those appear here only where a client has given permission."
+  },
+  "methodSection": {
+    "eyebrow": "From problem to progress",
+    "heading": "Every case study follows the same six parts",
+    "intro": "This makes the work easy to understand, and shows not only what changed, but why. It also means examples can be read against one another, rather than each being written to flatter its own result."
+  },
+  "confidentialitySection": {
+    "eyebrow": "How we share client work",
+    "quote": "A client’s situation is theirs to disclose, not ours.",
+    "body": "Our work can involve sensitive issues around growth, leadership, operations and performance. We respect that confidentiality. Where a client gives permission for an engagement to be published, we share the work clearly and accurately. Where they do not, the work remains confidential."
+  },
+  "cta": {
+    "heading": "Recognise your situation?",
+    "body": "If something in these examples sounds familiar, the first conversation is where we explore what is really happening in your business."
+  }
+}

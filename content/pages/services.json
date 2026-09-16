@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "eyebrow": "What the work covers",
+    "title": "Four pillars, worked as one system",
+    "lede": "Good strategy has to work in the real business. These areas are separated for navigation, but we look at them together."
+  },
+  "exploreLabel": "Explore",
+  "quoteSection": {
+    "eyebrow": "Rarely one pillar alone",
+    "quote": "The presenting problem is rarely the constraint.",
+    "body": "An owner who asks for a growth strategy often needs an operating model first. Most engagements begin with a diagnostic for exactly that reason."
+  },
+  "cta": {
+    "heading": "Not sure which pillar you need?",
+    "body": "That is a normal place to start. Working it out is part of the first conversation rather than something to resolve beforehand."
+  },
+  "pillarPage": {
+    "heroEyebrow": "Within the four pillars",
+    "fullListEyebrow": "The full list",
+    "fullListHeadingTemplate": "{n} services within {title}",
+    "otherPillarsEyebrow": "The other three",
+    "otherPillarsHeading": "Often part of the solution",
+    "exploreLabel": "Explore",
+    "ctaHeadingTemplate": "Discuss a {pillar} challenge.",
+    "ctaBody": "We start by understanding the business before recommending a solution. The problem you see may not be the real problem holding the business back."
+  }
+}

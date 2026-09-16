@@ -6,6 +6,7 @@ import { PageHero } from "@/components/common/PageHero";
 import { Accordion, AccordionItem } from "@/components/ui/Accordion";
 import { faqs } from "@/content/faqs";
 import { officeAddress, contactDetails } from "@/content/navigation";
+import { contactContent } from "@/content/pages/contact";
 import { EnquiryForm } from "./EnquiryForm";
 
 /**
@@ -17,6 +18,8 @@ import { EnquiryForm } from "./EnquiryForm";
  * dark ground.
  */
 export function ContactPage() {
+  const { hero, nextSteps, panelHeading, whatHappensNextHeading, faqSection } =
+    contactContent;
   const details = [
     {
       icon: MapPin,
@@ -44,11 +47,7 @@ export function ContactPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Start here"
-        title="Tell us what you are dealing with"
-        lede="The first conversation is a discussion of your situation, not a pitch. If Seiran is not the right fit for what you are facing, we will say so."
-      />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} />
 
       <Section tone="white" width="wide" className="py-20 md:py-28">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-16">
@@ -61,7 +60,7 @@ export function ContactPage() {
 
             <div className="bg-surface-sunken rounded-card p-6 md:p-7">
               <h2 className="text-label text-ink-muted font-semibold tracking-[0.1em] uppercase">
-                Contact
+                {panelHeading}
               </h2>
               <ul className="mt-5 flex flex-col gap-5">
                 {details.map((d) => (
@@ -89,15 +88,10 @@ export function ContactPage() {
 
             <div className="border-border rounded-card border p-6 md:p-7">
               <h2 className="text-label text-ink-muted font-semibold tracking-[0.1em] uppercase">
-                What happens next
+                {whatHappensNextHeading}
               </h2>
               <ol className="mt-5 flex flex-col gap-4">
-                {[
-                  "Eldaah reads your enquiry personally.",
-                  "A reply within two working days.",
-                  "An initial conversation about your situation.",
-                  "If there is a fit, a discovery and diagnostic stage.",
-                ].map((step, index) => (
+                {nextSteps.map((step, index) => (
                   <li key={step} className="flex gap-3">
                     <span
                       className="text-accent text-label font-semibold tabular-nums"
@@ -115,8 +109,8 @@ export function ContactPage() {
       </Section>
 
       <Section tone="parchment" width="default" className="py-20 md:py-28">
-        <Eyebrow>Before you write</Eyebrow>
-        <h2 className="text-h1 mt-6 text-center font-serif">Before you write</h2>
+        <Eyebrow>{faqSection.eyebrow}</Eyebrow>
+        <h2 className="text-h1 mt-6 text-center font-serif">{faqSection.heading}</h2>
 
         <Accordion type="single" collapsible className="mt-12">
           {faqs.map((faq, index) => (

@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "eyebrow": "The transformation journey",
+    "title": "A report is not the finish line. Transformation is.",
+    "lede": "The Seiran Transformation Journey runs in seven stages. Each builds on the one before it, taking the business from understanding what is happening to creating lasting change."
+  },
+  "stageByStage": {
+    "eyebrow": "Stage by stage",
+    "heading": "From understanding a business to changing it"
+  },
+  "quoteSection": {
+    "eyebrow": "Where most consulting stops",
+    "quote": "The later stages are where good plans become real change.",
+    "body": "Seiran stays involved through execution, working alongside the team that has to make the change work. If the change only works when the adviser is in the room, it isn’t built to last."
+  },
+  "cta": {
+    "heading": "Find out which stage you are actually at.",
+    "body": "Many owners come looking for a solution before they have identified the real problem. The first conversation helps us understand where the business really needs to start."
+  }
+}

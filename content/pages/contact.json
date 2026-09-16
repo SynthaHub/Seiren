@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "eyebrow": "Start here",
+    "title": "Tell us what you are dealing with",
+    "lede": "The first conversation is a discussion of your situation, not a pitch. If Seiran is not the right fit for what you are facing, we will say so."
+  },
+  "nextSteps": [
+    "Eldaah reads your enquiry personally.",
+    "A reply within two working days.",
+    "An initial conversation about your situation.",
+    "If there is a fit, a discovery and diagnostic stage."
+  ],
+  "panelHeading": "Contact",
+  "whatHappensNextHeading": "What happens next",
+  "faqSection": {
+    "eyebrow": "Before you write",
+    "heading": "Before you write"
+  }
+}

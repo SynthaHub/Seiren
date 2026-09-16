@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "eyebrow": "From complexity to clarity…",
+    "headingAccent": "Clear",
+    "headingLine1": "Thinking,",
+    "headingLine2": "Lasting Growth",
+    "body": "Seiran Partners works with owner-managed businesses to bring clarity to strategic decisions, strengthen leadership and build the systems, structures and capabilities required for sustainable growth.",
+    "primaryCtaLabel": "Start a Conversation",
+    "primaryCtaHref": "/contact",
+    "secondaryCtaLabel": "How we work",
+    "secondaryCtaHref": "/approach",
+    "statNumber": "7",
+    "statLabel": "stages",
+    "statTitle": "The Seiran Transformation Journey",
+    "statCaption": "Understand, diagnose, clarify — then build it."
+  },
+  "about": {
+    "eyebrow": "Why growth gets harder",
+    "heading": "Businesses grow. Complexity grows with them.",
+    "body": "What worked when the business was smaller can quietly stop working as the business grows. We look beyond the immediate problem to understand what is really holding the business back — and help you fix it.",
+    "differentiators": [
+      "Diagnosis before proposal",
+      "Your engagement is led by a dedicated Seiran consultant, with specialist expertise brought in where the work requires it",
+      "Work continues through execution"
+    ],
+    "ctaLabel": "More about the firm",
+    "figureLabels": {
+      "pillars": "Advisory pillars",
+      "services": "Named services",
+      "stages": "Stages, start to finish",
+      "leadConsultant": "Dedicated lead consultant"
+    }
+  },
+  "capabilityTicker": {
+    "words": ["Clarity", "Leadership", "Systems", "People", "Execution", "Performance", "Growth"],
+    "srHeading": "What Seiran helps businesses build"
+  },
+  "pillars": {
+    "eyebrow": "Four pillars, one system",
+    "heading": "Advisory that holds together",
+    "body": "Good strategy has to work in the real business. These areas are separated for navigation, but we look at them together.",
+    "cardCtaLabel": "Discover more"
+  },
+  "process": {
+    "eyebrow": "Seven stages. One integrated journey.",
+    "heading": "A report is not the finish line. Transformation is.",
+    "body": "From understanding how your business really works to building the capability for lasting change. These are the first four.",
+    "ctaLabel": "All seven stages"
+  },
+  "getInTouch": {
+    "eyebrow": "The first conversation",
+    "heading": "Talk to an adviser who has handled problems like yours before.",
+    "body": "Tell us what your business is dealing with. The first conversation is a discussion of your situation, not a pitch — and if Seiran is not the right fit for it, we will say so.",
+    "labelWhereWeAre": "Where we are",
+    "labelEmailUs": "Email us",
+    "labelPhone": "Phone",
+    "cardHeading": "Book an initial conversation",
+    "cardSubcopy": "Four fields. Every enquiry is reviewed personally."
+  },
+  "insightsPreview": {
+    "eyebrow": "Questions owners actually ask",
+    "heading": "Insights for owner-managed businesses",
+    "ctaLabel": "Everything planned",
+    "featured": {
+      "title": "How do owner-managed businesses prepare for growth?",
+      "excerpt": "The work that has to happen before headcount, before new premises, and before the next market — and why most of it is structural rather than commercial.",
+      "category": "Guide"
+    },
+    "posts": [
+      { "title": "When has a business outgrown its operating model?", "category": "Article" },
+      { "title": "How can founders reduce dependency on themselves?", "category": "Founder perspective" },
+      { "title": "What systems should an SME build before scaling?", "category": "Guide" }
+    ],
+    "forthcomingLabel": "Forthcoming",
+    "authorName": "Eldaah Toi"
+  }
+}

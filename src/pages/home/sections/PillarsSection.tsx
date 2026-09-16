@@ -3,6 +3,7 @@ import { ArrowRight, Compass, Settings2, Users, LineChart } from "lucide-react";
 import { Section } from "@/components/common/Section";
 import { Eyebrow } from "@/components/common/Eyebrow";
 import { servicePillars } from "@/content/services";
+import { homeContent } from "@/content/pages/home";
 import { cn } from "@/lib/cn";
 
 /**
@@ -29,15 +30,14 @@ import { cn } from "@/lib/cn";
 const icons = [Compass, Settings2, Users, LineChart];
 
 export function PillarsSection() {
+  const { pillars: content } = homeContent;
+
   return (
     <Section tone="navy" width="wide" className="py-20 md:py-24">
       <div className="max-w-2xl">
-        <Eyebrow align="start">Four pillars, one system</Eyebrow>
-        <h2 className="text-h1 mt-6 font-serif">Advisory that holds together</h2>
-        <p className="text-body text-ink-muted mt-5">
-          Good strategy has to work in the real business. These areas are separated for
-          navigation, but we look at them together.
-        </p>
+        <Eyebrow align="start">{content.eyebrow}</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">{content.heading}</h2>
+        <p className="text-body text-ink-muted mt-5">{content.body}</p>
       </div>
 
       <div className="mt-14 grid gap-5 sm:grid-cols-2">
@@ -98,7 +98,7 @@ export function PillarsSection() {
                   featured ? "text-accent-ink" : "text-accent"
                 }`}
               >
-                Discover more
+                {content.cardCtaLabel}
                 <ArrowRight
                   className="ease-out-soft size-4 transition-transform duration-200 group-hover:translate-x-0.5"
                   aria-hidden="true"

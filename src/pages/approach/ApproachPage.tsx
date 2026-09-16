@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/common/Eyebrow";
 import { PageHero } from "@/components/common/PageHero";
 import { CtaBand } from "@/components/common/CtaBand";
 import { journeyStages } from "@/content/journey";
+import { approachContent } from "@/content/pages/approach";
 
 /**
  * The only page on the site that carries numbers. The seven stages are a real
@@ -20,19 +21,15 @@ import { journeyStages } from "@/content/journey";
  * description wraps to a different number of lines.
  */
 export function ApproachPage() {
+  const { hero, stageByStage, quoteSection, cta } = approachContent;
+
   return (
     <>
-      <PageHero
-        eyebrow="The transformation journey"
-        title="A report is not the finish line. Transformation is."
-        lede="The Seiran Transformation Journey runs in seven stages. Each builds on the one before it, taking the business from understanding what is happening to creating lasting change."
-      />
+      <PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} />
 
       <Section tone="white" width="default" className="py-20 md:py-24">
-        <Eyebrow align="start">Stage by stage</Eyebrow>
-        <h2 className="text-h1 mt-6 font-serif">
-          From understanding a business to changing it
-        </h2>
+        <Eyebrow align="start">{stageByStage.eyebrow}</Eyebrow>
+        <h2 className="text-h1 mt-6 font-serif">{stageByStage.heading}</h2>
 
         <ol className="mt-14">
           {journeyStages.map((stage, index) => {
@@ -73,22 +70,13 @@ export function ApproachPage() {
 
       <Section tone="navy" width="default" className="py-20 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Where most consulting stops</Eyebrow>
-          <p className="text-quote mt-8 font-serif italic">
-            The later stages are where good plans become real change.
-          </p>
-          <p className="text-body text-ink-muted mt-6">
-            Seiran stays involved through execution, working alongside the team that has
-            to make the change work. If the change only works when the adviser is in the
-            room, it isn&rsquo;t built to last.
-          </p>
+          <Eyebrow>{quoteSection.eyebrow}</Eyebrow>
+          <p className="text-quote mt-8 font-serif italic">{quoteSection.quote}</p>
+          <p className="text-body text-ink-muted mt-6">{quoteSection.body}</p>
         </div>
       </Section>
 
-      <CtaBand
-        heading="Find out which stage you are actually at."
-        body="Many owners come looking for a solution before they have identified the real problem. The first conversation helps us understand where the business really needs to start."
-      />
+      <CtaBand heading={cta.heading} body={cta.body} />
     </>
   );
 }
