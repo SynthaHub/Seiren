@@ -1,18 +1,18 @@
 {
   "hero": {
-    "eyebrow": "From complexity to clarity…",
+    "statLabel": "stages",
+    "body": "Seiran Partners works with owner-managed businesses to bring clarity to strategic decisions, strengthen leadership and build the systems, structures and capabilities required for sustainable growth.",
+    "statTitle": "The Seiran Transformation Journey",
+    "primaryCtaLabel": "Start a Conversation",
+    "secondaryCtaHref": "/approach",
+    "eyebrow": "My Name is Gitau",
     "headingAccent": "Clear",
+    "statCaption": "Understand, diagnose, clarify — then build it.",
+    "secondaryCtaLabel": "How we work",
+    "primaryCtaHref": "/contact",
     "headingLine1": "Thinking,",
     "headingLine2": "Lasting Growth",
-    "body": "Seiran Partners works with owner-managed businesses to bring clarity to strategic decisions, strengthen leadership and build the systems, structures and capabilities required for sustainable growth.",
-    "primaryCtaLabel": "Start a Conversation",
-    "primaryCtaHref": "/contact",
-    "secondaryCtaLabel": "How we work",
-    "secondaryCtaHref": "/approach",
-    "statNumber": "7",
-    "statLabel": "stages",
-    "statTitle": "The Seiran Transformation Journey",
-    "statCaption": "Understand, diagnose, clarify — then build it."
+    "statNumber": "7"
   },
   "about": {
     "eyebrow": "Why growth gets harder",
@@ -32,7 +32,15 @@
     }
   },
   "capabilityTicker": {
-    "words": ["Clarity", "Leadership", "Systems", "People", "Execution", "Performance", "Growth"],
+    "words": [
+      "Clarity",
+      "Leadership",
+      "Systems",
+      "People",
+      "Execution",
+      "Performance",
+      "Growth"
+    ],
     "srHeading": "What Seiran helps businesses build"
   },
   "pillars": {
@@ -67,9 +75,18 @@
       "category": "Guide"
     },
     "posts": [
-      { "title": "When has a business outgrown its operating model?", "category": "Article" },
-      { "title": "How can founders reduce dependency on themselves?", "category": "Founder perspective" },
-      { "title": "What systems should an SME build before scaling?", "category": "Guide" }
+      {
+        "title": "When has a business outgrown its operating model?",
+        "category": "Article"
+      },
+      {
+        "title": "How can founders reduce dependency on themselves?",
+        "category": "Founder perspective"
+      },
+      {
+        "title": "What systems should an SME build before scaling?",
+        "category": "Guide"
+      }
     ],
     "forthcomingLabel": "Forthcoming",
     "authorName": "Eldaah Toi"
