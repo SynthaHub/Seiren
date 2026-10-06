@@ -37,9 +37,9 @@ export function TeamPage() {
       <Section tone="white" width="wide" className="py-20 md:py-24">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:gap-16">
           {/* Offset gold rule sitting behind the image. */}
-          <div className="relative">
+          <div className="relative ml-5 mb-4 md:ml-6 md:mb-6">
             <div
-              className="border-accent/45 rounded-media absolute -bottom-4 -left-4 h-full w-full border"
+              className="border-accent/45 rounded-media absolute -bottom-0 -left-0 h-full w-full border"
               aria-hidden="true"
             />
             <Photo slot="workspacePortrait" aspect="aspect-[4/5]" className="relative" />

@@ -122,8 +122,8 @@ export const placeholders: Record<PlaceholderKey, Placeholder> = {
     base: "/placeholders/workspace-portrait",
     alt: "A quiet office corridor with glass-walled meeting rooms",
     note: "Founder slot — a Nairobi workspace interior, NOT a portrait of a person. See the rule at the top of this file",
-    widths: [420, 840],
-    intrinsic: { w: 840, h: 1050 },
+    widths: [420, 694],
+    intrinsic: { w: 694, h: 1040 },
     sizes: "(min-width: 768px) 40vw, 100vw",
   },
   advisorySession: {
