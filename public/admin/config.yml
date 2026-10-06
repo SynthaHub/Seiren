@@ -45,8 +45,8 @@ publish_mode: editorial_workflow
 media_folder: "public/placeholders"
 public_folder: "/placeholders"
 
-site_url: https://tell.sazara.co.ke
-display_url: https://tell.sazara.co.ke
+site_url: https://seiranpartners.co.ke
+display_url: https://seiranpartners.co.ke
 
 collections:
   - name: "page_home"
